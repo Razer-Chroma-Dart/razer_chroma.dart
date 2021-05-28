@@ -1,0 +1,41 @@
+name: razer_chroma_macos
+description: Bindings to the Razer Chroma macOS library (librazermacos), with a Dart-friendly wrapper.
+version: 0.1.0
+homepage: https://github.com/Razer-Chroma-Dart/razer_chroma_macos
+
+environment:
+  sdk: '>=2.13.0 <3.0.0'
+
+dependencies:
+  ffi: ^1.1.2
+  color: ^3.0.0
+
+dev_dependencies:
+  ## Linting
+  lints: 1.0.1
+
+  ## Code generation
+  ffigen: ^3.0.0
+
+  ## Example
+  path: ^1.8.0
+
+ffigen:
+  name: Driver
+  description: Bindings to the Razer Chroma macOS library (librazermacos).
+  output: lib/src/driver.dart
+  headers:
+    entry-points:
+      - 'driver/src/include/razercommon.h'
+      - 'driver/src/include/razerdevice.h'
+      - 'driver/src/include/razerchromacommon.h'
+      - 'driver/src/include/razeraccessory_driver.h'
+      - 'driver/src/include/razergpu_driver.h'
+      - 'driver/src/include/razerheadphone_driver.h'
+      - 'driver/src/include/razerkbd_driver.h'
+      - 'driver/src/include/razerkraken_driver.h'
+      - 'driver/src/include/razermouse_driver.h'
+      - 'driver/src/include/razermousedock_driver.h'
+      - 'driver/src/include/razermousemat_driver.h'
+    include-directives:
+      - 'driver/src/include/**.h'
