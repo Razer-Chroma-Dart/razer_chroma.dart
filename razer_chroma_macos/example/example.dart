@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:path/path.dart';
+import 'package:razer_chroma/razer_chroma.dart';
 import 'package:razer_chroma_macos/razer_chroma_macos.dart';
 
 Future<void> main(List<String> arguments) async {
@@ -26,7 +27,7 @@ Future<void> main(List<String> arguments) async {
 
   // Open all devices, and select the first keyboard.
   razerChromaMac.openAllDevices();
-  final RazerDevice? device = razerChromaMac.openDevices.firstWhereOrNull(
+  final RazerMacOSDevice? device = razerChromaMac.openDevices.firstWhereOrNull(
       (device) => device.deviceInfo.mainType == RazerDeviceType.keyboard);
   if (device == null) {
     stderr.writeln('Could not find a keyboard!');

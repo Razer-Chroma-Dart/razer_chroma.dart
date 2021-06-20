@@ -4,10 +4,10 @@ import '/src/entities/razer_devices.dart';
 /// A [BaseClient] mixin adding device management functionality.
 mixin DeviceApi on BaseClient {
   /// The open Razer Chroma devices.
-  RazerDevices get openDevices =>
+  RazerMacOSDevices get openDevices =>
       _devices ??
       (throw StateError('No devices open! Use a method like getAllDevices().'));
-  RazerDevices? _devices;
+  RazerMacOSDevices? _devices;
 
   /// True if any Razer Chroma devices are open.
   ///
@@ -18,7 +18,7 @@ mixin DeviceApi on BaseClient {
   /// Opens all connected Razer Chroma devices.
   void openAllDevices() {
     assert(!hasOpenDevices, 'Devices are already open!');
-    _devices = RazerDevices(binding.getAllRazerDevices());
+    _devices = RazerMacOSDevices(binding.getAllRazerDevices());
   }
 
   /// Closes all open Razer Chroma devices.

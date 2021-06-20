@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   meta: ^1.4.0
+  razer_chroma:
+    path: '../razer_chroma'
   collection: ^1.15.0
   ffi: ^1.1.2
   color: ^3.0.0
@@ -21,12 +23,6 @@ dev_dependencies:
 
   ## Example
   path: ^1.8.0
-
-  ## Tools
-  code_builder: ^4.0.0
-  built_collection: ^5.1.0
-  recase: ^4.0.0
-  dart_style: ^2.0.1
 
 ffigen:
   name: RazerMacOSDriver

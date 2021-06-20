@@ -1,22 +1,19 @@
 import 'package:meta/meta.dart';
+import 'package:razer_chroma/razer_chroma.dart';
 
-import '/src/device_info.dart';
 import '/src/driver.dart' as driver;
 
-/// A Razer Chroma device.
-class RazerDevice {
+class RazerMacOSDevice implements RazerDevice {
   @internal
   final driver.RazerDevice nativeRazerDevice;
 
-  /// A [DeviceInfo] instance containing information about the
-  /// device.
+  @override
   final RazerDeviceInfo deviceInfo;
 
-  RazerDevice(this.nativeRazerDevice)
-      : deviceInfo = RazerDeviceInfo.products[nativeRazerDevice.productId] ??
-            (throw UnimplementedError(
-                'The device with product ID 0x${nativeRazerDevice.productId.toRadixString(16).padLeft(4, '0')} is unknown! Please file an issue.'));
+  RazerMacOSDevice(this.nativeRazerDevice)
+      : deviceInfo =
+            RazerDevice.getDeviceInfoForProductId(nativeRazerDevice.productId);
 
-  /// The device's USB product ID.
+  @override
   int get productId => nativeRazerDevice.productId;
 }

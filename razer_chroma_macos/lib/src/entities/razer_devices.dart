@@ -2,23 +2,23 @@ import 'dart:ffi' as ffi;
 
 import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
+import 'package:razer_chroma/razer_chroma.dart';
 
 import '/src/driver.dart' as driver;
 import '/src/entities/razer_device.dart';
 
-/// A [List] of [RazerDevice]s.
-class RazerDevices extends DelegatingList<RazerDevice>
-    implements List<RazerDevice> {
+class RazerMacOSDevices extends DelegatingList<RazerMacOSDevice>
+    implements RazerDevices<RazerMacOSDevice> {
   @internal
   final driver.RazerDevices nativeRazerDevices;
 
-  RazerDevices(this.nativeRazerDevices)
+  RazerMacOSDevices(this.nativeRazerDevices)
       : super(
           UnmodifiableListView(
             List.generate(
               nativeRazerDevices.size,
-              (index) =>
-                  RazerDevice(nativeRazerDevices.devices.elementAt(index).ref),
+              (index) => RazerMacOSDevice(
+                  nativeRazerDevices.devices.elementAt(index).ref),
               growable: false,
             ),
           ),

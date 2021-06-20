@@ -10,15 +10,16 @@ import '/src/entities/razer_device.dart';
 import '/src/utils/color.dart';
 
 mixin KeyboardApi on BaseClient {
-  void kbdSetModeNone(RazerDevice device) => binding.razer_attr_write_mode_none(
-      device.nativeRazerDevice.usbDevice, nullptr, 0);
+  void kbdSetModeNone(RazerMacOSDevice device) =>
+      binding.razer_attr_write_mode_none(
+          device.nativeRazerDevice.usbDevice, nullptr, 0);
 
-  void kbdSetModeSpectrum(RazerDevice device) =>
+  void kbdSetModeSpectrum(RazerMacOSDevice device) =>
       binding.razer_attr_write_mode_spectrum(
           device.nativeRazerDevice.usbDevice, nullptr, 0);
 
   void kbdSetModeWave(
-    RazerDevice device, {
+    RazerMacOSDevice device, {
     bool rightToLeft = false,
     int speed = 0x28,
   }) {
@@ -30,7 +31,7 @@ mixin KeyboardApi on BaseClient {
   }
 
   void kbdSetModeStatic(
-    RazerDevice device,
+    RazerMacOSDevice device,
     RgbColor color, {
     bool store = true,
   }) {
@@ -44,7 +45,7 @@ mixin KeyboardApi on BaseClient {
   }
 
   void kbdSetModeReactive(
-    RazerDevice device,
+    RazerMacOSDevice device,
     RgbColor color, {
     int speed = 0x28,
   }) {
@@ -58,7 +59,7 @@ mixin KeyboardApi on BaseClient {
   }
 
   void kbdSetModeBreathe(
-    RazerDevice device, [
+    RazerMacOSDevice device, [
     RgbColor? color1,
     RgbColor? color2,
   ]) {
@@ -85,17 +86,17 @@ mixin KeyboardApi on BaseClient {
     malloc.free(bufPointer);
   }
 
-  int kbdGetBrightness(RazerDevice device) => binding
+  int kbdGetBrightness(RazerMacOSDevice device) => binding
       .razer_attr_read_set_brightness(device.nativeRazerDevice.usbDevice);
 
-  void kbdSetBrightness(RazerDevice device, int brightness) {
+  void kbdSetBrightness(RazerMacOSDevice device, int brightness) {
     assert(brightness >= 0 && brightness <= 100);
     binding.razer_attr_write_set_brightness(
         device.nativeRazerDevice.usbDevice, brightness, sizeOf<Uint8>());
   }
 
   void kbdSetModeStarlight(
-    RazerDevice device, [
+    RazerMacOSDevice device, [
     int speed = 0x28,
     RgbColor? color1,
     RgbColor? color2,
@@ -125,14 +126,14 @@ mixin KeyboardApi on BaseClient {
     malloc.free(bufPointer);
   }
 
-  void kbdSetModeCustom(RazerDevice device) =>
+  void kbdSetModeCustom(RazerMacOSDevice device) =>
       binding.razer_attr_write_mode_custom(
           device.nativeRazerDevice.usbDevice, nullptr, 0);
 
   /// Display a custom frame on the keyboard.
   ///
   /// Format: `ROW_ID START_COL STOP_COL RGB...`
-  void kbdSetCustomFrame(RazerDevice device, Uint8List data) {
+  void kbdSetCustomFrame(RazerMacOSDevice device, Uint8List data) {
     final dataSize = data.length * sizeOf<Uint8>();
     final dataPointer = malloc.allocate<Uint8>(dataSize);
     dataPointer.asTypedList(data.length).setAll(0, data);

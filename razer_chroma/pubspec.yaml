@@ -1,0 +1,20 @@
+name: razer_chroma
+description: Razer Chroma functionallity for Dart.
+version: 0.1.0
+homepage: https://github.com/Razer-Chroma-Dart/razer_chroma
+
+environment:
+  sdk: '>=2.13.0 <3.0.0'
+
+dependencies:
+  meta: ^1.4.0
+
+dev_dependencies:
+  ## Linting
+  lint: ^1.5.3
+
+  ## Tools
+  code_builder: ^4.0.0
+  built_collection: ^5.1.0
+  recase: ^4.0.0
+  dart_style: ^2.0.1
