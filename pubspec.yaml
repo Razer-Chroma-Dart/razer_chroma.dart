@@ -7,6 +7,8 @@ environment:
   sdk: '>=2.13.0 <3.0.0'
 
 dependencies:
+  meta: ^1.4.0
+  collection: ^1.15.0
   ffi: ^1.1.2
   color: ^3.0.0
 
@@ -27,7 +29,7 @@ dev_dependencies:
   dart_style: ^2.0.1
 
 ffigen:
-  name: Driver
+  name: RazerMacOSDriver
   description: Bindings to the Razer Chroma macOS library (librazermacos).
   output: lib/src/driver.dart
   headers:

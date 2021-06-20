@@ -1,5 +1,5 @@
 import '/src/client.dart';
-import '/src/driver.dart';
+import '/src/entities/razer_devices.dart';
 
 /// A [BaseClient] mixin adding device management functionality.
 mixin DeviceApi on BaseClient {
@@ -18,13 +18,13 @@ mixin DeviceApi on BaseClient {
   /// Opens all connected Razer Chroma devices.
   void openAllDevices() {
     assert(!hasOpenDevices, 'Devices are already open!');
-    _devices = driver.getAllRazerDevices();
+    _devices = RazerDevices(binding.getAllRazerDevices());
   }
 
   /// Closes all open Razer Chroma devices.
   void closeAllDevices() {
     assert(hasOpenDevices, 'No devices are open!');
-    driver.closeAllRazerDevices(_devices!);
+    binding.closeAllRazerDevices(openDevices.nativeRazerDevices);
     _devices = null;
   }
 }

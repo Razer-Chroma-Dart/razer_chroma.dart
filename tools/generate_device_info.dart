@@ -31,13 +31,14 @@ Future<void> main(List<String> arguments) async {
       .compareTo(basenameWithoutExtension(b.path)));
 
   // Set up type references.
-  final deviceInfoReference = TypeReference((b) => b.symbol = 'DeviceInfo');
+  final deviceInfoReference =
+      TypeReference((b) => b.symbol = 'RazerDeviceInfo');
   final deviceInfoTypeReference =
-      TypeReference((b) => b.symbol = 'DeviceInfoType');
+      TypeReference((b) => b.symbol = 'RazerDeviceType');
   final optionalDeviceFeatureReference =
-      TypeReference((b) => b.symbol = 'OptionalDeviceFeature');
+      TypeReference((b) => b.symbol = 'OptionalRazerDeviceFeature');
   final deviceFeatureConfigReference =
-      TypeReference((b) => b.symbol = 'DeviceFeatureConfig');
+      TypeReference((b) => b.symbol = 'RazerDeviceFeatureConfig');
   Reference buildDeviceFeatureConfigReference(String subclass) =>
       Reference('${subclass}FeatureConfig');
 

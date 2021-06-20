@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:path/path.dart';
-import 'package:razer_chroma_macos/razer_chroma_macos.dart' as rcm;
+import 'package:razer_chroma_macos/razer_chroma_macos.dart';
 
 /// A port of librazermacos's sample_cli.c example.
 Future<void> main(List<String> arguments) async {
+  // -- Dart setup --
   // Locate the driver library.
   final String libraryPath;
   if (arguments.isEmpty) {
@@ -20,12 +21,16 @@ Future<void> main(List<String> arguments) async {
   }
 
   // Set up a client.
-  final razerChromaMac = rcm.Client(libraryPath);
+  final razerChromaMac = RazerMacOSClient(libraryPath);
 
+  // -- sample_cli.c logic --
   razerChromaMac.openAllDevices();
-  print('${razerChromaMac.openDevices.size} Razer device(s) found:');
-  for (var i = 0; i < razerChromaMac.openDevices.size; ++i) {
-    final device = razerChromaMac.openDevices[i];
+
+  print('${razerChromaMac.openDevices.length} Razer device(s) found:');
+
+  for (final device in razerChromaMac.openDevices) {
     print('0x${device.productId.toRadixString(16).padLeft(4, '0')}');
   }
+
+  razerChromaMac.closeAllDevices();
 }

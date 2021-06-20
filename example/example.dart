@@ -1,7 +1,8 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:path/path.dart';
-import 'package:razer_chroma_macos/razer_chroma_macos.dart' as rcm;
+import 'package:razer_chroma_macos/razer_chroma_macos.dart';
 
 Future<void> main(List<String> arguments) async {
   // Locate the driver library.
@@ -19,26 +20,19 @@ Future<void> main(List<String> arguments) async {
   }
 
   // Set up a client.
-  final razerChromaMac = rcm.Client(libraryPath);
+  final razerChromaMac = RazerMacOSClient(libraryPath);
 
   // Open all devices, and select the first keyboard.
   razerChromaMac.openAllDevices();
-  late final rcm.RazerDevice? device;
-  for (var i = 0; i < razerChromaMac.openDevices.size; ++i) {
-    final potentialDevice = razerChromaMac.openDevices[i];
-    if (rcm.DeviceInfo.products[potentialDevice.productId]!.mainType ==
-        rcm.DeviceInfoType.keyboard) {
-      device = potentialDevice;
-      break;
-    }
-  }
+  final RazerDevice? device = razerChromaMac.openDevices.firstWhereOrNull(
+      (device) => device.deviceInfo.mainType == RazerDeviceType.keyboard);
   if (device == null) {
     stderr.writeln('Could not find a keyboard!');
     exit(1);
   }
 
   // Retrieve device information.
-  final deviceInfo = rcm.DeviceInfo.products[device.productId]!;
+  final deviceInfo = RazerDeviceInfo.products[device.productId]!;
   print('Found keyboard: ${deviceInfo.name}.');
 
   // Retrieve the keyboard brightness.
