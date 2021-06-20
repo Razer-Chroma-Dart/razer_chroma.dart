@@ -1,7 +1,7 @@
 import '/src/client.dart';
 import '/src/driver.dart';
 
-/// A [BaseClient] mixin adding device management functionallity.
+/// A [BaseClient] mixin adding device management functionality.
 mixin DeviceApi on BaseClient {
   /// The open Razer Chroma devices.
   RazerDevices get openDevices =>
