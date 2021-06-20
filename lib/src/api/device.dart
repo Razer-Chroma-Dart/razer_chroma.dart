@@ -25,5 +25,6 @@ mixin DeviceApi on BaseClient {
   void closeAllDevices() {
     assert(hasOpenDevices, 'No devices are open!');
     driver.closeAllRazerDevices(_devices!);
+    _devices = null;
   }
 }
