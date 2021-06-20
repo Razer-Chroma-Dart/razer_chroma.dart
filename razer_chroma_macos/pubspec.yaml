@@ -14,7 +14,7 @@ dependencies:
 
 dev_dependencies:
   ## Linting
-  lints: 1.0.1
+  lint: ^1.5.3
 
   ## Code generation
   ffigen: ^3.0.0

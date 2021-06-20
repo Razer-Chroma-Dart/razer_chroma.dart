@@ -128,12 +128,14 @@ Future<void> main(List<String> arguments) async {
     final deviceInfoJson = jsonDecode(await file.readAsString());
 
     // Add the device type to the device type set.
-    deviceInfoTypes.add(EnumValue((b) => b.name = deviceInfoJson['mainType']));
+    deviceInfoTypes
+        .add(EnumValue((b) => b.name = deviceInfoJson['mainType'] as String));
 
     // Store new optional features.
     if (deviceInfoJson['featuresMissing'] != null) {
       deviceOptionalFeatures.addAll(
           (deviceInfoJson['featuresMissing'] as List<dynamic>)
+              .cast<String>()
               .map((feature) => EnumValue((b) => b.name = feature)));
     }
 
@@ -170,9 +172,9 @@ Future<void> main(List<String> arguments) async {
           for (var i = 0; i < fields.length; ++i) {
             if (!(featureConfigJson.value as Map<String, dynamic>)
                     .containsKey(fields[i].name) &&
-                (fields[i].type as TypeReference).isNullable != true) {
+                (fields[i].type! as TypeReference).isNullable != true) {
               fields[i] = fields[i].rebuild((b) => b.type =
-                  (b.type as TypeReference)
+                  (b.type! as TypeReference)
                       .rebuild((b) => b.isNullable = true));
             }
           }
@@ -241,7 +243,7 @@ Future<void> main(List<String> arguments) async {
                   (field) => Parameter((b) => b
                     ..named = true
                     ..required =
-                        (field.type as TypeReference).isNullable != true
+                        (field.type! as TypeReference).isNullable != true
                     ..toThis = true
                     ..name = field.name),
                 ),
@@ -254,12 +256,12 @@ Future<void> main(List<String> arguments) async {
       deviceInfoReference.constInstance(
         const [],
         {
-          'name': literalString(deviceInfoJson['name']),
+          'name': literalString(deviceInfoJson['name'] as String),
           'productId': CodeExpression(Code(
-              '0x${int.parse(deviceInfoJson['productId']).toRadixString(16).padLeft(2, '0')}')),
-          'mainType':
-              deviceInfoTypeReference.property(deviceInfoJson['mainType']),
-          'image': literalString(deviceInfoJson['image']),
+              '0x${int.parse(deviceInfoJson['productId'] as String).toRadixString(16).padLeft(2, '0')}')),
+          'mainType': deviceInfoTypeReference
+              .property(deviceInfoJson['mainType'] as String),
+          'image': literalString(deviceInfoJson['image'] as String),
           'missingFeatures': literalSet(
               (deviceInfoJson['featuresMissing'] as List<dynamic>? ?? const [])
                   .cast<String>()
