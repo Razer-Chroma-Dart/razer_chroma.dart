@@ -1,20 +1,24 @@
 name: razer_chroma
-description: Razer Chroma functionallity for Dart.
+description: Common components used in several Razer Chroma packages.
 version: 0.1.0
-homepage: https://github.com/Razer-Chroma-Dart/razer_chroma
+homepage: https://github.com/Razer-Chroma-Dart/razer_chroma.dart
 
 environment:
   sdk: '>=2.13.0 <3.0.0'
 
 dependencies:
+  ## Language
   meta: ^1.4.0
 
+  ## Utilities
+  color: ^3.0.0
+
 dev_dependencies:
-  ## Linting
+  ## Language
   lint: ^1.5.3
 
   ## Tools
-  code_builder: ^4.0.0
   built_collection: ^5.1.0
-  recase: ^4.0.0
+  code_builder: ^4.0.0
   dart_style: ^2.0.1
+  recase: ^4.0.0

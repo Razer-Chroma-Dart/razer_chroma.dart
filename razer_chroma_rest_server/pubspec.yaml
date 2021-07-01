@@ -1,0 +1,33 @@
+name: razer_chroma_rest_server
+description: A Razer Chroma SDK REST API server implementation.
+version: 0.1.0
+homepage: https://github.com/Razer-Chroma-Dart/razer_chroma.dart/tree/master/razer_chroma_rest_server
+
+environment:
+  sdk: '>=2.13.0 <3.0.0'
+
+dependencies:
+  ## Language
+  meta: ^1.4.0
+
+  ## Razer Chroma
+  razer_chroma:
+    path: '../razer_chroma'
+  razer_chroma_rest_core:
+    path: '../razer_chroma_rest_core'
+
+  ## Server
+  shelf: ^1.1.4
+  shelf_plus: ^0.0.2
+
+  ## Data
+  json_annotation: ^4.0.1
+  uuid: ^3.0.4
+
+dev_dependencies:
+  ## Language
+  lint: ^1.5.3
+
+  ## Example
+  razer_chroma_macos:
+    path: '../razer_chroma_macos'

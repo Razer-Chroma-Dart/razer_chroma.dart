@@ -1,0 +1,35 @@
+name: razer_chroma_rest_core
+description: Core components used by the Razer Chroma REST API client and server implementations.
+version: 0.1.0
+homepage: https://github.com/Razer-Chroma-Dart/razer_chroma.dart/tree/master/razer_chroma_rest_core
+
+environment:
+  sdk: '>=2.13.0 <3.0.0'
+
+dependencies:
+  ## Language
+  meta: ^1.4.0
+
+  ## Code generation
+  freezed_annotation: ^0.14.2
+
+dev_dependencies:
+  ## Language
+  lint: ^1.5.3
+
+  ## Code generation
+  build_runner: ^2.0.5
+  freezed: ^0.14.2
+  json_serializable: ^4.1.3
+
+dependency_overrides:
+  freezed_annotation:
+    git:
+      url: 'git://github.com/hacker1024/freezed.git'
+      ref: '9b006d60948e201e55317d44b5b46930bb39ddfe'
+      path: 'packages/freezed_annotation'
+  freezed:
+    git:
+      url: 'git://github.com/hacker1024/freezed.git'
+      ref: '9b006d60948e201e55317d44b5b46930bb39ddfe'
+      path: 'packages/freezed'

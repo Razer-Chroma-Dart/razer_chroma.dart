@@ -32,11 +32,11 @@ mixin KeyboardApi on BaseClient {
 
   void kbdSetModeStatic(
     RazerMacOSDevice device,
-    RgbColor color, {
+    Color color, {
     bool store = true,
   }) {
     final rgbPointer = malloc<driver.razer_rgb>();
-    color.write(rgbPointer.ref);
+    color.toRgbColor().write(rgbPointer.ref);
     (store
             ? binding.razer_attr_write_mode_static
             : binding.razer_attr_write_mode_static_no_store)(
@@ -46,13 +46,15 @@ mixin KeyboardApi on BaseClient {
 
   void kbdSetModeReactive(
     RazerMacOSDevice device,
-    RgbColor color, {
+    Color color, {
     int speed = 0x28,
   }) {
     final bufSize = sizeOf<Uint8>() + sizeOf<driver.razer_rgb>();
     final bufPointer = malloc.allocate<Uint8>(bufSize);
     bufPointer.elementAt(0).value = speed;
-    color.write(bufPointer.elementAt(1).cast<driver.razer_rgb>().ref);
+    color
+        .toRgbColor()
+        .write(bufPointer.elementAt(1).cast<driver.razer_rgb>().ref);
     binding.razer_attr_write_mode_reactive(
         device.nativeRazerDevice.usbDevice, bufPointer.cast(), bufSize);
     malloc.free(bufPointer);
@@ -60,8 +62,8 @@ mixin KeyboardApi on BaseClient {
 
   void kbdSetModeBreathe(
     RazerMacOSDevice device, [
-    RgbColor? color1,
-    RgbColor? color2,
+    Color? color1,
+    Color? color2,
   ]) {
     assert(color1 != null || color2 == null);
     final int bufSize;
@@ -77,9 +79,9 @@ mixin KeyboardApi on BaseClient {
       final colorPointer =
           bufPointer = malloc.allocate<driver.razer_rgb>(bufSize);
       // Single color mode.
-      color1.write(colorPointer.elementAt(0).ref);
+      color1.toRgbColor().write(colorPointer.elementAt(0).ref);
       // Dual color mode.
-      color2?.write(colorPointer.elementAt(1).ref);
+      color2?.toRgbColor().write(colorPointer.elementAt(1).ref);
     }
     binding.razer_attr_write_mode_breath(
         device.nativeRazerDevice.usbDevice, bufPointer.cast(), bufSize);
@@ -98,8 +100,8 @@ mixin KeyboardApi on BaseClient {
   void kbdSetModeStarlight(
     RazerMacOSDevice device, [
     int speed = 0x28,
-    RgbColor? color1,
-    RgbColor? color2,
+    Color? color1,
+    Color? color2,
   ]) {
     assert(speed >= 0 && speed <= 0xFF);
     assert(color1 != null || color2 == null);
@@ -117,9 +119,9 @@ mixin KeyboardApi on BaseClient {
       // A color mode is being set; calculate the color pointer.
       final colorPointer = bufPointer.elementAt(1).cast<driver.razer_rgb>();
       // Single color mode.
-      color1.write(colorPointer.elementAt(0).ref);
+      color1.toRgbColor().write(colorPointer.elementAt(0).ref);
       // Dual color mode.
-      color2?.write(colorPointer.elementAt(1).ref);
+      color2?.toRgbColor().write(colorPointer.elementAt(1).ref);
     }
     binding.razer_attr_write_mode_starlight(
         device.nativeRazerDevice.usbDevice, bufPointer.cast(), bufSize);
@@ -133,6 +135,7 @@ mixin KeyboardApi on BaseClient {
   /// Display a custom frame on the keyboard.
   ///
   /// Format: `ROW_ID START_COL STOP_COL RGB...`
+  // TODO: improve the custom frame API.
   void kbdSetCustomFrame(RazerMacOSDevice device, Uint8List data) {
     final dataSize = data.length * sizeOf<Uint8>();
     final dataPointer = malloc.allocate<Uint8>(dataSize);

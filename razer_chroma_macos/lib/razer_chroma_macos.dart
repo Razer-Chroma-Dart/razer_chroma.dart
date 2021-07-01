@@ -1,6 +1,4 @@
-library razer_chroma_macos;
+library razer_chroma.macos;
 
-export 'package:color/color.dart';
-
-export 'src/client.dart' hide BaseClient;
-export 'src/entities/index.dart';
+export '/src/client.dart' hide BaseClient;
+export '/src/entities/index.dart';

@@ -1,0 +1,25 @@
+name: razer_chroma_rest_client
+description: A Razer Chroma SDK REST API client.
+version: 0.1.0
+homepage: https://github.com/Razer-Chroma-Dart/razer_chroma.dart/tree/master/razer_chroma_rest_client
+
+environment:
+  sdk: '>=2.13.0 <3.0.0'
+
+dependencies:
+  ## Language
+  meta: ^1.4.0
+
+  ## Razer Chroma
+  razer_chroma_rest_core:
+    path: '../razer_chroma_rest_core'
+
+  ## Communication
+  http: ^0.13.3
+
+dev_dependencies:
+  ## Language
+  lint: ^1.5.3
+
+  ## Example
+  circular_buffer: ^0.9.1
