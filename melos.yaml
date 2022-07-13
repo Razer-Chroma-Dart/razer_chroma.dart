@@ -1,0 +1,23 @@
+name: razer_chroma_monorepo
+repository: https://github.com/Razer-Chroma-Dart/razer_chroma.dart
+
+packages:
+  - razer_chroma
+  - razer_chroma_macos
+  - razer_chroma_rest_client
+  - razer_chroma_rest_core
+  - razer_chroma_rest_server
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+  version:
+    message: |
+      chore: Publish packages
+
+      {new_package_versions}
+    includeScopes: false
+    includeCommitId: true
+    linkToCommits: true
+    workspaceChangelog: true
+    updateGitTagRefs: true
