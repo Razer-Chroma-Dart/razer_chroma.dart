@@ -82,8 +82,7 @@ class RazerChromaApiUnknownException extends RazerChromaApiException {
   @override
   final int code;
 
-  const RazerChromaApiUnknownException(this.code, String message)
-      : super(message);
+  const RazerChromaApiUnknownException(this.code, super.message);
 
   @override
   String toString() => 'RazerChromaApiUnknownException{code: $code}';
@@ -94,7 +93,7 @@ class RazerChromaApiInvalidException extends RazerChromaApiException {
   @override
   int get code => -1;
 
-  const RazerChromaApiInvalidException(String message) : super(message);
+  const RazerChromaApiInvalidException(super.message);
 
   @override
   String toString() => 'RazerChromaApiInvalidException{message: $message}';
@@ -105,7 +104,7 @@ class RazerChromaApiAccessDeniedException extends RazerChromaApiException {
   @override
   int get code => 5;
 
-  const RazerChromaApiAccessDeniedException(String message) : super(message);
+  const RazerChromaApiAccessDeniedException(super.message);
 
   @override
   String toString() => 'RazerChromaApiAccessDeniedException{message: $message}';
@@ -116,7 +115,7 @@ class RazerChromaApiInvalidHandleException extends RazerChromaApiException {
   @override
   int get code => 6;
 
-  const RazerChromaApiInvalidHandleException(String message) : super(message);
+  const RazerChromaApiInvalidHandleException(super.message);
 
   @override
   String toString() =>
@@ -128,7 +127,7 @@ class RazerChromaApiNotSupportedException extends RazerChromaApiException {
   @override
   int get code => 50;
 
-  const RazerChromaApiNotSupportedException(String message) : super(message);
+  const RazerChromaApiNotSupportedException(super.message);
 
   @override
   String toString() => 'RazerChromaApiNotSupportedException{message: $message}';
@@ -139,8 +138,7 @@ class RazerChromaApiInvalidParameterException extends RazerChromaApiException {
   @override
   int get code => 87;
 
-  const RazerChromaApiInvalidParameterException(String message)
-      : super(message);
+  const RazerChromaApiInvalidParameterException(super.message);
 
   @override
   String toString() =>
@@ -152,8 +150,7 @@ class RazerChromaApiServiceNotActiveException extends RazerChromaApiException {
   @override
   int get code => 1062;
 
-  const RazerChromaApiServiceNotActiveException(String message)
-      : super(message);
+  const RazerChromaApiServiceNotActiveException(super.message);
 
   @override
   String toString() =>
@@ -165,8 +162,7 @@ class RazerChromaApiSingleInstanceAppException extends RazerChromaApiException {
   @override
   int get code => 1152;
 
-  const RazerChromaApiSingleInstanceAppException(String message)
-      : super(message);
+  const RazerChromaApiSingleInstanceAppException(super.message);
 
   @override
   String toString() =>
@@ -179,8 +175,7 @@ class RazerChromaApiDeviceNotConnectedException
   @override
   int get code => 1167;
 
-  const RazerChromaApiDeviceNotConnectedException(String message)
-      : super(message);
+  const RazerChromaApiDeviceNotConnectedException(super.message);
 
   @override
   String toString() =>
@@ -192,7 +187,7 @@ class RazerChromaApiResultNotFoundException extends RazerChromaApiException {
   @override
   int get code => 1168;
 
-  const RazerChromaApiResultNotFoundException(String message) : super(message);
+  const RazerChromaApiResultNotFoundException(super.message);
 
   @override
   String toString() =>
@@ -204,7 +199,7 @@ class RazerChromaApiRequestAbortedException extends RazerChromaApiException {
   @override
   int get code => 1235;
 
-  const RazerChromaApiRequestAbortedException(String message) : super(message);
+  const RazerChromaApiRequestAbortedException(super.message);
 
   @override
   String toString() =>
@@ -218,8 +213,7 @@ class RazerChromaApiAlreadyInitializedException
   @override
   int get code => 1247;
 
-  const RazerChromaApiAlreadyInitializedException(String message)
-      : super(message);
+  const RazerChromaApiAlreadyInitializedException(super.message);
 
   @override
   String toString() =>
@@ -231,8 +225,7 @@ class RazerChromaApiResourceDisabledException extends RazerChromaApiException {
   @override
   int get code => 4309;
 
-  const RazerChromaApiResourceDisabledException(String message)
-      : super(message);
+  const RazerChromaApiResourceDisabledException(super.message);
 
   @override
   String toString() =>
@@ -245,8 +238,7 @@ class RazerChromaApiDeviceNotAvailableException
   @override
   int get code => 4319;
 
-  const RazerChromaApiDeviceNotAvailableException(String message)
-      : super(message);
+  const RazerChromaApiDeviceNotAvailableException(super.message);
 
   @override
   String toString() =>
@@ -260,8 +252,7 @@ class RazerChromaApiDeviceNotValidStateException
   @override
   int get code => 5023;
 
-  const RazerChromaApiDeviceNotValidStateException(String message)
-      : super(message);
+  const RazerChromaApiDeviceNotValidStateException(super.message);
 
   @override
   String toString() =>
@@ -273,7 +264,7 @@ class RazerChromaApiNoMoreItemsException extends RazerChromaApiException {
   @override
   int get code => 259;
 
-  const RazerChromaApiNoMoreItemsException(String message) : super(message);
+  const RazerChromaApiNoMoreItemsException(super.message);
 
   @override
   String toString() => 'RazerChromaApiNoMoreItemsException{message: $message}';
@@ -284,7 +275,7 @@ class RazerChromaApiFailedException extends RazerChromaApiException {
   @override
   int get code => 214750003;
 
-  const RazerChromaApiFailedException(String message) : super(message);
+  const RazerChromaApiFailedException(super.message);
 
   @override
   String toString() => 'RazerChromaApiFailedException{message: $message}';

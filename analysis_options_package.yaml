@@ -3,6 +3,7 @@ include: package:lint/analysis_options_package.yaml
 linter:
   rules:
     sort_pub_dependencies: false
+    use_super_parameters: true
 
 analyzer:
   errors:
