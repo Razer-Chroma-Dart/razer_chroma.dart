@@ -2691,19 +2691,8 @@ class razer_report extends ffi.Opaque {}
 typedef IOReturn = kern_return_t;
 typedef kern_return_t = ffi.Int;
 typedef IOUSBDeviceInterface = IOUSBDeviceInterface942;
-
-/// !
-/// @interface IOUSBDeviceInterface942
-/// @abstract   The object you use to access USB devices from user space, returned by the IOUSBFamily version 900.4.2 and above.
-/// @discussion The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
-/// @super IOUSBDeviceInterface650
 typedef IOUSBDeviceInterface942 = IOUSBDeviceStruct942;
 
-/// !
-/// @interface IOUSBDeviceInterface942
-/// @abstract   The object you use to access USB devices from user space, returned by the IOUSBFamily version 900.4.2 and above.
-/// @discussion The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
-/// @super IOUSBDeviceInterface650
 class IOUSBDeviceStruct942 extends ffi.Struct {
   external ffi.Pointer<ffi.Void> _reserved;
 
@@ -2958,12 +2947,6 @@ class IOUSBDeviceStruct942 extends ffi.Struct {
           ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>, UInt64)>>
       AcknowledgeNotification;
 
-  /// !
-  /// @function   GetDeviceAsyncNotificationPort
-  /// @abstract   Returns the IONotificationPort for this IOService instance.
-  /// @availability This function is only available with IOUSBDeviceInterface942 and above.
-  /// @param      self Pointer to the IOUSBDeviceInterface.
-  /// @result     Returns the IONotificationPortRef if one exists, MACH_PORT_NULL otherwise.
   external ffi.Pointer<
           ffi.NativeFunction<
               IONotificationPortRef Function(ffi.Pointer<ffi.Void>)>>
@@ -3024,16 +3007,6 @@ class CFUUIDBytes extends ffi.Struct {
   external int byte15;
 }
 
-/// Base integer types for all target OS's and CPU's
-///
-/// UInt8            8-bit unsigned integer
-/// SInt8            8-bit signed integer
-/// UInt16          16-bit unsigned integer
-/// SInt16          16-bit signed integer
-/// UInt32          32-bit unsigned integer
-/// SInt32          32-bit signed integer
-/// UInt64          64-bit unsigned integer
-/// SInt64          64-bit signed integer
 typedef UInt8 = ffi.UnsignedChar;
 typedef LPVOID = ffi.Pointer<ffi.Void>;
 typedef ULONG = UInt32;
@@ -3051,12 +3024,6 @@ typedef USBDeviceAddress = UInt16;
 typedef IOUSBConfigurationDescriptorPtr
     = ffi.Pointer<IOUSBConfigurationDescriptor>;
 
-/// !
-/// @typedef    IOUSBConfigurationDescriptor
-/// @discussion Standard USB Configuration Descriptor.  It is variable length, so this only specifies
-/// the known fields.  We use the wTotalLength field to read the whole descriptor.
-/// See the USB Specification at <a href="http://www.usb.org" target="_blank">http://www.usb.org</a>.
-/// USB 2.0 9.6.3: Configuration
 @ffi.Packed(1)
 class IOUSBConfigurationDescriptor extends ffi.Struct {
   @ffi.Uint8()
@@ -3096,18 +3063,6 @@ class UnsignedWide extends ffi.Struct {
   external int hi;
 }
 
-/// !
-/// @struct IOUSBDevRequest
-/// @discussion Parameter block for control requests, using a simple pointer
-/// for the data to be transferred.
-/// @field bmRequestType Request type: kUSBStandard, kUSBClass or kUSBVendor
-/// @field bRequest Request code
-/// @field wValue 16 bit parameter for request, host endianess
-/// @field wIndex 16 bit parameter for request, host endianess
-/// @field wLength Length of data part of request, 16 bits, host endianess
-/// @field pData Pointer to data for request - data returned in bus endianess
-/// @field wLenDone Set by standard completion routine to number of data bytes
-/// actually transferred
 class IOUSBDevRequest extends ffi.Struct {
   @UInt8()
   external int bmRequestType;
@@ -3130,21 +3085,11 @@ class IOUSBDevRequest extends ffi.Struct {
   external int wLenDone;
 }
 
-/// ! @typedef IOAsyncCallback1
-/// @abstract standard callback function for asynchronous I/O requests with
-/// one extra argument beyond a refcon and result code.
-/// This is often a count of the number of bytes transferred
-/// @param refcon The refcon passed into the original I/O request
-/// @param result The result of the I/O operation
-/// @param arg0	Extra argument
 typedef IOAsyncCallback1 = ffi.Pointer<
     ffi.NativeFunction<
         ffi.Void Function(
             ffi.Pointer<ffi.Void>, IOReturn, ffi.Pointer<ffi.Void>)>>;
 
-/// !
-/// @struct IOUSBFindInterfaceRequest
-/// @discussion Structure used with FindNextInterface.
 class IOUSBFindInterfaceRequest extends ffi.Struct {
   @UInt16()
   external int bInterfaceClass;
@@ -3162,20 +3107,6 @@ class IOUSBFindInterfaceRequest extends ffi.Struct {
 typedef io_iterator_t = io_object_t;
 typedef io_object_t = mach_port_t;
 
-/// !
-/// @struct IOUSBDevRequestTO
-/// @discussion Parameter block for control requests with timeouts, using a simple pointer
-/// for the data to be transferred.  Same as a IOUSBDevRequest except for the two extra timeout fields.
-/// @field bmRequestType Request type: kUSBStandard, kUSBClass or kUSBVendor
-/// @field bRequest Request code
-/// @field wValue 16 bit parameter for request, host endianess
-/// @field wIndex 16 bit parameter for request, host endianess
-/// @field wLength Length of data part of request, 16 bits, host endianess
-/// @field pData Pointer to data for request - data returned in bus endianess
-/// @field wLenDone Set by standard completion routine to number of data bytes
-/// actually transferred
-/// @field noDataTimeout Specifies a time value in milliseconds. Once the request is queued on the bus, if no data is transferred in this amount of time, the request will be aborted and returned.
-/// @field completionTimeout Specifies a time value in milliseconds. Once the request is queued on the bus, if the entire request is not completed in this amount of time, the request will be aborted and returned
 class IOUSBDevRequestTO extends ffi.Struct {
   @UInt8()
   external int bmRequestType;
@@ -3204,12 +3135,6 @@ class IOUSBDevRequestTO extends ffi.Struct {
   external int completionTimeout;
 }
 
-/// Boolean types and values
-///
-/// Boolean         Mac OS historic type, sizeof(Boolean)==1
-/// bool            Defined in stdbool.h, ISO C/C++ standard type
-/// false           Now defined in stdbool.h
-/// true            Now defined in stdbool.h
 typedef Boolean = ffi.UnsignedChar;
 
 class NumVersion extends ffi.Struct {
@@ -3226,22 +3151,10 @@ class NumVersion extends ffi.Struct {
   external int majorRev;
 }
 
-/// ! @typedef IOAsyncCallback2
-/// @abstract standard callback function for asynchronous I/O requests with
-/// two extra arguments beyond a refcon and result code.
-/// @param refcon The refcon passed into the original I/O request
-/// @param result The result of the I/O operation
-/// @param arg0	Extra argument
-/// @param arg1	Extra argument
 typedef IOAsyncCallback2 = ffi.Pointer<
     ffi.NativeFunction<
         ffi.Void Function(ffi.Pointer<ffi.Void>, IOReturn,
             ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>;
-
-/// ! @header IOKitLib
-/// IOKitLib implements non-kernel task access to common IOKit object types - IORegistryEntry, IOService, IOIterator etc. These functions are generic - families may provide API that is more specific.<br>
-/// IOKitLib represents IOKit objects outside the kernel with the types io_object_t, io_registry_entry_t, io_service_t, & io_connect_t. Function names usually begin with the type of object they are compatible with - eg. IOObjectRelease can be used with any io_object_t. Inside the kernel, the c++ class hierarchy allows the subclasses of each object type to receive the same requests from user level clients, for example in the kernel, IOService is a subclass of IORegistryEntry, which means any of the IORegistryEntryXXX functions in IOKitLib may be used with io_service_t's as well as io_registry_t's. There are functions available to introspect the class of the kernel object which any io_object_t et al. represents.
-/// IOKit objects returned by all functions should be released with IOObjectRelease.
 typedef IONotificationPortRef = ffi.Pointer<IONotificationPort>;
 
 class IONotificationPort extends ffi.Opaque {}

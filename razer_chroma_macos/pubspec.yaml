@@ -39,4 +39,5 @@ ffigen:
     include-directives:
       - 'driver/src/include/**.h'
   compiler-opts: -Iinclude
+  comments: false
 
