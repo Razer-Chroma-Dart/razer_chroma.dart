@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '/src/effects/entities/device_effect.dart';
-import '/src/keyboard/entities/effects/static_keyboard_effect_parameters.dart';
-import '/src/keyboard/entities/effects/wave_keyboard_effect_parameters.dart';
+import 'package:razer_chroma_rest_core/src/effects/entities/device_effect.dart';
+import 'package:razer_chroma_rest_core/src/keyboard/entities/effects/static_keyboard_effect_parameters.dart';
+import 'package:razer_chroma_rest_core/src/keyboard/entities/effects/wave_keyboard_effect_parameters.dart';
 
 part 'keyboard_effect.freezed.dart';
 part 'keyboard_effect.g.dart';

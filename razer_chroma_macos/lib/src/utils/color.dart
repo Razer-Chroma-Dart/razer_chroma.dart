@@ -1,6 +1,6 @@
 import 'package:color/color.dart';
 
-import '/src/driver.dart';
+import 'package:razer_chroma_macos/src/driver.dart';
 
 extension RgbColorUtils on RgbColor {
   /// Writes the color data to a `razer_rgb` struct.

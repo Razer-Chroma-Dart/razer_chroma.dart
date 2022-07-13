@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
-import '/src/razer_chroma_client.dart';
+import 'package:razer_chroma_rest_client/src/razer_chroma_client.dart';
 
 /// A mixin that implements session APIs.
 mixin SessionApi on BaseRazerChromaClient {

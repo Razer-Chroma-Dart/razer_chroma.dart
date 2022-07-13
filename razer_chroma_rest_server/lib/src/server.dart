@@ -7,15 +7,15 @@ import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '/src/backend.dart';
-import '/src/effects/api/effects.dart';
-import '/src/errors/middleware/api_error.dart';
-import '/src/errors/middleware/data.dart';
-import '/src/initialization/api/session.dart';
-import '/src/initialization/api/version.dart';
-import '/src/keyboard/api/keyboard.dart';
-import '/src/security/middleware/host_filter.dart';
-import '/src/session.dart';
+import 'package:razer_chroma_rest_server/src/backend.dart';
+import 'package:razer_chroma_rest_server/src/effects/api/effects.dart';
+import 'package:razer_chroma_rest_server/src/errors/middleware/api_error.dart';
+import 'package:razer_chroma_rest_server/src/errors/middleware/data.dart';
+import 'package:razer_chroma_rest_server/src/initialization/api/session.dart';
+import 'package:razer_chroma_rest_server/src/initialization/api/version.dart';
+import 'package:razer_chroma_rest_server/src/keyboard/api/keyboard.dart';
+import 'package:razer_chroma_rest_server/src/security/middleware/host_filter.dart';
+import 'package:razer_chroma_rest_server/src/session.dart';
 
 /// An instance of a Razer Chroma REST server.
 ///

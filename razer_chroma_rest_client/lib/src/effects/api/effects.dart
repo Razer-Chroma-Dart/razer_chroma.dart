@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
-import '/src/initialization/api/session.dart';
+import 'package:razer_chroma_rest_client/src/initialization/api/session.dart';
 
 /// A mixin that implements effects APIs.
 mixin EffectsApi on SessionApi {

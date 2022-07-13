@@ -1,6 +1,6 @@
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
-import '/src/effects/api/effects.dart';
+import 'package:razer_chroma_rest_client/src/effects/api/effects.dart';
 
 /// A mixin that implements keyboard APIs.
 mixin KeyboardApi on EffectsApi {

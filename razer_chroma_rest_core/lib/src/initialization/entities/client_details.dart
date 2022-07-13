@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '/src/initialization/entities/author.dart';
-import '/src/initialization/entities/client_category.dart';
-import '/src/initialization/entities/device_type.dart';
+import 'package:razer_chroma_rest_core/src/initialization/entities/author.dart';
+import 'package:razer_chroma_rest_core/src/initialization/entities/client_category.dart';
+import 'package:razer_chroma_rest_core/src/initialization/entities/device_type.dart';
 
 part 'client_details.freezed.dart';
 part 'client_details.g.dart';

@@ -4,8 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import 'package:razer_chroma/razer_chroma.dart';
 
-import '/src/driver.dart' as driver;
-import '/src/entities/razer_device.dart';
+import 'package:razer_chroma_macos/src/driver.dart' as driver;
+import 'package:razer_chroma_macos/src/entities/razer_device.dart';
 
 class RazerMacOSDevices extends DelegatingList<RazerMacOSDevice>
     implements RazerDevices<RazerMacOSDevice> {

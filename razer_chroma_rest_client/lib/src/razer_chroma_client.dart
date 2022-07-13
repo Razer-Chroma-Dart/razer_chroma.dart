@@ -5,10 +5,10 @@ import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
-import '/src/effects/api/effects.dart';
-import '/src/initialization/api/session.dart';
-import '/src/initialization/api/version.dart';
-import '/src/keyboard/api/keyboard.dart';
+import 'package:razer_chroma_rest_client/src/effects/api/effects.dart';
+import 'package:razer_chroma_rest_client/src/initialization/api/session.dart';
+import 'package:razer_chroma_rest_client/src/initialization/api/version.dart';
+import 'package:razer_chroma_rest_client/src/keyboard/api/keyboard.dart';
 
 class RazerChromaClient = BaseRazerChromaClient
     with VersionApi, SessionApi, EffectsApi, KeyboardApi;

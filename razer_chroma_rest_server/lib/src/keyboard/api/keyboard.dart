@@ -2,9 +2,9 @@ import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '/src/effects/api/effects.dart';
-import '/src/errors/utils/checked_json_accessor.dart';
-import '/src/initialization/data/session_server.dart';
+import 'package:razer_chroma_rest_server/src/effects/api/effects.dart';
+import 'package:razer_chroma_rest_server/src/errors/utils/checked_json_accessor.dart';
+import 'package:razer_chroma_rest_server/src/initialization/data/session_server.dart';
 
 /// A mixin that implements keyboard APIs.
 mixin KeyboardApi on EffectsApi {

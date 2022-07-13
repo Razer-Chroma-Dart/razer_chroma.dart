@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '/src/api/entities/result_response.dart';
+import 'package:razer_chroma_rest_core/src/api/entities/result_response.dart';
 
 part 'empty_result_response.freezed.dart';
 part 'empty_result_response.g.dart';

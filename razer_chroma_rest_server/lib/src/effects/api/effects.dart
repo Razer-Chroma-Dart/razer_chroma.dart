@@ -4,10 +4,10 @@ import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 import 'package:uuid/uuid.dart';
 
-import '/src/errors/utils/checked_json_accessor.dart';
-import '/src/initialization/api/session.dart';
-import '/src/initialization/data/session_server.dart';
-import '/src/session.dart';
+import 'package:razer_chroma_rest_server/src/errors/utils/checked_json_accessor.dart';
+import 'package:razer_chroma_rest_server/src/initialization/api/session.dart';
+import 'package:razer_chroma_rest_server/src/initialization/data/session_server.dart';
+import 'package:razer_chroma_rest_server/src/session.dart';
 
 /// A mixin that implements effects APIs.
 mixin EffectsApi on SessionApi {

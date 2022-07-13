@@ -1,5 +1,5 @@
-import '/src/client.dart';
-import '/src/entities/razer_devices.dart';
+import 'package:razer_chroma_macos/src/client.dart';
+import 'package:razer_chroma_macos/src/entities/razer_devices.dart';
 
 /// A [BaseClient] mixin adding device management functionality.
 mixin DeviceApi on BaseClient {

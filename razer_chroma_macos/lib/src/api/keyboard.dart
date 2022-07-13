@@ -4,10 +4,10 @@ import 'dart:typed_data';
 import 'package:color/color.dart';
 import 'package:ffi/ffi.dart';
 
-import '/src/client.dart';
-import '/src/driver.dart' as driver;
-import '/src/entities/razer_device.dart';
-import '/src/utils/color.dart';
+import 'package:razer_chroma_macos/src/client.dart';
+import 'package:razer_chroma_macos/src/driver.dart' as driver;
+import 'package:razer_chroma_macos/src/entities/razer_device.dart';
+import 'package:razer_chroma_macos/src/utils/color.dart';
 
 mixin KeyboardApi on BaseClient {
   void kbdSetModeNone(RazerMacOSDevice device) =>

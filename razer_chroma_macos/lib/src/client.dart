@@ -2,9 +2,9 @@ import 'dart:ffi' as ffi;
 
 import 'package:meta/meta.dart';
 
-import '/src/api/device.dart';
-import '/src/api/keyboard.dart';
-import '/src/driver.dart';
+import 'package:razer_chroma_macos/src/api/device.dart';
+import 'package:razer_chroma_macos/src/api/keyboard.dart';
+import 'package:razer_chroma_macos/src/driver.dart';
 
 class RazerMacOSClient = BaseClient with DeviceApi, KeyboardApi;
 

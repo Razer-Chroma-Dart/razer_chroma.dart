@@ -1,6 +1,6 @@
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '/src/errors/exceptions/json_type.dart';
+import 'package:razer_chroma_rest_server/src/errors/exceptions/json_type.dart';
 
 /// Accessor getters on [RequestBodyAccessor] to safely access JSON data.
 extension CheckedJsonAccessor on RequestBodyAccessor {

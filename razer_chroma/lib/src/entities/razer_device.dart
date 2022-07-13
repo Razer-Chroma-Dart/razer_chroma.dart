@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 
-import '/src/device_info.dart';
+import 'package:razer_chroma/src/device_info.dart';
 
 /// A Razer Chroma device.
 abstract class RazerDevice {

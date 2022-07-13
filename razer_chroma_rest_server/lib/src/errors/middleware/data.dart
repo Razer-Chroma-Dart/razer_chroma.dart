@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '/src/errors/exceptions/json_type.dart';
+import 'package:razer_chroma_rest_server/src/errors/exceptions/json_type.dart';
 
 /// Middleware that handles invalid data being sent to the API.
 ///
