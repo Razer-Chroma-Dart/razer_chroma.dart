@@ -1,13 +1,12 @@
 import 'package:meta/meta.dart';
 import 'package:razer_chroma/razer_chroma.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
-import 'package:shelf_plus/shelf_plus.dart';
-import 'package:uuid/uuid.dart';
-
 import 'package:razer_chroma_rest_server/src/errors/utils/checked_json_accessor.dart';
 import 'package:razer_chroma_rest_server/src/initialization/api/session.dart';
 import 'package:razer_chroma_rest_server/src/initialization/data/session_server.dart';
 import 'package:razer_chroma_rest_server/src/session.dart';
+import 'package:shelf_plus/shelf_plus.dart';
+import 'package:uuid/uuid.dart';
 
 /// A mixin that implements effects APIs.
 mixin EffectsApi on SessionApi {
@@ -54,10 +53,12 @@ mixin EffectsApi on SessionApi {
       );
     } else if (effect is WaveKeyboardEffect) {
       applicationSuccessful =
+          // ignore: deprecated_member_use_from_same_package
           backend.keyboardWaveEffect(effect.parameters.direction);
     } else {
       throw UnimplementedError(
-          'Backend call for effect "${effect.runtimeType}" is not yet implemented!');
+        'Backend call for effect "${effect.runtimeType}" is not yet implemented!',
+      );
     }
     return applicationSuccessful;
   }

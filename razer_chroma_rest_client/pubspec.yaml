@@ -3,6 +3,8 @@ description: A Razer Chroma SDK REST API client.
 version: 0.1.0
 homepage: https://github.com/Razer-Chroma-Dart/razer_chroma.dart/tree/master/razer_chroma_rest_client
 
+publish_to: none
+
 environment:
   sdk: '>=2.17.0 <3.0.0'
 

@@ -1,7 +1,6 @@
 import 'package:meta/meta.dart';
-import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
-
 import 'package:razer_chroma_rest_client/src/initialization/api/session.dart';
+import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
 /// A mixin that implements effects APIs.
 mixin EffectsApi on SessionApi {
@@ -17,7 +16,7 @@ mixin EffectsApi on SessionApi {
   Future<String?> createEffect(Uri endpoint, DeviceEffect effect) async {
     final responseJson = await post<Map<String, dynamic>>(endpoint, effect);
     final response = EffectCreationResponse.fromJson(responseJson);
-    if (response.successful) return response.id;
+    return response.successful ? response.id : null;
   }
 
   /// Applies the effect represented by the [id].
@@ -25,7 +24,9 @@ mixin EffectsApi on SessionApi {
   /// Returns `true` if the effect applies successfully.
   Future<bool> applyEffect(String id) async {
     final resultJson = await put<Map<String, dynamic>>(
-        _uri, SingleEffectApplicationRequest(id: id));
+      _uri,
+      SingleEffectApplicationRequest(id: id),
+    );
     final result = EmptyResultResponse.fromJson(resultJson);
     return result.successful;
   }

@@ -1,5 +1,4 @@
-import 'package:color/color.dart';
-
+import 'package:razer_chroma/razer_chroma.dart';
 import 'package:razer_chroma_macos/src/driver.dart';
 
 extension RgbColorUtils on RgbColor {

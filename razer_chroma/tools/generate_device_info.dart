@@ -27,8 +27,10 @@ Future<void> main(List<String> arguments) async {
       .where((entity) => entity is File)
       .cast<File>()
       .toList();
-  deviceInfoJsonFiles.sort((a, b) => basenameWithoutExtension(a.path)
-      .compareTo(basenameWithoutExtension(b.path)));
+  deviceInfoJsonFiles.sort(
+    (a, b) => basenameWithoutExtension(a.path)
+        .compareTo(basenameWithoutExtension(b.path)),
+  );
 
   // Set up type references.
   final deviceInfoReference =
@@ -44,35 +46,52 @@ Future<void> main(List<String> arguments) async {
 
   // Build the DeviceInfo class.
   final deviceInfoFields = [
-    Field((b) => b
-      ..modifier = FieldModifier.final$
-      ..name = 'name'
-      ..type = const Reference('String')),
-    Field((b) => b
-      ..modifier = FieldModifier.final$
-      ..name = 'productId'
-      ..type = const Reference('int')),
-    Field((b) => b
-      ..modifier = FieldModifier.final$
-      ..name = 'mainType'
-      ..type = deviceInfoTypeReference),
-    Field((b) => b
-      ..modifier = FieldModifier.final$
-      ..name = 'image'
-      ..type = const Reference('String')),
-    Field((b) => b
-      ..modifier = FieldModifier.final$
-      ..name = 'missingFeatures'
-      ..type = TypeReference((b) => b
-        ..symbol = 'Set'
-        ..types = ListBuilder([optionalDeviceFeatureReference]))),
-    Field((b) => b
-      ..modifier = FieldModifier.final$
-      ..name = 'featureConfigs'
-      ..type = TypeReference((b) => b
-        ..symbol = 'Map'
-        ..types = ListBuilder(
-            [const Reference('Type'), deviceFeatureConfigReference]))),
+    Field(
+      (b) => b
+        ..modifier = FieldModifier.final$
+        ..name = 'name'
+        ..type = const Reference('String'),
+    ),
+    Field(
+      (b) => b
+        ..modifier = FieldModifier.final$
+        ..name = 'productId'
+        ..type = const Reference('int'),
+    ),
+    Field(
+      (b) => b
+        ..modifier = FieldModifier.final$
+        ..name = 'mainType'
+        ..type = deviceInfoTypeReference,
+    ),
+    Field(
+      (b) => b
+        ..modifier = FieldModifier.final$
+        ..name = 'image'
+        ..type = const Reference('String'),
+    ),
+    Field(
+      (b) => b
+        ..modifier = FieldModifier.final$
+        ..name = 'missingFeatures'
+        ..type = TypeReference(
+          (b) => b
+            ..symbol = 'Set'
+            ..types = ListBuilder([optionalDeviceFeatureReference]),
+        ),
+    ),
+    Field(
+      (b) => b
+        ..modifier = FieldModifier.final$
+        ..name = 'featureConfigs'
+        ..type = TypeReference(
+          (b) => b
+            ..symbol = 'Map'
+            ..types = ListBuilder(
+              [const Reference('Type'), deviceFeatureConfigReference],
+            ),
+        ),
+    ),
   ];
   final deviceInfoClass = Class(
     (b) => b
@@ -81,28 +100,35 @@ Future<void> main(List<String> arguments) async {
       ..name = deviceInfoReference.symbol
       ..fields = ListBuilder(deviceInfoFields)
       ..constructors = ListBuilder([
-        Constructor((b) => b
-          ..constant = true
-          ..optionalParameters.addAll(
-            deviceInfoFields.map(
-              (field) => Parameter((b) => b
-                ..named = true
-                ..required = true
-                ..toThis = true
-                ..name = field.name),
+        Constructor(
+          (b) => b
+            ..constant = true
+            ..optionalParameters.addAll(
+              deviceInfoFields.map(
+                (field) => Parameter(
+                  (b) => b
+                    ..named = true
+                    ..required = true
+                    ..toThis = true
+                    ..name = field.name,
+                ),
+              ),
             ),
-          )),
+        ),
       ]),
   );
 
   // Build the device feature configuration class.
-  final deviceFeatureConfigClass = Class((b) => b
-    ..docs = ListBuilder(
-        const ['/// Device-specific configuration values for a feature.'])
-    ..name = deviceFeatureConfigReference.symbol
-    ..constructors = ListBuilder(
-      [Constructor((b) => b..constant = true)],
-    ));
+  final deviceFeatureConfigClass = Class(
+    (b) => b
+      ..docs = ListBuilder(
+        const ['/// Device-specific configuration values for a feature.'],
+      )
+      ..name = deviceFeatureConfigReference.symbol
+      ..constructors = ListBuilder(
+        [Constructor((b) => b..constant = true)],
+      ),
+  );
 
   // Create a set of device type enum values.
   final deviceInfoTypes = HashSet<EnumValue>(
@@ -125,7 +151,8 @@ Future<void> main(List<String> arguments) async {
   // Parse the device info JSON.
   for (final file in deviceInfoJsonFiles) {
     // Decode the device info JSON.
-    final deviceInfoJson = jsonDecode(await file.readAsString());
+    final deviceInfoJson =
+        jsonDecode(await file.readAsString()) as Map<String, dynamic>;
 
     // Add the device type to the device type set.
     deviceInfoTypes
@@ -134,9 +161,10 @@ Future<void> main(List<String> arguments) async {
     // Store new optional features.
     if (deviceInfoJson['featuresMissing'] != null) {
       deviceOptionalFeatures.addAll(
-          (deviceInfoJson['featuresMissing'] as List<dynamic>)
-              .cast<String>()
-              .map((feature) => EnumValue((b) => b.name = feature)));
+        (deviceInfoJson['featuresMissing'] as List<dynamic>)
+            .cast<String>()
+            .map((feature) => EnumValue((b) => b.name = feature)),
+      );
     }
 
     // Build new feature configuration classes.
@@ -160,8 +188,8 @@ Future<void> main(List<String> arguments) async {
           deviceFeatureConfigurationClassBuilders[featureConfigJson.key] =
               ClassBuilder()
                 ..name = buildDeviceFeatureConfigReference(
-                        featureConfigJson.key.pascalCase)
-                    .symbol
+                  featureConfigJson.key.pascalCase,
+                ).symbol
                 ..extend = deviceFeatureConfigReference;
         } else {
           // If the class exists, and any known properties are missing, make
@@ -173,9 +201,10 @@ Future<void> main(List<String> arguments) async {
             if (!(featureConfigJson.value as Map<String, dynamic>)
                     .containsKey(fields[i].name) &&
                 (fields[i].type! as TypeReference).isNullable != true) {
-              fields[i] = fields[i].rebuild((b) => b.type =
-                  (b.type! as TypeReference)
-                      .rebuild((b) => b.isNullable = true));
+              fields[i] = fields[i].rebuild(
+                (b) => b.type = (b.type! as TypeReference)
+                    .rebuild((b) => b.isNullable = true),
+              );
             }
           }
         }
@@ -193,39 +222,49 @@ Future<void> main(List<String> arguments) async {
             }
           }
           if (!hasProperty) {
-            fields.add(Field((b) {
-              // Add a final field with the property name as defined in the
-              // JSON.
-              b
-                ..modifier = FieldModifier.final$
-                ..name = featureConfigEntry.key;
+            fields.add(
+              Field((b) {
+                // Add a final field with the property name as defined in the
+                // JSON.
+                b
+                  ..modifier = FieldModifier.final$
+                  ..name = featureConfigEntry.key;
 
-              // Use the correct property type.
-              // If this feature configuration class already existed, and this
-              // property wasn't in it, the property must be nullable.
-              if (featureConfigEntry.value is int) {
-                b.type = TypeReference((b) => b
-                  ..symbol = 'int'
-                  ..isNullable = !newClass);
-              } else if (featureConfigEntry.value is double) {
-                b.type = TypeReference((b) => b
-                  ..symbol = 'double'
-                  ..isNullable = !newClass);
-              } else if (featureConfigEntry.value is bool) {
-                b.type = TypeReference((b) => b
-                  ..symbol = 'bool'
-                  ..isNullable = !newClass);
-              } else if (featureConfigEntry.value is String) {
-                b.type = TypeReference((b) => b
-                  ..symbol = 'String'
-                  ..isNullable = !newClass);
-              } else {
-                throw FormatException(
-                  'Deeply nested feature configuration properties are not supported! (Requires types of "int", "double", "bool", or "String"; got "${featureConfigEntry.value.runtimeType}" assigned to key "${featureConfigEntry.key}".',
-                  featureConfigEntry,
-                );
-              }
-            }));
+                // Use the correct property type.
+                // If this feature configuration class already existed, and this
+                // property wasn't in it, the property must be nullable.
+                if (featureConfigEntry.value is int) {
+                  b.type = TypeReference(
+                    (b) => b
+                      ..symbol = 'int'
+                      ..isNullable = !newClass,
+                  );
+                } else if (featureConfigEntry.value is double) {
+                  b.type = TypeReference(
+                    (b) => b
+                      ..symbol = 'double'
+                      ..isNullable = !newClass,
+                  );
+                } else if (featureConfigEntry.value is bool) {
+                  b.type = TypeReference(
+                    (b) => b
+                      ..symbol = 'bool'
+                      ..isNullable = !newClass,
+                  );
+                } else if (featureConfigEntry.value is String) {
+                  b.type = TypeReference(
+                    (b) => b
+                      ..symbol = 'String'
+                      ..isNullable = !newClass,
+                  );
+                } else {
+                  throw FormatException(
+                    'Deeply nested feature configuration properties are not supported! (Requires types of "int", "double", "bool", or "String"; got "${(featureConfigEntry.value as Object?).runtimeType}" assigned to key "${featureConfigEntry.key}".',
+                    featureConfigEntry,
+                  );
+                }
+              }),
+            );
           }
         }
       }
@@ -236,18 +275,22 @@ Future<void> main(List<String> arguments) async {
     // Add constructors to the feature configuration class builders.
     for (final builder in deviceFeatureConfigurationClassBuilders.values) {
       builder.constructors = ListBuilder([
-        Constructor((b) => b
-          ..constant = true
-          ..optionalParameters.addAll(
-            builder.fields.build().map(
-                  (field) => Parameter((b) => b
-                    ..named = true
-                    ..required =
-                        (field.type! as TypeReference).isNullable != true
-                    ..toThis = true
-                    ..name = field.name),
-                ),
-          )),
+        Constructor(
+          (b) => b
+            ..constant = true
+            ..optionalParameters.addAll(
+              builder.fields.build().map(
+                    (field) => Parameter(
+                      (b) => b
+                        ..named = true
+                        ..required =
+                            (field.type! as TypeReference).isNullable != true
+                        ..toThis = true
+                        ..name = field.name,
+                    ),
+                  ),
+            ),
+        ),
       ]);
     }
 
@@ -257,51 +300,62 @@ Future<void> main(List<String> arguments) async {
         const [],
         {
           'name': literalString(deviceInfoJson['name'] as String),
-          'productId': CodeExpression(Code(
-              '0x${int.parse(deviceInfoJson['productId'] as String).toRadixString(16).padLeft(2, '0')}')),
+          'productId': CodeExpression(
+            Code(
+              '0x${int.parse(deviceInfoJson['productId'] as String).toRadixString(16).padLeft(2, '0')}',
+            ),
+          ),
           'mainType': deviceInfoTypeReference
               .property(deviceInfoJson['mainType'] as String),
           'image': literalString(deviceInfoJson['image'] as String),
           'missingFeatures': literalSet(
-              (deviceInfoJson['featuresMissing'] as List<dynamic>? ?? const [])
-                  .cast<String>()
-                  .map((feature) =>
-                      optionalDeviceFeatureReference.property(feature))),
-          'featureConfigs':
-              literalMap(featureConfigsJson.map((feature, properties) {
-            // Obtain the feature configuration class reference from the feature name.
-            final classReference =
-                buildDeviceFeatureConfigReference(feature.pascalCase);
-            // Map the feature configuration class type to a constant
-            // instantiation with the properties from the JSON.
-            return MapEntry(
-              classReference,
-              classReference.constInstance(
-                const [],
-                (properties as Map<String, dynamic>)
-                    .map((key, value) => MapEntry(key, literal(value))),
-              ),
-            );
-          })),
+            (deviceInfoJson['featuresMissing'] as List<dynamic>? ?? const [])
+                .cast<String>()
+                .map(
+                  (feature) => optionalDeviceFeatureReference.property(feature),
+                ),
+          ),
+          'featureConfigs': literalMap(
+            featureConfigsJson.map((feature, properties) {
+              // Obtain the feature configuration class reference from the feature name.
+              final classReference =
+                  buildDeviceFeatureConfigReference(feature.pascalCase);
+              // Map the feature configuration class type to a constant
+              // instantiation with the properties from the JSON.
+              return MapEntry(
+                classReference,
+                classReference.constInstance(
+                  const [],
+                  (properties as Map<String, dynamic>)
+                      .map((key, value) => MapEntry(key, literal(value))),
+                ),
+              );
+            }),
+          ),
         },
       ) as InvokeExpression,
     );
   }
 
   // Build the device info type enum.
-  final deviceInfoTypeEnum = Enum((b) => b
-    ..docs = ListBuilder([
-      '/// The type of device described by a [${deviceInfoReference.symbol}] instance.'
-    ])
-    ..name = deviceInfoTypeReference.symbol
-    ..values = ListBuilder(deviceInfoTypes));
+  final deviceInfoTypeEnum = Enum(
+    (b) => b
+      ..docs = ListBuilder([
+        '/// The type of device described by a [${deviceInfoReference.symbol}] instance.'
+      ])
+      ..name = deviceInfoTypeReference.symbol
+      ..values = ListBuilder(deviceInfoTypes),
+  );
 
   // Build the optional feature enum.
-  final optionalDeviceFeatureEnum = Enum((b) => b
-    ..docs = ListBuilder(
-        const ['/// Features that are unsupported by some devices.'])
-    ..name = optionalDeviceFeatureReference.symbol
-    ..values = ListBuilder(deviceOptionalFeatures));
+  final optionalDeviceFeatureEnum = Enum(
+    (b) => b
+      ..docs = ListBuilder(
+        const ['/// Features that are unsupported by some devices.'],
+      )
+      ..name = optionalDeviceFeatureReference.symbol
+      ..values = ListBuilder(deviceOptionalFeatures),
+  );
 
   // Build the device feature configuration classes.
   final deviceFeatureConfigurationClasses =
@@ -316,27 +370,33 @@ Future<void> main(List<String> arguments) async {
   });
 
   // Regenerate the device info class with product data.
-  final deviceInfoClassWithProductData = deviceInfoClass.rebuild((b) => b
-    ..fields.add(
-      Field((b) => b
-        ..docs = ListBuilder([
-          '/// A map of USB product IDs to Razer Chroma device information.'
-        ])
-        ..static = true
-        ..modifier = FieldModifier.constant
-        ..name = 'products'
-        ..assignment = deviceInfoDataMap.code),
-    ));
+  final deviceInfoClassWithProductData = deviceInfoClass.rebuild(
+    (b) => b
+      ..fields.add(
+        Field(
+          (b) => b
+            ..docs = ListBuilder([
+              '/// A map of USB product IDs to Razer Chroma device information.'
+            ])
+            ..static = true
+            ..modifier = FieldModifier.constant
+            ..name = 'products'
+            ..assignment = deviceInfoDataMap.code,
+        ),
+      ),
+  );
 
   // Build a library.
-  final library = Library((b) => b
-    ..body = ListBuilder([
-      deviceInfoTypeEnum,
-      optionalDeviceFeatureEnum,
-      deviceFeatureConfigClass,
-      ...deviceFeatureConfigurationClasses,
-      deviceInfoClassWithProductData,
-    ]));
+  final library = Library(
+    (b) => b
+      ..body = ListBuilder([
+        deviceInfoTypeEnum,
+        optionalDeviceFeatureEnum,
+        deviceFeatureConfigClass,
+        ...deviceFeatureConfigurationClasses,
+        deviceInfoClassWithProductData,
+      ]),
+  );
 
   // Generate and format the library source code.
   final emitter = DartEmitter(orderDirectives: true, useNullSafetySyntax: true);
@@ -349,8 +409,10 @@ Future<void> main(List<String> arguments) async {
   final toolLocation =
       joinAll(toolPathSegments.sublist(toolPathSegments.length - 2));
   final revisionCheckProcessResult = await Process.run(
-      'git', const ['rev-parse', 'HEAD'],
-      workingDirectory: deviceInfoJsonDirectory.path);
+    'git',
+    const ['rev-parse', 'HEAD'],
+    workingDirectory: deviceInfoJsonDirectory.path,
+  );
   final revision =
       (revisionCheckProcessResult.stdout as String).replaceAll('\n', '');
   final libraryHeader = '// Generated file; DO NOT EDIT!\n'

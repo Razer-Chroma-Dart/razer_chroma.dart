@@ -28,7 +28,8 @@ Future<void> main(List<String> arguments) async {
   // Open all devices, and select the first keyboard.
   razerChromaMac.openAllDevices();
   final RazerMacOSDevice? device = razerChromaMac.openDevices.firstWhereOrNull(
-      (device) => device.deviceInfo.mainType == RazerDeviceType.keyboard);
+    (device) => device.deviceInfo.mainType == RazerDeviceType.keyboard,
+  );
   if (device == null) {
     stderr.writeln('Could not find a keyboard!');
     exit(1);

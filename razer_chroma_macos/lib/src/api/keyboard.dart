@@ -1,9 +1,8 @@
 import 'dart:ffi';
 import 'dart:typed_data';
 
-import 'package:color/color.dart';
 import 'package:ffi/ffi.dart';
-
+import 'package:razer_chroma/razer_chroma.dart';
 import 'package:razer_chroma_macos/src/client.dart';
 import 'package:razer_chroma_macos/src/driver.dart' as driver;
 import 'package:razer_chroma_macos/src/entities/razer_device.dart';
@@ -12,11 +11,17 @@ import 'package:razer_chroma_macos/src/utils/color.dart';
 mixin KeyboardApi on BaseClient {
   void kbdSetModeNone(RazerMacOSDevice device) =>
       binding.razer_attr_write_mode_none(
-          device.nativeRazerDevice.usbDevice, nullptr, 0);
+        device.nativeRazerDevice.usbDevice,
+        nullptr,
+        0,
+      );
 
   void kbdSetModeSpectrum(RazerMacOSDevice device) =>
       binding.razer_attr_write_mode_spectrum(
-          device.nativeRazerDevice.usbDevice, nullptr, 0);
+        device.nativeRazerDevice.usbDevice,
+        nullptr,
+        0,
+      );
 
   void kbdSetModeWave(
     RazerMacOSDevice device, {
@@ -25,8 +30,12 @@ mixin KeyboardApi on BaseClient {
   }) {
     final directionPointer = malloc<Int8>();
     directionPointer.value = rightToLeft ? 0x32 : 0x31;
-    binding.razer_attr_write_mode_wave(device.nativeRazerDevice.usbDevice,
-        directionPointer, sizeOf<Int8>(), speed);
+    binding.razer_attr_write_mode_wave(
+      device.nativeRazerDevice.usbDevice,
+      directionPointer,
+      sizeOf<Int8>(),
+      speed,
+    );
     malloc.free(directionPointer);
   }
 
@@ -38,9 +47,12 @@ mixin KeyboardApi on BaseClient {
     final rgbPointer = malloc<driver.razer_rgb>();
     color.toRgbColor().write(rgbPointer.ref);
     (store
-            ? binding.razer_attr_write_mode_static
-            : binding.razer_attr_write_mode_static_no_store)(
-        device.nativeRazerDevice.usbDevice, rgbPointer.cast(), 3);
+        ? binding.razer_attr_write_mode_static
+        : binding.razer_attr_write_mode_static_no_store)(
+      device.nativeRazerDevice.usbDevice,
+      rgbPointer.cast(),
+      3,
+    );
     malloc.free(rgbPointer);
   }
 
@@ -56,7 +68,10 @@ mixin KeyboardApi on BaseClient {
         .toRgbColor()
         .write(bufPointer.elementAt(1).cast<driver.razer_rgb>().ref);
     binding.razer_attr_write_mode_reactive(
-        device.nativeRazerDevice.usbDevice, bufPointer.cast(), bufSize);
+      device.nativeRazerDevice.usbDevice,
+      bufPointer.cast(),
+      bufSize,
+    );
     malloc.free(bufPointer);
   }
 
@@ -84,7 +99,10 @@ mixin KeyboardApi on BaseClient {
       color2?.toRgbColor().write(colorPointer.elementAt(1).ref);
     }
     binding.razer_attr_write_mode_breath(
-        device.nativeRazerDevice.usbDevice, bufPointer.cast(), bufSize);
+      device.nativeRazerDevice.usbDevice,
+      bufPointer.cast(),
+      bufSize,
+    );
     malloc.free(bufPointer);
   }
 
@@ -94,7 +112,10 @@ mixin KeyboardApi on BaseClient {
   void kbdSetBrightness(RazerMacOSDevice device, int brightness) {
     assert(brightness >= 0 && brightness <= 100);
     binding.razer_attr_write_set_brightness(
-        device.nativeRazerDevice.usbDevice, brightness, sizeOf<Uint8>());
+      device.nativeRazerDevice.usbDevice,
+      brightness,
+      sizeOf<Uint8>(),
+    );
   }
 
   void kbdSetModeStarlight(
@@ -124,13 +145,19 @@ mixin KeyboardApi on BaseClient {
       color2?.toRgbColor().write(colorPointer.elementAt(1).ref);
     }
     binding.razer_attr_write_mode_starlight(
-        device.nativeRazerDevice.usbDevice, bufPointer.cast(), bufSize);
+      device.nativeRazerDevice.usbDevice,
+      bufPointer.cast(),
+      bufSize,
+    );
     malloc.free(bufPointer);
   }
 
   void kbdSetModeCustom(RazerMacOSDevice device) =>
       binding.razer_attr_write_mode_custom(
-          device.nativeRazerDevice.usbDevice, nullptr, 0);
+        device.nativeRazerDevice.usbDevice,
+        nullptr,
+        0,
+      );
 
   /// Display a custom frame on the keyboard.
   ///
@@ -141,7 +168,10 @@ mixin KeyboardApi on BaseClient {
     final dataPointer = malloc.allocate<Uint8>(dataSize);
     dataPointer.asTypedList(data.length).setAll(0, data);
     binding.razer_attr_write_matrix_custom_frame(
-        device.nativeRazerDevice.usbDevice, dataPointer.cast(), dataSize);
+      device.nativeRazerDevice.usbDevice,
+      dataPointer.cast(),
+      dataSize,
+    );
     malloc.free(dataPointer);
   }
 }

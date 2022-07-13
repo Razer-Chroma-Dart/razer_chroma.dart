@@ -1,5 +1,4 @@
 import 'package:meta/meta.dart';
-
 import 'package:razer_chroma/src/device_info.dart';
 
 /// A Razer Chroma device.
@@ -19,5 +18,6 @@ abstract class RazerDevice {
   static RazerDeviceInfo getDeviceInfoForProductId(int productId) =>
       RazerDeviceInfo.products[productId] ??
       (throw UnimplementedError(
-          'The device with product ID 0x${productId.toRadixString(16).padLeft(4, '0')} is unknown! Please file an issue.'));
+        'The device with product ID 0x${productId.toRadixString(16).padLeft(4, '0')} is unknown! Please file an issue.',
+      ));
 }

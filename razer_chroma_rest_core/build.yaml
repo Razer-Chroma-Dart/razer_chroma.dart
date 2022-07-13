@@ -1,6 +1,11 @@
 targets:
   $default:
     builders:
+      source_gen|combining_builder:
+        options:
+          ignore_for_file:
+            - type=lint
+            - deprecated_member_use_from_same_package
       json_serializable:
         options:
           checked: true

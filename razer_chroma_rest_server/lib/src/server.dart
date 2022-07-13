@@ -4,9 +4,6 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
-import 'package:shelf/shelf_io.dart';
-import 'package:shelf_plus/shelf_plus.dart';
-
 import 'package:razer_chroma_rest_server/src/backend.dart';
 import 'package:razer_chroma_rest_server/src/effects/api/effects.dart';
 import 'package:razer_chroma_rest_server/src/errors/middleware/api_error.dart';
@@ -16,6 +13,8 @@ import 'package:razer_chroma_rest_server/src/initialization/api/version.dart';
 import 'package:razer_chroma_rest_server/src/keyboard/api/keyboard.dart';
 import 'package:razer_chroma_rest_server/src/security/middleware/host_filter.dart';
 import 'package:razer_chroma_rest_server/src/session.dart';
+import 'package:shelf/shelf_io.dart';
+import 'package:shelf_plus/shelf_plus.dart';
 
 /// An instance of a Razer Chroma REST server.
 ///
@@ -100,8 +99,10 @@ class BaseRazerChromaRestServer {
       clientDetails: details,
       server: server,
       heartbeatTimer: Timer.periodic(maxHeartbeatInterval, (_) {
-        assert(hasSession,
-            'Session closed, but heartbeat timer is still running!');
+        assert(
+          hasSession,
+          'Session closed, but heartbeat timer is still running!',
+        );
         if (_session!.timeSinceLastHeartbeat > maxHeartbeatInterval) {
           closeExistingSession();
         }
@@ -147,7 +148,8 @@ class BaseRazerChromaRestServer {
           // hence the bizarre 'OK' status code.
           notFoundHandler: (_) => Response.ok(
             jsonEncode(
-                const RazerChromaApiInvalidParameterException('invalid uri')),
+              const RazerChromaApiInvalidParameterException('invalid uri'),
+            ),
             headers: const {HttpHeaders.contentTypeHeader: 'application/json'},
           ),
         ),
@@ -172,9 +174,12 @@ class BaseRazerChromaRestServer {
       // Record a session heartbeat whenever a request is received.
       createMiddleware(
         requestHandler: (_) {
-          assert(hasSession,
-              'Session request received, but no session server should be running!');
+          assert(
+            hasSession,
+            'Session request received, but no session server should be running!',
+          );
           _session!.heartbeat();
+          return null;
         },
       ),
     );

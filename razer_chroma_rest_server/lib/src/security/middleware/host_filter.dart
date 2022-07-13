@@ -17,6 +17,8 @@ final hostFilterMiddleware = createMiddleware(
         body:
             'Error ${HttpStatus.badRequest}: The requested hostname is invalid.',
       );
+    } else {
+      return null;
     }
   },
 );

@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:meta/meta.dart';
-import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
-
 import 'package:razer_chroma_rest_client/src/razer_chroma_client.dart';
+import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
 /// A mixin that implements session APIs.
 mixin SessionApi on BaseRazerChromaClient {
@@ -116,8 +115,10 @@ class RazerChromaClientSession {
   }
 
   Future<void> startHeartbeat(Duration interval) async {
-    assert(interval < maxHeartbeatInterval,
-        'Heartbeat interval must be under 15s!');
+    assert(
+      interval < maxHeartbeatInterval,
+      'Heartbeat interval must be under 15s!',
+    );
     _active = true;
     _heartbeatTimer = Timer.periodic(interval, (timer) => _heartbeat());
     await _heartbeat();

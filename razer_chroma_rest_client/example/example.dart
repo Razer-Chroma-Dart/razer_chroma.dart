@@ -18,16 +18,18 @@ Future<void> main() async {
   print('Using version: $version.');
 
   // Start a session.
-  await client.connect(const rcr.ClientDetails(
-    title: 'Dart Razer Chroma SDK example',
-    description: 'Dart Razer Chroma SDK example description',
-    author: rcr.Author(
-      name: 'hacker1024',
-      contact: 'https://github.com/hacker1024',
+  await client.connect(
+    const rcr.ClientDetails(
+      title: 'Dart Razer Chroma SDK example',
+      description: 'Dart Razer Chroma SDK example description',
+      author: rcr.Author(
+        name: 'hacker1024',
+        contact: 'https://github.com/hacker1024',
+      ),
+      supportedDevices: {rcr.DeviceType.keyboard},
+      category: rcr.ClientCategory.application,
     ),
-    supportedDevices: {rcr.DeviceType.keyboard},
-    category: rcr.ClientCategory.application,
-  ));
+  );
 
   // Catch heartbeat errors.
   client.onHeartbeatError = (error) {
@@ -60,7 +62,8 @@ Future<void> main() async {
   // Cycle through some colors. (EPILEPSY WARNING)
   Future<void> cycleColor(int color) async {
     await client.setKeyboardEffect(
-        rcr.StaticKeyboardEffect(rcr.StaticKeyboardEffectParameters(color)));
+      rcr.StaticKeyboardEffect(rcr.StaticKeyboardEffectParameters(color)),
+    );
     await Future<void>.delayed(const Duration(milliseconds: 1000 ~/ 6));
   }
 
@@ -93,17 +96,8 @@ Future<void> main() async {
 
   // Play a wave effect implemented entirely in Dart.
   final softwareWave = SoftwareWave.fps(
-    onNewFrame: (wave) {
-      client.setKeyboardEffect(
-        rcr.CustomKeyboardEffect(
-          List.filled(
-            6,
-            wave,
-            growable: false,
-          ),
-        ),
-      );
-    },
+    onNewFrame: (wave) => client
+        .setKeyboardEffect(rcr.CustomKeyboardEffect(List.filled(6, wave))),
     fps: 25,
   )..play();
 

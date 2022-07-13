@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:shelf_plus/shelf_plus.dart';
-
 import 'package:razer_chroma_rest_server/src/errors/exceptions/json_type.dart';
+import 'package:shelf_plus/shelf_plus.dart';
 
 /// Middleware that handles invalid data being sent to the API.
 ///
@@ -17,17 +16,23 @@ import 'package:razer_chroma_rest_server/src/errors/exceptions/json_type.dart';
 final dataErrorMiddleware = createMiddleware(
   errorHandler: (error, stackTrace) {
     if (error is FormatException) {
-      return Response(HttpStatus.badRequest,
-          body:
-              'Format error: "${error.message}", source: "${error.source}", offset: ${error.offset})');
+      return Response(
+        HttpStatus.badRequest,
+        body:
+            'Format error: "${error.message}", source: "${error.source}", offset: ${error.offset})',
+      );
     } else if (error is CheckedFromJsonException) {
-      return Response(HttpStatus.badRequest,
-          body:
-              'JSON format error: "${error.message}", source: "${jsonEncode(error.map)}", serialized class: ${error.className})');
+      return Response(
+        HttpStatus.badRequest,
+        body:
+            'JSON format error: "${error.message}", source: "${jsonEncode(error.map)}", serialized class: ${error.className})',
+      );
     } else if (error is JsonTypeException) {
-      return Response(HttpStatus.badRequest,
-          body:
-              'Invalid JSON data type - expected "${error.expectedType}", received "${error.receivedType}".');
+      return Response(
+        HttpStatus.badRequest,
+        body:
+            'Invalid JSON data type - expected "${error.expectedType}", received "${error.receivedType}".',
+      );
     } else {
       throw error;
     }

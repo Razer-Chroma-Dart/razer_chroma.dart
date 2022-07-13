@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:razer_chroma_rest_core/src/effects/entities/device_effect.dart';
 import 'package:razer_chroma_rest_core/src/keyboard/entities/effects/static_keyboard_effect_parameters.dart';
 import 'package:razer_chroma_rest_core/src/keyboard/entities/effects/wave_keyboard_effect_parameters.dart';
@@ -28,7 +27,8 @@ class KeyboardEffect with _$KeyboardEffect implements DeviceEffect {
   @Assert('colors.length == 6')
   @Assert('colors.every((row) => row.length == 22)')
   @Assert(
-      'colors.every((row) => row.every((color) => color >= 0 && color <= 0xFFFFFF))')
+    'colors.every((row) => row.every((color) => color >= 0 && color <= 0xFFFFFF))',
+  )
   factory KeyboardEffect.custom(
     /// A list of 6 rows of 22 key colors to display on the keyboard.
     /// Colors are in the 0xBBGGRR format.
@@ -37,7 +37,8 @@ class KeyboardEffect with _$KeyboardEffect implements DeviceEffect {
 
   /// A wave effect.
   @Deprecated(
-      'Removed from the API documentation (deprecated and should not be used)')
+    'Removed from the API documentation (deprecated and should not be used)',
+  )
   @FreezedUnionValue('CHROMA_WAVE')
   const factory KeyboardEffect.wave([
     @JsonKey(name: DeviceEffect.parametersKey)

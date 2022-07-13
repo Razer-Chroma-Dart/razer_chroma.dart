@@ -3,12 +3,11 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
-import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
-
 import 'package:razer_chroma_rest_client/src/effects/api/effects.dart';
 import 'package:razer_chroma_rest_client/src/initialization/api/session.dart';
 import 'package:razer_chroma_rest_client/src/initialization/api/version.dart';
 import 'package:razer_chroma_rest_client/src/keyboard/api/keyboard.dart';
+import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
 class RazerChromaClient = BaseRazerChromaClient
     with VersionApi, SessionApi, EffectsApi, KeyboardApi;
@@ -32,7 +31,8 @@ abstract class BaseRazerChromaClient {
   /// JSON, or if the decoded JSON is not an object of type [T].
   @protected
   Future<T> makeApiRequest<T>(
-      Future<String> Function(Client httpClient) makeRequest) async {
+    Future<String> Function(Client httpClient) makeRequest,
+  ) async {
     final responseData = await makeRequest(_httpClient);
     final responseJson = jsonDecode(responseData);
     if (responseJson is Map<String, dynamic>) {
@@ -58,32 +58,38 @@ abstract class BaseRazerChromaClient {
   ///
   /// The [body] is encoded as JSON data.
   @protected
-  Future<T> post<T>(Uri url, Object? body) =>
-      makeApiRequest<T>((httpClient) => httpClient
-          .post(
-            url,
-            headers: const {HttpHeaders.contentTypeHeader: 'application/json'},
-            body: jsonEncode(body),
-          )
-          .then((response) => response.body));
+  Future<T> post<T>(Uri url, Object? body) => makeApiRequest<T>(
+        (httpClient) => httpClient
+            .post(
+              url,
+              headers: const {
+                HttpHeaders.contentTypeHeader: 'application/json'
+              },
+              body: jsonEncode(body),
+            )
+            .then((response) => response.body),
+      );
 
   /// A convenience PUT wrapper around [makeApiRequest].
   ///
   /// The [body] is encoded as JSON data.
   @protected
-  Future<T> put<T>(Uri url, [Object? body]) =>
-      makeApiRequest<T>((httpClient) => _httpClient
-          .put(
-            url,
-            headers: body == null
-                ? null
-                : const {HttpHeaders.contentTypeHeader: 'application/json'},
-            body: body == null ? null : jsonEncode(body),
-          )
-          .then((response) => response.body));
+  Future<T> put<T>(Uri url, [Object? body]) => makeApiRequest<T>(
+        (httpClient) => _httpClient
+            .put(
+              url,
+              headers: body == null
+                  ? null
+                  : const {HttpHeaders.contentTypeHeader: 'application/json'},
+              body: body == null ? null : jsonEncode(body),
+            )
+            .then((response) => response.body),
+      );
 
   /// A convenience DELETE wrapper around [makeApiRequest].
   @protected
   Future<T> delete<T>(Uri url) => makeApiRequest<T>(
-      (httpClient) => httpClient.delete(url).then((response) => response.body));
+        (httpClient) =>
+            httpClient.delete(url).then((response) => response.body),
+      );
 }

@@ -4,19 +4,20 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
-import 'package:shelf_plus/shelf_plus.dart';
-
 import 'package:razer_chroma_rest_server/src/errors/utils/checked_json_accessor.dart';
 import 'package:razer_chroma_rest_server/src/initialization/data/session_server.dart';
 import 'package:razer_chroma_rest_server/src/server.dart';
+import 'package:shelf_plus/shelf_plus.dart';
 
 /// A mixin that implements session APIs.
 mixin SessionApi on BaseRazerChromaRestServer {
   /// Handles a session initialization request.
   Future<InitializationResponse> _handleInitializationRequest(
-      Request request) async {
+    Request request,
+  ) async {
     final sessionPort = await newSession(
-        ClientDetails.fromJson(await request.body.asJsonChecked));
+      ClientDetails.fromJson(await request.body.asJsonChecked),
+    );
     return InitializationResponse(
       sessionId: sessionPort,
       uri: Uri(
@@ -47,12 +48,14 @@ mixin SessionApi on BaseRazerChromaRestServer {
     const responseData = EmptyResultResponse(result: 0);
     final responseBytes =
         const JsonEncoder().fuse(utf8.encoder).convert(responseData);
-    final responseStream = Stream.fromIterable([responseBytes])
-        .asBroadcastStream(onCancel: (subscription) async {
-      await subscription.cancel();
-      // The closure is not awaited here; it's not necessary.
-      closeExistingSession();
-    });
+    final responseStream =
+        Stream.fromIterable([responseBytes]).asBroadcastStream(
+      onCancel: (subscription) async {
+        await subscription.cancel();
+        // The closure is not awaited here; it's not necessary.
+        closeExistingSession();
+      },
+    );
     return Response.ok(
       responseStream,
       headers: {

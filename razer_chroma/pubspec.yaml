@@ -3,6 +3,8 @@ description: Common components used in several Razer Chroma packages.
 version: 0.1.0
 homepage: https://github.com/Razer-Chroma-Dart/razer_chroma.dart
 
+publish_to: none
+
 environment:
   sdk: '>=2.17.0 <3.0.0'
 
@@ -22,3 +24,4 @@ dev_dependencies:
   code_builder: ^4.1.0
   dart_style: ^2.2.3
   recase: ^4.0.0
+  path: ^1.8.2
