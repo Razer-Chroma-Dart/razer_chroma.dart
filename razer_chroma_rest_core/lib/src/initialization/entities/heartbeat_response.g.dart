@@ -6,16 +6,19 @@ part of 'heartbeat_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_HeartbeatResponse _$_$_HeartbeatResponseFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_HeartbeatResponse', json, () {
-    final val = _$_HeartbeatResponse(
-      tick: $checkedConvert(json, 'tick', (v) => v as int),
+_$_HeartbeatResponse _$$_HeartbeatResponseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_HeartbeatResponse',
+      json,
+      ($checkedConvert) {
+        final val = _$_HeartbeatResponse(
+          tick: $checkedConvert('tick', (v) => v as int),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_HeartbeatResponseToJson(
+Map<String, dynamic> _$$_HeartbeatResponseToJson(
         _$_HeartbeatResponse instance) =>
     <String, dynamic>{
       'tick': instance.tick,

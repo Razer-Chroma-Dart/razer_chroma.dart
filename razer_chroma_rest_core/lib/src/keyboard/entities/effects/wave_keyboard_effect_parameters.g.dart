@@ -6,48 +6,29 @@ part of 'wave_keyboard_effect_parameters.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_KeyboardWaveEffectParameters _$_$_KeyboardWaveEffectParametersFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_KeyboardWaveEffectParameters', json, () {
-    final val = _$_KeyboardWaveEffectParameters(
-      direction: $checkedConvert(json, 'direction',
-          (v) => _$enumDecode(_$WaveKeyboardEffectDirectionEnumMap, v)),
+_$_KeyboardWaveEffectParameters _$$_KeyboardWaveEffectParametersFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_KeyboardWaveEffectParameters',
+      json,
+      ($checkedConvert) {
+        final val = _$_KeyboardWaveEffectParameters(
+          direction: $checkedConvert(
+              'direction',
+              (v) =>
+                  $enumDecodeNullable(
+                      _$WaveKeyboardEffectDirectionEnumMap, v) ??
+                  WaveKeyboardEffectDirection.leftToRight),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_KeyboardWaveEffectParametersToJson(
+Map<String, dynamic> _$$_KeyboardWaveEffectParametersToJson(
         _$_KeyboardWaveEffectParameters instance) =>
     <String, dynamic>{
-      'direction': _$WaveKeyboardEffectDirectionEnumMap[instance.direction],
+      'direction': _$WaveKeyboardEffectDirectionEnumMap[instance.direction]!,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$WaveKeyboardEffectDirectionEnumMap = {
   WaveKeyboardEffectDirection.none: 0,

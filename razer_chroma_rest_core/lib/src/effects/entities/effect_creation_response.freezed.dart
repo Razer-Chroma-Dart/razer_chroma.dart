@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'effect_creation_response.dart';
 
@@ -10,33 +12,12 @@ part of 'effect_creation_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 EffectCreationResponse _$EffectCreationResponseFromJson(
     Map<String, dynamic> json) {
   return _EffectCreationResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$EffectCreationResponseTearOff {
-  const _$EffectCreationResponseTearOff();
-
-  _EffectCreationResponse call(
-      {@JsonKey(name: 'result') required int result,
-      @JsonKey(name: 'id') required String? id}) {
-    return _EffectCreationResponse(
-      result: result,
-      id: id,
-    );
-  }
-
-  EffectCreationResponse fromJson(Map<String, Object> json) {
-    return EffectCreationResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $EffectCreationResponse = _$EffectCreationResponseTearOff();
 
 /// @nodoc
 mixin _$EffectCreationResponse {
@@ -92,33 +73,34 @@ class _$EffectCreationResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$EffectCreationResponseCopyWith<$Res>
+abstract class _$$_EffectCreationResponseCopyWith<$Res>
     implements $EffectCreationResponseCopyWith<$Res> {
-  factory _$EffectCreationResponseCopyWith(_EffectCreationResponse value,
-          $Res Function(_EffectCreationResponse) then) =
-      __$EffectCreationResponseCopyWithImpl<$Res>;
+  factory _$$_EffectCreationResponseCopyWith(_$_EffectCreationResponse value,
+          $Res Function(_$_EffectCreationResponse) then) =
+      __$$_EffectCreationResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'result') int result, @JsonKey(name: 'id') String? id});
 }
 
 /// @nodoc
-class __$EffectCreationResponseCopyWithImpl<$Res>
+class __$$_EffectCreationResponseCopyWithImpl<$Res>
     extends _$EffectCreationResponseCopyWithImpl<$Res>
-    implements _$EffectCreationResponseCopyWith<$Res> {
-  __$EffectCreationResponseCopyWithImpl(_EffectCreationResponse _value,
-      $Res Function(_EffectCreationResponse) _then)
-      : super(_value, (v) => _then(v as _EffectCreationResponse));
+    implements _$$_EffectCreationResponseCopyWith<$Res> {
+  __$$_EffectCreationResponseCopyWithImpl(_$_EffectCreationResponse _value,
+      $Res Function(_$_EffectCreationResponse) _then)
+      : super(_value, (v) => _then(v as _$_EffectCreationResponse));
 
   @override
-  _EffectCreationResponse get _value => super._value as _EffectCreationResponse;
+  _$_EffectCreationResponse get _value =>
+      super._value as _$_EffectCreationResponse;
 
   @override
   $Res call({
     Object? result = freezed,
     Object? id = freezed,
   }) {
-    return _then(_EffectCreationResponse(
+    return _then(_$_EffectCreationResponse(
       result: result == freezed
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -140,16 +122,16 @@ class _$_EffectCreationResponse extends _EffectCreationResponse {
       : super._();
 
   factory _$_EffectCreationResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_EffectCreationResponseFromJson(json);
+      _$$_EffectCreationResponseFromJson(json);
 
   @override
   @JsonKey(name: 'result')
   final int result;
-  @override
 
   /// An identifier representing the effect.
   ///
   /// Typically a v4 UUID.
+  @override
   @JsonKey(name: 'id')
   final String? id;
 
@@ -161,35 +143,36 @@ class _$_EffectCreationResponse extends _EffectCreationResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EffectCreationResponse &&
-            (identical(other.result, result) ||
-                const DeepCollectionEquality().equals(other.result, result)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+        (other.runtimeType == runtimeType &&
+            other is _$_EffectCreationResponse &&
+            const DeepCollectionEquality().equals(other.result, result) &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(result) ^
-      const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
-  _$EffectCreationResponseCopyWith<_EffectCreationResponse> get copyWith =>
-      __$EffectCreationResponseCopyWithImpl<_EffectCreationResponse>(
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(result),
+      const DeepCollectionEquality().hash(id));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_EffectCreationResponseCopyWith<_$_EffectCreationResponse> get copyWith =>
+      __$$_EffectCreationResponseCopyWithImpl<_$_EffectCreationResponse>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_EffectCreationResponseToJson(this);
+    return _$$_EffectCreationResponseToJson(this);
   }
 }
 
 abstract class _EffectCreationResponse extends EffectCreationResponse {
   const factory _EffectCreationResponse(
-      {@JsonKey(name: 'result') required int result,
-      @JsonKey(name: 'id') required String? id}) = _$_EffectCreationResponse;
+          {@JsonKey(name: 'result') required final int result,
+          @JsonKey(name: 'id') required final String? id}) =
+      _$_EffectCreationResponse;
   const _EffectCreationResponse._() : super._();
 
   factory _EffectCreationResponse.fromJson(Map<String, dynamic> json) =
@@ -197,16 +180,16 @@ abstract class _EffectCreationResponse extends EffectCreationResponse {
 
   @override
   @JsonKey(name: 'result')
-  int get result => throw _privateConstructorUsedError;
+  int get result;
   @override
 
   /// An identifier representing the effect.
   ///
   /// Typically a v4 UUID.
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(ignore: true)
-  _$EffectCreationResponseCopyWith<_EffectCreationResponse> get copyWith =>
+  _$$_EffectCreationResponseCopyWith<_$_EffectCreationResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

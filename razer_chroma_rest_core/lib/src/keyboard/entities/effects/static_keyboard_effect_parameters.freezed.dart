@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'static_keyboard_effect_parameters.dart';
 
@@ -10,31 +12,12 @@ part of 'static_keyboard_effect_parameters.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 StaticKeyboardEffectParameters _$StaticKeyboardEffectParametersFromJson(
     Map<String, dynamic> json) {
   return _StaticKeyboardEffectParameters.fromJson(json);
 }
-
-/// @nodoc
-class _$StaticKeyboardEffectParametersTearOff {
-  const _$StaticKeyboardEffectParametersTearOff();
-
-  _StaticKeyboardEffectParameters call(@JsonKey(name: 'color') int color) {
-    return _StaticKeyboardEffectParameters(
-      color,
-    );
-  }
-
-  StaticKeyboardEffectParameters fromJson(Map<String, Object> json) {
-    return StaticKeyboardEffectParameters.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $StaticKeyboardEffectParameters =
-    _$StaticKeyboardEffectParametersTearOff();
 
 /// @nodoc
 mixin _$StaticKeyboardEffectParameters {
@@ -80,34 +63,34 @@ class _$StaticKeyboardEffectParametersCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$StaticKeyboardEffectParametersCopyWith<$Res>
+abstract class _$$_StaticKeyboardEffectParametersCopyWith<$Res>
     implements $StaticKeyboardEffectParametersCopyWith<$Res> {
-  factory _$StaticKeyboardEffectParametersCopyWith(
-          _StaticKeyboardEffectParameters value,
-          $Res Function(_StaticKeyboardEffectParameters) then) =
-      __$StaticKeyboardEffectParametersCopyWithImpl<$Res>;
+  factory _$$_StaticKeyboardEffectParametersCopyWith(
+          _$_StaticKeyboardEffectParameters value,
+          $Res Function(_$_StaticKeyboardEffectParameters) then) =
+      __$$_StaticKeyboardEffectParametersCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'color') int color});
 }
 
 /// @nodoc
-class __$StaticKeyboardEffectParametersCopyWithImpl<$Res>
+class __$$_StaticKeyboardEffectParametersCopyWithImpl<$Res>
     extends _$StaticKeyboardEffectParametersCopyWithImpl<$Res>
-    implements _$StaticKeyboardEffectParametersCopyWith<$Res> {
-  __$StaticKeyboardEffectParametersCopyWithImpl(
-      _StaticKeyboardEffectParameters _value,
-      $Res Function(_StaticKeyboardEffectParameters) _then)
-      : super(_value, (v) => _then(v as _StaticKeyboardEffectParameters));
+    implements _$$_StaticKeyboardEffectParametersCopyWith<$Res> {
+  __$$_StaticKeyboardEffectParametersCopyWithImpl(
+      _$_StaticKeyboardEffectParameters _value,
+      $Res Function(_$_StaticKeyboardEffectParameters) _then)
+      : super(_value, (v) => _then(v as _$_StaticKeyboardEffectParameters));
 
   @override
-  _StaticKeyboardEffectParameters get _value =>
-      super._value as _StaticKeyboardEffectParameters;
+  _$_StaticKeyboardEffectParameters get _value =>
+      super._value as _$_StaticKeyboardEffectParameters;
 
   @override
   $Res call({
     Object? color = freezed,
   }) {
-    return _then(_StaticKeyboardEffectParameters(
+    return _then(_$_StaticKeyboardEffectParameters(
       color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -126,11 +109,10 @@ class _$_StaticKeyboardEffectParameters
 
   factory _$_StaticKeyboardEffectParameters.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_StaticKeyboardEffectParametersFromJson(json);
-
-  @override
+      _$$_StaticKeyboardEffectParametersFromJson(json);
 
   /// The color, in 0xBBGGRR format.
+  @override
   @JsonKey(name: 'color')
   final int color;
 
@@ -142,31 +124,33 @@ class _$_StaticKeyboardEffectParameters
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _StaticKeyboardEffectParameters &&
-            (identical(other.color, color) ||
-                const DeepCollectionEquality().equals(other.color, color)));
+        (other.runtimeType == runtimeType &&
+            other is _$_StaticKeyboardEffectParameters &&
+            const DeepCollectionEquality().equals(other.color, color));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(color);
 
   @JsonKey(ignore: true)
   @override
-  _$StaticKeyboardEffectParametersCopyWith<_StaticKeyboardEffectParameters>
-      get copyWith => __$StaticKeyboardEffectParametersCopyWithImpl<
-          _StaticKeyboardEffectParameters>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(color));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_StaticKeyboardEffectParametersCopyWith<_$_StaticKeyboardEffectParameters>
+      get copyWith => __$$_StaticKeyboardEffectParametersCopyWithImpl<
+          _$_StaticKeyboardEffectParameters>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_StaticKeyboardEffectParametersToJson(this);
+    return _$$_StaticKeyboardEffectParametersToJson(this);
   }
 }
 
 abstract class _StaticKeyboardEffectParameters
     implements StaticKeyboardEffectParameters {
   const factory _StaticKeyboardEffectParameters(
-      @JsonKey(name: 'color') int color) = _$_StaticKeyboardEffectParameters;
+          @JsonKey(name: 'color') final int color) =
+      _$_StaticKeyboardEffectParameters;
 
   factory _StaticKeyboardEffectParameters.fromJson(Map<String, dynamic> json) =
       _$_StaticKeyboardEffectParameters.fromJson;
@@ -175,9 +159,9 @@ abstract class _StaticKeyboardEffectParameters
 
   /// The color, in 0xBBGGRR format.
   @JsonKey(name: 'color')
-  int get color => throw _privateConstructorUsedError;
+  int get color;
   @override
   @JsonKey(ignore: true)
-  _$StaticKeyboardEffectParametersCopyWith<_StaticKeyboardEffectParameters>
+  _$$_StaticKeyboardEffectParametersCopyWith<_$_StaticKeyboardEffectParameters>
       get copyWith => throw _privateConstructorUsedError;
 }

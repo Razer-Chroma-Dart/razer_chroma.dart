@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'wave_keyboard_effect_parameters.dart';
 
@@ -10,32 +12,12 @@ part of 'wave_keyboard_effect_parameters.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 WaveKeyboardEffectParameters _$WaveKeyboardEffectParametersFromJson(
     Map<String, dynamic> json) {
   return _KeyboardWaveEffectParameters.fromJson(json);
 }
-
-/// @nodoc
-class _$WaveKeyboardEffectParametersTearOff {
-  const _$WaveKeyboardEffectParametersTearOff();
-
-  _KeyboardWaveEffectParameters call(
-      {@JsonKey(name: 'direction') WaveKeyboardEffectDirection direction =
-          WaveKeyboardEffectDirection.leftToRight}) {
-    return _KeyboardWaveEffectParameters(
-      direction: direction,
-    );
-  }
-
-  WaveKeyboardEffectParameters fromJson(Map<String, Object> json) {
-    return WaveKeyboardEffectParameters.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $WaveKeyboardEffectParameters = _$WaveKeyboardEffectParametersTearOff();
 
 /// @nodoc
 mixin _$WaveKeyboardEffectParameters {
@@ -87,35 +69,35 @@ class _$WaveKeyboardEffectParametersCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$KeyboardWaveEffectParametersCopyWith<$Res>
+abstract class _$$_KeyboardWaveEffectParametersCopyWith<$Res>
     implements $WaveKeyboardEffectParametersCopyWith<$Res> {
-  factory _$KeyboardWaveEffectParametersCopyWith(
-          _KeyboardWaveEffectParameters value,
-          $Res Function(_KeyboardWaveEffectParameters) then) =
-      __$KeyboardWaveEffectParametersCopyWithImpl<$Res>;
+  factory _$$_KeyboardWaveEffectParametersCopyWith(
+          _$_KeyboardWaveEffectParameters value,
+          $Res Function(_$_KeyboardWaveEffectParameters) then) =
+      __$$_KeyboardWaveEffectParametersCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'direction') WaveKeyboardEffectDirection direction});
 }
 
 /// @nodoc
-class __$KeyboardWaveEffectParametersCopyWithImpl<$Res>
+class __$$_KeyboardWaveEffectParametersCopyWithImpl<$Res>
     extends _$WaveKeyboardEffectParametersCopyWithImpl<$Res>
-    implements _$KeyboardWaveEffectParametersCopyWith<$Res> {
-  __$KeyboardWaveEffectParametersCopyWithImpl(
-      _KeyboardWaveEffectParameters _value,
-      $Res Function(_KeyboardWaveEffectParameters) _then)
-      : super(_value, (v) => _then(v as _KeyboardWaveEffectParameters));
+    implements _$$_KeyboardWaveEffectParametersCopyWith<$Res> {
+  __$$_KeyboardWaveEffectParametersCopyWithImpl(
+      _$_KeyboardWaveEffectParameters _value,
+      $Res Function(_$_KeyboardWaveEffectParameters) _then)
+      : super(_value, (v) => _then(v as _$_KeyboardWaveEffectParameters));
 
   @override
-  _KeyboardWaveEffectParameters get _value =>
-      super._value as _KeyboardWaveEffectParameters;
+  _$_KeyboardWaveEffectParameters get _value =>
+      super._value as _$_KeyboardWaveEffectParameters;
 
   @override
   $Res call({
     Object? direction = freezed,
   }) {
-    return _then(_KeyboardWaveEffectParameters(
+    return _then(_$_KeyboardWaveEffectParameters(
       direction: direction == freezed
           ? _value.direction
           : direction // ignore: cast_nullable_to_non_nullable
@@ -132,15 +114,14 @@ class _$_KeyboardWaveEffectParameters implements _KeyboardWaveEffectParameters {
           this.direction = WaveKeyboardEffectDirection.leftToRight});
 
   factory _$_KeyboardWaveEffectParameters.fromJson(Map<String, dynamic> json) =>
-      _$_$_KeyboardWaveEffectParametersFromJson(json);
-
-  @override
+      _$$_KeyboardWaveEffectParametersFromJson(json);
 
   /// The direction of the wave effect.
   ///
   /// The use of [WaveKeyboardEffectDirection.none] and
   /// [WaveKeyboardEffectDirection.invalid] is undocumented. When used with
   /// the official API implementation, the effect seems to be ignored.
+  @override
   @JsonKey(name: 'direction')
   final WaveKeyboardEffectDirection direction;
 
@@ -152,32 +133,33 @@ class _$_KeyboardWaveEffectParameters implements _KeyboardWaveEffectParameters {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _KeyboardWaveEffectParameters &&
-            (identical(other.direction, direction) ||
-                const DeepCollectionEquality()
-                    .equals(other.direction, direction)));
+        (other.runtimeType == runtimeType &&
+            other is _$_KeyboardWaveEffectParameters &&
+            const DeepCollectionEquality().equals(other.direction, direction));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(direction);
 
   @JsonKey(ignore: true)
   @override
-  _$KeyboardWaveEffectParametersCopyWith<_KeyboardWaveEffectParameters>
-      get copyWith => __$KeyboardWaveEffectParametersCopyWithImpl<
-          _KeyboardWaveEffectParameters>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(direction));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_KeyboardWaveEffectParametersCopyWith<_$_KeyboardWaveEffectParameters>
+      get copyWith => __$$_KeyboardWaveEffectParametersCopyWithImpl<
+          _$_KeyboardWaveEffectParameters>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_KeyboardWaveEffectParametersToJson(this);
+    return _$$_KeyboardWaveEffectParametersToJson(this);
   }
 }
 
 abstract class _KeyboardWaveEffectParameters
     implements WaveKeyboardEffectParameters {
   const factory _KeyboardWaveEffectParameters(
-          {@JsonKey(name: 'direction') WaveKeyboardEffectDirection direction}) =
+          {@JsonKey(name: 'direction')
+              final WaveKeyboardEffectDirection direction}) =
       _$_KeyboardWaveEffectParameters;
 
   factory _KeyboardWaveEffectParameters.fromJson(Map<String, dynamic> json) =
@@ -191,10 +173,9 @@ abstract class _KeyboardWaveEffectParameters
   /// [WaveKeyboardEffectDirection.invalid] is undocumented. When used with
   /// the official API implementation, the effect seems to be ignored.
   @JsonKey(name: 'direction')
-  WaveKeyboardEffectDirection get direction =>
-      throw _privateConstructorUsedError;
+  WaveKeyboardEffectDirection get direction;
   @override
   @JsonKey(ignore: true)
-  _$KeyboardWaveEffectParametersCopyWith<_KeyboardWaveEffectParameters>
+  _$$_KeyboardWaveEffectParametersCopyWith<_$_KeyboardWaveEffectParameters>
       get copyWith => throw _privateConstructorUsedError;
 }

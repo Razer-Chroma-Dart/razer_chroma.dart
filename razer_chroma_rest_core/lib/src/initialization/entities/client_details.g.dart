@@ -6,61 +6,39 @@ part of 'client_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ClientDetails _$_$_ClientDetailsFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_ClientDetails', json, () {
-    final val = _$_ClientDetails(
-      title: $checkedConvert(json, 'title', (v) => v as String),
-      description: $checkedConvert(json, 'description', (v) => v as String),
-      author: $checkedConvert(
-          json, 'author', (v) => Author.fromJson(v as Map<String, dynamic>)),
-      supportedDevices: $checkedConvert(
-          json,
-          'device_supported',
-          (v) => (v as List<dynamic>)
-              .map((e) => _$enumDecode(_$DeviceTypeEnumMap, e))
-              .toSet()),
-      category: $checkedConvert(
-          json, 'category', (v) => _$enumDecode(_$ClientCategoryEnumMap, v)),
+_$_ClientDetails _$$_ClientDetailsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_ClientDetails',
+      json,
+      ($checkedConvert) {
+        final val = _$_ClientDetails(
+          title: $checkedConvert('title', (v) => v as String),
+          description: $checkedConvert('description', (v) => v as String),
+          author: $checkedConvert(
+              'author', (v) => Author.fromJson(v as Map<String, dynamic>)),
+          supportedDevices: $checkedConvert(
+              'device_supported',
+              (v) => (v as List<dynamic>)
+                  .map((e) => $enumDecode(_$DeviceTypeEnumMap, e))
+                  .toSet()),
+          category: $checkedConvert(
+              'category', (v) => $enumDecode(_$ClientCategoryEnumMap, v)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'supportedDevices': 'device_supported'},
     );
-    return val;
-  }, fieldKeyMap: const {'supportedDevices': 'device_supported'});
-}
 
-Map<String, dynamic> _$_$_ClientDetailsToJson(_$_ClientDetails instance) =>
+Map<String, dynamic> _$$_ClientDetailsToJson(_$_ClientDetails instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'author': instance.author,
-      'device_supported':
-          instance.supportedDevices.map((e) => _$DeviceTypeEnumMap[e]).toList(),
-      'category': _$ClientCategoryEnumMap[instance.category],
+      'device_supported': instance.supportedDevices
+          .map((e) => _$DeviceTypeEnumMap[e]!)
+          .toList(),
+      'category': _$ClientCategoryEnumMap[instance.category]!,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$DeviceTypeEnumMap = {
   DeviceType.keyboard: 'keyboard',

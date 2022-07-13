@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'keyboard_effect.dart';
 
@@ -10,10 +12,10 @@ part of 'keyboard_effect.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 KeyboardEffect _$KeyboardEffectFromJson(Map<String, dynamic> json) {
-  switch (json['effect'] as String) {
+  switch (json['effect']) {
     case 'CHROMA_NONE':
       return EmptyKeyboardEffect.fromJson(json);
     case 'CHROMA_STATIC':
@@ -30,46 +32,6 @@ KeyboardEffect _$KeyboardEffectFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$KeyboardEffectTearOff {
-  const _$KeyboardEffectTearOff();
-
-  EmptyKeyboardEffect empty() {
-    return const EmptyKeyboardEffect();
-  }
-
-  StaticKeyboardEffect static(
-      @JsonKey(name: DeviceEffect.parametersKey)
-          StaticKeyboardEffectParameters parameters) {
-    return StaticKeyboardEffect(
-      parameters,
-    );
-  }
-
-  CustomKeyboardEffect custom(
-      @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors) {
-    return CustomKeyboardEffect(
-      colors,
-    );
-  }
-
-  WaveKeyboardEffect wave(
-      [@JsonKey(name: DeviceEffect.parametersKey)
-          WaveKeyboardEffectParameters
-              parameters = const WaveKeyboardEffectParameters()]) {
-    return WaveKeyboardEffect(
-      parameters,
-    );
-  }
-
-  KeyboardEffect fromJson(Map<String, Object> json) {
-    return KeyboardEffect.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $KeyboardEffect = _$KeyboardEffectTearOff();
-
-/// @nodoc
 mixin _$KeyboardEffect {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -84,6 +46,22 @@ mixin _$KeyboardEffect {
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)
+        wave,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)?
+        static,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
+        custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)?
         wave,
   }) =>
       throw _privateConstructorUsedError;
@@ -110,6 +88,14 @@ mixin _$KeyboardEffect {
     required TResult Function(StaticKeyboardEffect value) static,
     required TResult Function(CustomKeyboardEffect value) custom,
     required TResult Function(WaveKeyboardEffect value) wave,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyKeyboardEffect value)? empty,
+    TResult Function(StaticKeyboardEffect value)? static,
+    TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(WaveKeyboardEffect value)? wave,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -142,32 +128,35 @@ class _$KeyboardEffectCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $EmptyKeyboardEffectCopyWith<$Res> {
-  factory $EmptyKeyboardEffectCopyWith(
-          EmptyKeyboardEffect value, $Res Function(EmptyKeyboardEffect) then) =
-      _$EmptyKeyboardEffectCopyWithImpl<$Res>;
+abstract class _$$EmptyKeyboardEffectCopyWith<$Res> {
+  factory _$$EmptyKeyboardEffectCopyWith(_$EmptyKeyboardEffect value,
+          $Res Function(_$EmptyKeyboardEffect) then) =
+      __$$EmptyKeyboardEffectCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EmptyKeyboardEffectCopyWithImpl<$Res>
+class __$$EmptyKeyboardEffectCopyWithImpl<$Res>
     extends _$KeyboardEffectCopyWithImpl<$Res>
-    implements $EmptyKeyboardEffectCopyWith<$Res> {
-  _$EmptyKeyboardEffectCopyWithImpl(
-      EmptyKeyboardEffect _value, $Res Function(EmptyKeyboardEffect) _then)
-      : super(_value, (v) => _then(v as EmptyKeyboardEffect));
+    implements _$$EmptyKeyboardEffectCopyWith<$Res> {
+  __$$EmptyKeyboardEffectCopyWithImpl(
+      _$EmptyKeyboardEffect _value, $Res Function(_$EmptyKeyboardEffect) _then)
+      : super(_value, (v) => _then(v as _$EmptyKeyboardEffect));
 
   @override
-  EmptyKeyboardEffect get _value => super._value as EmptyKeyboardEffect;
+  _$EmptyKeyboardEffect get _value => super._value as _$EmptyKeyboardEffect;
 }
 
 /// @nodoc
 @JsonSerializable()
-@FreezedUnionValue('CHROMA_NONE')
 class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
-  const _$EmptyKeyboardEffect();
+  const _$EmptyKeyboardEffect({final String? $type})
+      : $type = $type ?? 'CHROMA_NONE';
 
   factory _$EmptyKeyboardEffect.fromJson(Map<String, dynamic> json) =>
-      _$_$EmptyKeyboardEffectFromJson(json);
+      _$$EmptyKeyboardEffectFromJson(json);
+
+  @JsonKey(name: 'effect')
+  final String $type;
 
   @override
   String toString() {
@@ -176,9 +165,11 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmptyKeyboardEffect);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmptyKeyboardEffect);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -199,6 +190,25 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
         wave,
   }) {
     return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)?
+        static,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
+        custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)?
+        wave,
+  }) {
+    return empty?.call();
   }
 
   @override
@@ -237,6 +247,17 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyKeyboardEffect value)? empty,
+    TResult Function(StaticKeyboardEffect value)? static,
+    TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(WaveKeyboardEffect value)? wave,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
@@ -252,7 +273,7 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$EmptyKeyboardEffectToJson(this)..['effect'] = 'CHROMA_NONE';
+    return _$$EmptyKeyboardEffectToJson(this);
   }
 }
 
@@ -264,10 +285,10 @@ abstract class EmptyKeyboardEffect implements KeyboardEffect {
 }
 
 /// @nodoc
-abstract class $StaticKeyboardEffectCopyWith<$Res> {
-  factory $StaticKeyboardEffectCopyWith(StaticKeyboardEffect value,
-          $Res Function(StaticKeyboardEffect) then) =
-      _$StaticKeyboardEffectCopyWithImpl<$Res>;
+abstract class _$$StaticKeyboardEffectCopyWith<$Res> {
+  factory _$$StaticKeyboardEffectCopyWith(_$StaticKeyboardEffect value,
+          $Res Function(_$StaticKeyboardEffect) then) =
+      __$$StaticKeyboardEffectCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: DeviceEffect.parametersKey)
           StaticKeyboardEffectParameters parameters});
@@ -276,21 +297,21 @@ abstract class $StaticKeyboardEffectCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StaticKeyboardEffectCopyWithImpl<$Res>
+class __$$StaticKeyboardEffectCopyWithImpl<$Res>
     extends _$KeyboardEffectCopyWithImpl<$Res>
-    implements $StaticKeyboardEffectCopyWith<$Res> {
-  _$StaticKeyboardEffectCopyWithImpl(
-      StaticKeyboardEffect _value, $Res Function(StaticKeyboardEffect) _then)
-      : super(_value, (v) => _then(v as StaticKeyboardEffect));
+    implements _$$StaticKeyboardEffectCopyWith<$Res> {
+  __$$StaticKeyboardEffectCopyWithImpl(_$StaticKeyboardEffect _value,
+      $Res Function(_$StaticKeyboardEffect) _then)
+      : super(_value, (v) => _then(v as _$StaticKeyboardEffect));
 
   @override
-  StaticKeyboardEffect get _value => super._value as StaticKeyboardEffect;
+  _$StaticKeyboardEffect get _value => super._value as _$StaticKeyboardEffect;
 
   @override
   $Res call({
     Object? parameters = freezed,
   }) {
-    return _then(StaticKeyboardEffect(
+    return _then(_$StaticKeyboardEffect(
       parameters == freezed
           ? _value.parameters
           : parameters // ignore: cast_nullable_to_non_nullable
@@ -309,17 +330,21 @@ class _$StaticKeyboardEffectCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@FreezedUnionValue('CHROMA_STATIC')
 class _$StaticKeyboardEffect implements StaticKeyboardEffect {
   const _$StaticKeyboardEffect(
-      @JsonKey(name: DeviceEffect.parametersKey) this.parameters);
+      @JsonKey(name: DeviceEffect.parametersKey) this.parameters,
+      {final String? $type})
+      : $type = $type ?? 'CHROMA_STATIC';
 
   factory _$StaticKeyboardEffect.fromJson(Map<String, dynamic> json) =>
-      _$_$StaticKeyboardEffectFromJson(json);
+      _$$StaticKeyboardEffectFromJson(json);
 
   @override
   @JsonKey(name: DeviceEffect.parametersKey)
   final StaticKeyboardEffectParameters parameters;
+
+  @JsonKey(name: 'effect')
+  final String $type;
 
   @override
   String toString() {
@@ -329,20 +354,21 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is StaticKeyboardEffect &&
-            (identical(other.parameters, parameters) ||
-                const DeepCollectionEquality()
-                    .equals(other.parameters, parameters)));
+        (other.runtimeType == runtimeType &&
+            other is _$StaticKeyboardEffect &&
+            const DeepCollectionEquality()
+                .equals(other.parameters, parameters));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(parameters);
 
   @JsonKey(ignore: true)
   @override
-  $StaticKeyboardEffectCopyWith<StaticKeyboardEffect> get copyWith =>
-      _$StaticKeyboardEffectCopyWithImpl<StaticKeyboardEffect>(
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(parameters));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$StaticKeyboardEffectCopyWith<_$StaticKeyboardEffect> get copyWith =>
+      __$$StaticKeyboardEffectCopyWithImpl<_$StaticKeyboardEffect>(
           this, _$identity);
 
   @override
@@ -362,6 +388,25 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
         wave,
   }) {
     return static(parameters);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)?
+        static,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
+        custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)?
+        wave,
+  }) {
+    return static?.call(parameters);
   }
 
   @override
@@ -400,6 +445,17 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyKeyboardEffect value)? empty,
+    TResult Function(StaticKeyboardEffect value)? static,
+    TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(WaveKeyboardEffect value)? wave,
+  }) {
+    return static?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
@@ -415,53 +471,53 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$StaticKeyboardEffectToJson(this)..['effect'] = 'CHROMA_STATIC';
+    return _$$StaticKeyboardEffectToJson(this);
   }
 }
 
 abstract class StaticKeyboardEffect implements KeyboardEffect {
   const factory StaticKeyboardEffect(
-      @JsonKey(name: DeviceEffect.parametersKey)
-          StaticKeyboardEffectParameters parameters) = _$StaticKeyboardEffect;
+          @JsonKey(name: DeviceEffect.parametersKey)
+              final StaticKeyboardEffectParameters parameters) =
+      _$StaticKeyboardEffect;
 
   factory StaticKeyboardEffect.fromJson(Map<String, dynamic> json) =
       _$StaticKeyboardEffect.fromJson;
 
   @JsonKey(name: DeviceEffect.parametersKey)
-  StaticKeyboardEffectParameters get parameters =>
-      throw _privateConstructorUsedError;
+  StaticKeyboardEffectParameters get parameters;
   @JsonKey(ignore: true)
-  $StaticKeyboardEffectCopyWith<StaticKeyboardEffect> get copyWith =>
+  _$$StaticKeyboardEffectCopyWith<_$StaticKeyboardEffect> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CustomKeyboardEffectCopyWith<$Res> {
-  factory $CustomKeyboardEffectCopyWith(CustomKeyboardEffect value,
-          $Res Function(CustomKeyboardEffect) then) =
-      _$CustomKeyboardEffectCopyWithImpl<$Res>;
+abstract class _$$CustomKeyboardEffectCopyWith<$Res> {
+  factory _$$CustomKeyboardEffectCopyWith(_$CustomKeyboardEffect value,
+          $Res Function(_$CustomKeyboardEffect) then) =
+      __$$CustomKeyboardEffectCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors});
 }
 
 /// @nodoc
-class _$CustomKeyboardEffectCopyWithImpl<$Res>
+class __$$CustomKeyboardEffectCopyWithImpl<$Res>
     extends _$KeyboardEffectCopyWithImpl<$Res>
-    implements $CustomKeyboardEffectCopyWith<$Res> {
-  _$CustomKeyboardEffectCopyWithImpl(
-      CustomKeyboardEffect _value, $Res Function(CustomKeyboardEffect) _then)
-      : super(_value, (v) => _then(v as CustomKeyboardEffect));
+    implements _$$CustomKeyboardEffectCopyWith<$Res> {
+  __$$CustomKeyboardEffectCopyWithImpl(_$CustomKeyboardEffect _value,
+      $Res Function(_$CustomKeyboardEffect) _then)
+      : super(_value, (v) => _then(v as _$CustomKeyboardEffect));
 
   @override
-  CustomKeyboardEffect get _value => super._value as CustomKeyboardEffect;
+  _$CustomKeyboardEffect get _value => super._value as _$CustomKeyboardEffect;
 
   @override
   $Res call({
     Object? colors = freezed,
   }) {
-    return _then(CustomKeyboardEffect(
+    return _then(_$CustomKeyboardEffect(
       colors == freezed
-          ? _value.colors
+          ? _value._colors
           : colors // ignore: cast_nullable_to_non_nullable
               as List<List<int>>,
     ));
@@ -470,23 +526,35 @@ class _$CustomKeyboardEffectCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@FreezedUnionValue('CHROMA_CUSTOM')
 class _$CustomKeyboardEffect implements CustomKeyboardEffect {
-  _$CustomKeyboardEffect(@JsonKey(name: DeviceEffect.parametersKey) this.colors)
+  _$CustomKeyboardEffect(
+      @JsonKey(name: DeviceEffect.parametersKey) final List<List<int>> colors,
+      {final String? $type})
       : assert(colors.length == 6),
         assert(colors.every((row) => row.length == 22)),
         assert(colors.every(
-            (row) => row.every((color) => color >= 0 && color <= 0xFFFFFF)));
+            (row) => row.every((color) => color >= 0 && color <= 0xFFFFFF))),
+        _colors = colors,
+        $type = $type ?? 'CHROMA_CUSTOM';
 
   factory _$CustomKeyboardEffect.fromJson(Map<String, dynamic> json) =>
-      _$_$CustomKeyboardEffectFromJson(json);
-
-  @override
+      _$$CustomKeyboardEffectFromJson(json);
 
   /// A list of 6 rows of 22 key colors to display on the keyboard.
   /// Colors are in the 0xBBGGRR format.
+  final List<List<int>> _colors;
+
+  /// A list of 6 rows of 22 key colors to display on the keyboard.
+  /// Colors are in the 0xBBGGRR format.
+  @override
   @JsonKey(name: DeviceEffect.parametersKey)
-  final List<List<int>> colors;
+  List<List<int>> get colors {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_colors);
+  }
+
+  @JsonKey(name: 'effect')
+  final String $type;
 
   @override
   String toString() {
@@ -496,19 +564,20 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CustomKeyboardEffect &&
-            (identical(other.colors, colors) ||
-                const DeepCollectionEquality().equals(other.colors, colors)));
+        (other.runtimeType == runtimeType &&
+            other is _$CustomKeyboardEffect &&
+            const DeepCollectionEquality().equals(other._colors, _colors));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(colors);
 
   @JsonKey(ignore: true)
   @override
-  $CustomKeyboardEffectCopyWith<CustomKeyboardEffect> get copyWith =>
-      _$CustomKeyboardEffectCopyWithImpl<CustomKeyboardEffect>(
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_colors));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$CustomKeyboardEffectCopyWith<_$CustomKeyboardEffect> get copyWith =>
+      __$$CustomKeyboardEffectCopyWithImpl<_$CustomKeyboardEffect>(
           this, _$identity);
 
   @override
@@ -528,6 +597,25 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
         wave,
   }) {
     return custom(colors);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)?
+        static,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
+        custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)?
+        wave,
+  }) {
+    return custom?.call(colors);
   }
 
   @override
@@ -566,6 +654,17 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyKeyboardEffect value)? empty,
+    TResult Function(StaticKeyboardEffect value)? static,
+    TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(WaveKeyboardEffect value)? wave,
+  }) {
+    return custom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
@@ -581,14 +680,14 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CustomKeyboardEffectToJson(this)..['effect'] = 'CHROMA_CUSTOM';
+    return _$$CustomKeyboardEffectToJson(this);
   }
 }
 
 abstract class CustomKeyboardEffect implements KeyboardEffect {
   factory CustomKeyboardEffect(
-          @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors) =
-      _$CustomKeyboardEffect;
+      @JsonKey(name: DeviceEffect.parametersKey)
+          final List<List<int>> colors) = _$CustomKeyboardEffect;
 
   factory CustomKeyboardEffect.fromJson(Map<String, dynamic> json) =
       _$CustomKeyboardEffect.fromJson;
@@ -596,17 +695,17 @@ abstract class CustomKeyboardEffect implements KeyboardEffect {
   /// A list of 6 rows of 22 key colors to display on the keyboard.
   /// Colors are in the 0xBBGGRR format.
   @JsonKey(name: DeviceEffect.parametersKey)
-  List<List<int>> get colors => throw _privateConstructorUsedError;
+  List<List<int>> get colors;
   @JsonKey(ignore: true)
-  $CustomKeyboardEffectCopyWith<CustomKeyboardEffect> get copyWith =>
+  _$$CustomKeyboardEffectCopyWith<_$CustomKeyboardEffect> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WaveKeyboardEffectCopyWith<$Res> {
-  factory $WaveKeyboardEffectCopyWith(
-          WaveKeyboardEffect value, $Res Function(WaveKeyboardEffect) then) =
-      _$WaveKeyboardEffectCopyWithImpl<$Res>;
+abstract class _$$WaveKeyboardEffectCopyWith<$Res> {
+  factory _$$WaveKeyboardEffectCopyWith(_$WaveKeyboardEffect value,
+          $Res Function(_$WaveKeyboardEffect) then) =
+      __$$WaveKeyboardEffectCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: DeviceEffect.parametersKey)
           WaveKeyboardEffectParameters parameters});
@@ -615,21 +714,21 @@ abstract class $WaveKeyboardEffectCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WaveKeyboardEffectCopyWithImpl<$Res>
+class __$$WaveKeyboardEffectCopyWithImpl<$Res>
     extends _$KeyboardEffectCopyWithImpl<$Res>
-    implements $WaveKeyboardEffectCopyWith<$Res> {
-  _$WaveKeyboardEffectCopyWithImpl(
-      WaveKeyboardEffect _value, $Res Function(WaveKeyboardEffect) _then)
-      : super(_value, (v) => _then(v as WaveKeyboardEffect));
+    implements _$$WaveKeyboardEffectCopyWith<$Res> {
+  __$$WaveKeyboardEffectCopyWithImpl(
+      _$WaveKeyboardEffect _value, $Res Function(_$WaveKeyboardEffect) _then)
+      : super(_value, (v) => _then(v as _$WaveKeyboardEffect));
 
   @override
-  WaveKeyboardEffect get _value => super._value as WaveKeyboardEffect;
+  _$WaveKeyboardEffect get _value => super._value as _$WaveKeyboardEffect;
 
   @override
   $Res call({
     Object? parameters = freezed,
   }) {
-    return _then(WaveKeyboardEffect(
+    return _then(_$WaveKeyboardEffect(
       parameters == freezed
           ? _value.parameters
           : parameters // ignore: cast_nullable_to_non_nullable
@@ -650,18 +749,22 @@ class _$WaveKeyboardEffectCopyWithImpl<$Res>
 @JsonSerializable()
 @Deprecated(
     'Removed from the API documentation (deprecated and should not be used)')
-@FreezedUnionValue('CHROMA_WAVE')
 class _$WaveKeyboardEffect implements WaveKeyboardEffect {
   const _$WaveKeyboardEffect(
       [@JsonKey(name: DeviceEffect.parametersKey)
-          this.parameters = const WaveKeyboardEffectParameters()]);
+          this.parameters = const WaveKeyboardEffectParameters(),
+      final String? $type])
+      : $type = $type ?? 'CHROMA_WAVE';
 
   factory _$WaveKeyboardEffect.fromJson(Map<String, dynamic> json) =>
-      _$_$WaveKeyboardEffectFromJson(json);
+      _$$WaveKeyboardEffectFromJson(json);
 
   @override
   @JsonKey(name: DeviceEffect.parametersKey)
   final WaveKeyboardEffectParameters parameters;
+
+  @JsonKey(name: 'effect')
+  final String $type;
 
   @override
   String toString() {
@@ -671,20 +774,22 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is WaveKeyboardEffect &&
-            (identical(other.parameters, parameters) ||
-                const DeepCollectionEquality()
-                    .equals(other.parameters, parameters)));
+        (other.runtimeType == runtimeType &&
+            other is _$WaveKeyboardEffect &&
+            const DeepCollectionEquality()
+                .equals(other.parameters, parameters));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(parameters);
 
   @JsonKey(ignore: true)
   @override
-  $WaveKeyboardEffectCopyWith<WaveKeyboardEffect> get copyWith =>
-      _$WaveKeyboardEffectCopyWithImpl<WaveKeyboardEffect>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(parameters));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$WaveKeyboardEffectCopyWith<_$WaveKeyboardEffect> get copyWith =>
+      __$$WaveKeyboardEffectCopyWithImpl<_$WaveKeyboardEffect>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -703,6 +808,25 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
         wave,
   }) {
     return wave(parameters);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)?
+        static,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
+        custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)?
+        wave,
+  }) {
+    return wave?.call(parameters);
   }
 
   @override
@@ -741,6 +865,17 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyKeyboardEffect value)? empty,
+    TResult Function(StaticKeyboardEffect value)? static,
+    TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(WaveKeyboardEffect value)? wave,
+  }) {
+    return wave?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
@@ -756,22 +891,22 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$WaveKeyboardEffectToJson(this)..['effect'] = 'CHROMA_WAVE';
+    return _$$WaveKeyboardEffectToJson(this);
   }
 }
 
 abstract class WaveKeyboardEffect implements KeyboardEffect {
   const factory WaveKeyboardEffect(
-      [@JsonKey(name: DeviceEffect.parametersKey)
-          WaveKeyboardEffectParameters parameters]) = _$WaveKeyboardEffect;
+          [@JsonKey(name: DeviceEffect.parametersKey)
+              final WaveKeyboardEffectParameters parameters]) =
+      _$WaveKeyboardEffect;
 
   factory WaveKeyboardEffect.fromJson(Map<String, dynamic> json) =
       _$WaveKeyboardEffect.fromJson;
 
   @JsonKey(name: DeviceEffect.parametersKey)
-  WaveKeyboardEffectParameters get parameters =>
-      throw _privateConstructorUsedError;
+  WaveKeyboardEffectParameters get parameters;
   @JsonKey(ignore: true)
-  $WaveKeyboardEffectCopyWith<WaveKeyboardEffect> get copyWith =>
+  _$$WaveKeyboardEffectCopyWith<_$WaveKeyboardEffect> get copyWith =>
       throw _privateConstructorUsedError;
 }

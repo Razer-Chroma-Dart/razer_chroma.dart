@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'effect_application_request.dart';
 
@@ -10,32 +12,12 @@ part of 'effect_application_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SingleEffectApplicationRequest _$SingleEffectApplicationRequestFromJson(
     Map<String, dynamic> json) {
   return _SinglApplicationCreationRequest.fromJson(json);
 }
-
-/// @nodoc
-class _$SingleEffectApplicationRequestTearOff {
-  const _$SingleEffectApplicationRequestTearOff();
-
-  _SinglApplicationCreationRequest call(
-      {@JsonKey(name: 'id') required String id}) {
-    return _SinglApplicationCreationRequest(
-      id: id,
-    );
-  }
-
-  SingleEffectApplicationRequest fromJson(Map<String, Object> json) {
-    return SingleEffectApplicationRequest.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SingleEffectApplicationRequest =
-    _$SingleEffectApplicationRequestTearOff();
 
 /// @nodoc
 mixin _$SingleEffectApplicationRequest {
@@ -81,34 +63,34 @@ class _$SingleEffectApplicationRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SinglApplicationCreationRequestCopyWith<$Res>
+abstract class _$$_SinglApplicationCreationRequestCopyWith<$Res>
     implements $SingleEffectApplicationRequestCopyWith<$Res> {
-  factory _$SinglApplicationCreationRequestCopyWith(
-          _SinglApplicationCreationRequest value,
-          $Res Function(_SinglApplicationCreationRequest) then) =
-      __$SinglApplicationCreationRequestCopyWithImpl<$Res>;
+  factory _$$_SinglApplicationCreationRequestCopyWith(
+          _$_SinglApplicationCreationRequest value,
+          $Res Function(_$_SinglApplicationCreationRequest) then) =
+      __$$_SinglApplicationCreationRequestCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'id') String id});
 }
 
 /// @nodoc
-class __$SinglApplicationCreationRequestCopyWithImpl<$Res>
+class __$$_SinglApplicationCreationRequestCopyWithImpl<$Res>
     extends _$SingleEffectApplicationRequestCopyWithImpl<$Res>
-    implements _$SinglApplicationCreationRequestCopyWith<$Res> {
-  __$SinglApplicationCreationRequestCopyWithImpl(
-      _SinglApplicationCreationRequest _value,
-      $Res Function(_SinglApplicationCreationRequest) _then)
-      : super(_value, (v) => _then(v as _SinglApplicationCreationRequest));
+    implements _$$_SinglApplicationCreationRequestCopyWith<$Res> {
+  __$$_SinglApplicationCreationRequestCopyWithImpl(
+      _$_SinglApplicationCreationRequest _value,
+      $Res Function(_$_SinglApplicationCreationRequest) _then)
+      : super(_value, (v) => _then(v as _$_SinglApplicationCreationRequest));
 
   @override
-  _SinglApplicationCreationRequest get _value =>
-      super._value as _SinglApplicationCreationRequest;
+  _$_SinglApplicationCreationRequest get _value =>
+      super._value as _$_SinglApplicationCreationRequest;
 
   @override
   $Res call({
     Object? id = freezed,
   }) {
-    return _then(_SinglApplicationCreationRequest(
+    return _then(_$_SinglApplicationCreationRequest(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -126,11 +108,10 @@ class _$_SinglApplicationCreationRequest
 
   factory _$_SinglApplicationCreationRequest.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_SinglApplicationCreationRequestFromJson(json);
-
-  @override
+      _$$_SinglApplicationCreationRequestFromJson(json);
 
   /// The effect identifier.
+  @override
   @JsonKey(name: 'id')
   final String id;
 
@@ -142,31 +123,33 @@ class _$_SinglApplicationCreationRequest
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SinglApplicationCreationRequest &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+        (other.runtimeType == runtimeType &&
+            other is _$_SinglApplicationCreationRequest &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
-  _$SinglApplicationCreationRequestCopyWith<_SinglApplicationCreationRequest>
-      get copyWith => __$SinglApplicationCreationRequestCopyWithImpl<
-          _SinglApplicationCreationRequest>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SinglApplicationCreationRequestCopyWith<
+          _$_SinglApplicationCreationRequest>
+      get copyWith => __$$_SinglApplicationCreationRequestCopyWithImpl<
+          _$_SinglApplicationCreationRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SinglApplicationCreationRequestToJson(this);
+    return _$$_SinglApplicationCreationRequestToJson(this);
   }
 }
 
 abstract class _SinglApplicationCreationRequest
     implements SingleEffectApplicationRequest {
   const factory _SinglApplicationCreationRequest(
-          {@JsonKey(name: 'id') required String id}) =
+          {@JsonKey(name: 'id') required final String id}) =
       _$_SinglApplicationCreationRequest;
 
   factory _SinglApplicationCreationRequest.fromJson(Map<String, dynamic> json) =
@@ -176,9 +159,10 @@ abstract class _SinglApplicationCreationRequest
 
   /// The effect identifier.
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
   @JsonKey(ignore: true)
-  _$SinglApplicationCreationRequestCopyWith<_SinglApplicationCreationRequest>
+  _$$_SinglApplicationCreationRequestCopyWith<
+          _$_SinglApplicationCreationRequest>
       get copyWith => throw _privateConstructorUsedError;
 }

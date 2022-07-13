@@ -6,18 +6,22 @@ part of 'initialization_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_InitializationResponse _$_$_InitializationResponseFromJson(
-    Map<String, dynamic> json) {
-  return $checkedNew(r'_$_InitializationResponse', json, () {
-    final val = _$_InitializationResponse(
-      sessionId: $checkedConvert(json, 'sessionid', (v) => v as int),
-      uri: $checkedConvert(json, 'uri', (v) => Uri.parse(v as String)),
+_$_InitializationResponse _$$_InitializationResponseFromJson(
+        Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_InitializationResponse',
+      json,
+      ($checkedConvert) {
+        final val = _$_InitializationResponse(
+          sessionId: $checkedConvert('sessionid', (v) => v as int),
+          uri: $checkedConvert('uri', (v) => Uri.parse(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'sessionId': 'sessionid'},
     );
-    return val;
-  }, fieldKeyMap: const {'sessionId': 'sessionid'});
-}
 
-Map<String, dynamic> _$_$_InitializationResponseToJson(
+Map<String, dynamic> _$$_InitializationResponseToJson(
         _$_InitializationResponse instance) =>
     <String, dynamic>{
       'sessionid': instance.sessionId,

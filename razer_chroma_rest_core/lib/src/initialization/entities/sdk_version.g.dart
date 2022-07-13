@@ -6,18 +6,21 @@ part of 'sdk_version.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SdkVersion _$_$_SdkVersionFromJson(Map<String, dynamic> json) {
-  return $checkedNew(r'_$_SdkVersion', json, () {
-    final val = _$_SdkVersion(
-      core: $checkedConvert(json, 'core', (v) => v as String),
-      device: $checkedConvert(json, 'device', (v) => v as String),
-      version: $checkedConvert(json, 'version', (v) => v as String),
+_$_SdkVersion _$$_SdkVersionFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      r'_$_SdkVersion',
+      json,
+      ($checkedConvert) {
+        final val = _$_SdkVersion(
+          core: $checkedConvert('core', (v) => v as String),
+          device: $checkedConvert('device', (v) => v as String),
+          version: $checkedConvert('version', (v) => v as String),
+        );
+        return val;
+      },
     );
-    return val;
-  });
-}
 
-Map<String, dynamic> _$_$_SdkVersionToJson(_$_SdkVersion instance) =>
+Map<String, dynamic> _$$_SdkVersionToJson(_$_SdkVersion instance) =>
     <String, dynamic>{
       'core': instance.core,
       'device': instance.device,

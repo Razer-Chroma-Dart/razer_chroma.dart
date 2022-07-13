@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'sdk_version.dart';
 
@@ -10,34 +12,11 @@ part of 'sdk_version.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SdkVersion _$SdkVersionFromJson(Map<String, dynamic> json) {
   return _SdkVersion.fromJson(json);
 }
-
-/// @nodoc
-class _$SdkVersionTearOff {
-  const _$SdkVersionTearOff();
-
-  _SdkVersion call(
-      {@JsonKey(name: 'core') required String core,
-      @JsonKey(name: 'device') required String device,
-      @JsonKey(name: 'version') required String version}) {
-    return _SdkVersion(
-      core: core,
-      device: device,
-      version: version,
-    );
-  }
-
-  SdkVersion fromJson(Map<String, Object> json) {
-    return SdkVersion.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SdkVersion = _$SdkVersionTearOff();
 
 /// @nodoc
 mixin _$SdkVersion {
@@ -97,10 +76,11 @@ class _$SdkVersionCopyWithImpl<$Res> implements $SdkVersionCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SdkVersionCopyWith<$Res> implements $SdkVersionCopyWith<$Res> {
-  factory _$SdkVersionCopyWith(
-          _SdkVersion value, $Res Function(_SdkVersion) then) =
-      __$SdkVersionCopyWithImpl<$Res>;
+abstract class _$$_SdkVersionCopyWith<$Res>
+    implements $SdkVersionCopyWith<$Res> {
+  factory _$$_SdkVersionCopyWith(
+          _$_SdkVersion value, $Res Function(_$_SdkVersion) then) =
+      __$$_SdkVersionCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'core') String core,
@@ -109,14 +89,14 @@ abstract class _$SdkVersionCopyWith<$Res> implements $SdkVersionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SdkVersionCopyWithImpl<$Res> extends _$SdkVersionCopyWithImpl<$Res>
-    implements _$SdkVersionCopyWith<$Res> {
-  __$SdkVersionCopyWithImpl(
-      _SdkVersion _value, $Res Function(_SdkVersion) _then)
-      : super(_value, (v) => _then(v as _SdkVersion));
+class __$$_SdkVersionCopyWithImpl<$Res> extends _$SdkVersionCopyWithImpl<$Res>
+    implements _$$_SdkVersionCopyWith<$Res> {
+  __$$_SdkVersionCopyWithImpl(
+      _$_SdkVersion _value, $Res Function(_$_SdkVersion) _then)
+      : super(_value, (v) => _then(v as _$_SdkVersion));
 
   @override
-  _SdkVersion get _value => super._value as _SdkVersion;
+  _$_SdkVersion get _value => super._value as _$_SdkVersion;
 
   @override
   $Res call({
@@ -124,7 +104,7 @@ class __$SdkVersionCopyWithImpl<$Res> extends _$SdkVersionCopyWithImpl<$Res>
     Object? device = freezed,
     Object? version = freezed,
   }) {
-    return _then(_SdkVersion(
+    return _then(_$_SdkVersion(
       core: core == freezed
           ? _value.core
           : core // ignore: cast_nullable_to_non_nullable
@@ -150,7 +130,7 @@ class _$_SdkVersion implements _SdkVersion {
       @JsonKey(name: 'version') required this.version});
 
   factory _$_SdkVersion.fromJson(Map<String, dynamic> json) =>
-      _$_$_SdkVersionFromJson(json);
+      _$$_SdkVersionFromJson(json);
 
   @override
   @JsonKey(name: 'core')
@@ -170,53 +150,52 @@ class _$_SdkVersion implements _SdkVersion {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SdkVersion &&
-            (identical(other.core, core) ||
-                const DeepCollectionEquality().equals(other.core, core)) &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)) &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality().equals(other.version, version)));
+        (other.runtimeType == runtimeType &&
+            other is _$_SdkVersion &&
+            const DeepCollectionEquality().equals(other.core, core) &&
+            const DeepCollectionEquality().equals(other.device, device) &&
+            const DeepCollectionEquality().equals(other.version, version));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(core) ^
-      const DeepCollectionEquality().hash(device) ^
-      const DeepCollectionEquality().hash(version);
 
   @JsonKey(ignore: true)
   @override
-  _$SdkVersionCopyWith<_SdkVersion> get copyWith =>
-      __$SdkVersionCopyWithImpl<_SdkVersion>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(core),
+      const DeepCollectionEquality().hash(device),
+      const DeepCollectionEquality().hash(version));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SdkVersionCopyWith<_$_SdkVersion> get copyWith =>
+      __$$_SdkVersionCopyWithImpl<_$_SdkVersion>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SdkVersionToJson(this);
+    return _$$_SdkVersionToJson(this);
   }
 }
 
 abstract class _SdkVersion implements SdkVersion {
   const factory _SdkVersion(
-      {@JsonKey(name: 'core') required String core,
-      @JsonKey(name: 'device') required String device,
-      @JsonKey(name: 'version') required String version}) = _$_SdkVersion;
+      {@JsonKey(name: 'core') required final String core,
+      @JsonKey(name: 'device') required final String device,
+      @JsonKey(name: 'version') required final String version}) = _$_SdkVersion;
 
   factory _SdkVersion.fromJson(Map<String, dynamic> json) =
       _$_SdkVersion.fromJson;
 
   @override
   @JsonKey(name: 'core')
-  String get core => throw _privateConstructorUsedError;
+  String get core;
   @override
   @JsonKey(name: 'device')
-  String get device => throw _privateConstructorUsedError;
+  String get device;
   @override
   @JsonKey(name: 'version')
-  String get version => throw _privateConstructorUsedError;
+  String get version;
   @override
   @JsonKey(ignore: true)
-  _$SdkVersionCopyWith<_SdkVersion> get copyWith =>
+  _$$_SdkVersionCopyWith<_$_SdkVersion> get copyWith =>
       throw _privateConstructorUsedError;
 }
