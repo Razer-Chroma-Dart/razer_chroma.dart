@@ -31,11 +31,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_send_control_msg_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_send_control_msg>>(
-          'razer_send_control_msg');
-  late final _dart_razer_send_control_msg _razer_send_control_msg =
-      _razer_send_control_msg_ptr.asFunction<_dart_razer_send_control_msg>();
+  late final _razer_send_control_msgPtr = _lookup<
+      ffi.NativeFunction<
+          IOReturn Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Void>, uint)>>('razer_send_control_msg');
+  late final _razer_send_control_msg = _razer_send_control_msgPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+          ffi.Pointer<ffi.Void>, int)>();
 
   int razer_send_control_msg_old_device(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
@@ -53,13 +55,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_send_control_msg_old_device_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_send_control_msg_old_device>>(
-          'razer_send_control_msg_old_device');
-  late final _dart_razer_send_control_msg_old_device
-      _razer_send_control_msg_old_device =
-      _razer_send_control_msg_old_device_ptr
-          .asFunction<_dart_razer_send_control_msg_old_device>();
+  late final _razer_send_control_msg_old_devicePtr = _lookup<
+      ffi.NativeFunction<
+          IOReturn Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Void>,
+              uint,
+              uint,
+              uint)>>('razer_send_control_msg_old_device');
+  late final _razer_send_control_msg_old_device =
+      _razer_send_control_msg_old_devicePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Void>, int, int, int)>();
 
   int razer_get_usb_response(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
@@ -79,11 +86,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_get_usb_response_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_get_usb_response>>(
-          'razer_get_usb_response');
-  late final _dart_razer_get_usb_response _razer_get_usb_response =
-      _razer_get_usb_response_ptr.asFunction<_dart_razer_get_usb_response>();
+  late final _razer_get_usb_responsePtr = _lookup<
+      ffi.NativeFunction<
+          IOReturn Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              uint,
+              ffi.Pointer<razer_report>,
+              uint,
+              ffi.Pointer<razer_report>,
+              ffi.Int)>>('razer_get_usb_response');
+  late final _razer_get_usb_response = _razer_get_usb_responsePtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int,
+          ffi.Pointer<razer_report>, int, ffi.Pointer<razer_report>, int)>();
 
   int razer_calculate_crc(
     ffi.Pointer<razer_report> report,
@@ -93,11 +107,12 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_calculate_crc_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_calculate_crc>>(
-          'razer_calculate_crc');
-  late final _dart_razer_calculate_crc _razer_calculate_crc =
-      _razer_calculate_crc_ptr.asFunction<_dart_razer_calculate_crc>();
+  late final _razer_calculate_crcPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedChar Function(
+              ffi.Pointer<razer_report>)>>('razer_calculate_crc');
+  late final _razer_calculate_crc = _razer_calculate_crcPtr
+      .asFunction<int Function(ffi.Pointer<razer_report>)>();
 
   int clamp_u8(
     int value,
@@ -111,10 +126,11 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _clamp_u8_ptr =
-      _lookup<ffi.NativeFunction<_c_clamp_u8>>('clamp_u8');
-  late final _dart_clamp_u8 _clamp_u8 =
-      _clamp_u8_ptr.asFunction<_dart_clamp_u8>();
+  late final _clamp_u8Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedChar Function(ffi.UnsignedChar, ffi.UnsignedChar,
+              ffi.UnsignedChar)>>('clamp_u8');
+  late final _clamp_u8 = _clamp_u8Ptr.asFunction<int Function(int, int, int)>();
 
   int clamp_u16(
     int value,
@@ -128,28 +144,32 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _clamp_u16_ptr =
-      _lookup<ffi.NativeFunction<_c_clamp_u16>>('clamp_u16');
-  late final _dart_clamp_u16 _clamp_u16 =
-      _clamp_u16_ptr.asFunction<_dart_clamp_u16>();
+  late final _clamp_u16Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedShort Function(ffi.UnsignedShort, ffi.UnsignedShort,
+              ffi.UnsignedShort)>>('clamp_u16');
+  late final _clamp_u16 =
+      _clamp_u16Ptr.asFunction<int Function(int, int, int)>();
 
   bool is_blade_laptop(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
   ) {
     return _is_blade_laptop(
-          usb_dev,
-        ) !=
-        0;
+      usb_dev,
+    );
   }
 
-  late final _is_blade_laptop_ptr =
-      _lookup<ffi.NativeFunction<_c_is_blade_laptop>>('is_blade_laptop');
-  late final _dart_is_blade_laptop _is_blade_laptop =
-      _is_blade_laptop_ptr.asFunction<_dart_is_blade_laptop>();
+  late final _is_blade_laptopPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Bool Function(
+                  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'is_blade_laptop');
+  late final _is_blade_laptop = _is_blade_laptopPtr.asFunction<
+      bool Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   int razer_attr_read_mode_game(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_mode_game(
       usb_dev,
@@ -157,16 +177,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_mode_game_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_mode_game>>(
-          'razer_attr_read_mode_game');
-  late final _dart_razer_attr_read_mode_game _razer_attr_read_mode_game =
-      _razer_attr_read_mode_game_ptr
-          .asFunction<_dart_razer_attr_read_mode_game>();
+  late final _razer_attr_read_mode_gamePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_mode_game');
+  late final _razer_attr_read_mode_game =
+      _razer_attr_read_mode_gamePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_write_mode_macro(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_macro(
@@ -176,16 +198,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_macro_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_macro>>(
-          'razer_attr_write_mode_macro');
-  late final _dart_razer_attr_write_mode_macro _razer_attr_write_mode_macro =
-      _razer_attr_write_mode_macro_ptr
-          .asFunction<_dart_razer_attr_write_mode_macro>();
+  late final _razer_attr_write_mode_macroPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('razer_attr_write_mode_macro');
+  late final _razer_attr_write_mode_macro =
+      _razer_attr_write_mode_macroPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_macro_effect(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_macro_effect(
@@ -195,17 +219,58 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_macro_effect_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_macro_effect>>(
-          'razer_attr_write_mode_macro_effect');
-  late final _dart_razer_attr_write_mode_macro_effect
-      _razer_attr_write_mode_macro_effect =
-      _razer_attr_write_mode_macro_effect_ptr
-          .asFunction<_dart_razer_attr_write_mode_macro_effect>();
+  late final _razer_attr_write_mode_macro_effectPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_mode_macro_effect');
+  late final _razer_attr_write_mode_macro_effect =
+      _razer_attr_write_mode_macro_effectPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
+
+  int razer_attr_read_mode_get_battery(
+    ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
+    ffi.Pointer<ffi.Char> buf,
+  ) {
+    return _razer_attr_read_mode_get_battery(
+      usb_dev,
+      buf,
+    );
+  }
+
+  late final _razer_attr_read_mode_get_batteryPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_mode_get_battery');
+  late final _razer_attr_read_mode_get_battery =
+      _razer_attr_read_mode_get_batteryPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
+
+  int razer_attr_read_mode_is_charging(
+    ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
+    ffi.Pointer<ffi.Char> buf,
+  ) {
+    return _razer_attr_read_mode_is_charging(
+      usb_dev,
+      buf,
+    );
+  }
+
+  late final _razer_attr_read_mode_is_chargingPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_mode_is_charging');
+  late final _razer_attr_read_mode_is_charging =
+      _razer_attr_read_mode_is_chargingPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_read_mode_macro_effect(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_mode_macro_effect(
       usb_dev,
@@ -213,17 +278,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_mode_macro_effect_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_mode_macro_effect>>(
-          'razer_attr_read_mode_macro_effect');
-  late final _dart_razer_attr_read_mode_macro_effect
-      _razer_attr_read_mode_macro_effect =
-      _razer_attr_read_mode_macro_effect_ptr
-          .asFunction<_dart_razer_attr_read_mode_macro_effect>();
+  late final _razer_attr_read_mode_macro_effectPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_mode_macro_effect');
+  late final _razer_attr_read_mode_macro_effect =
+      _razer_attr_read_mode_macro_effectPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_write_mode_pulsate(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_pulsate(
@@ -233,16 +299,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_pulsate_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_pulsate>>(
-          'razer_attr_write_mode_pulsate');
-  late final _dart_razer_attr_write_mode_pulsate
-      _razer_attr_write_mode_pulsate = _razer_attr_write_mode_pulsate_ptr
-          .asFunction<_dart_razer_attr_write_mode_pulsate>();
+  late final _razer_attr_write_mode_pulsatePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_mode_pulsate');
+  late final _razer_attr_write_mode_pulsate =
+      _razer_attr_write_mode_pulsatePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_read_mode_pulsate(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_mode_pulsate(
       usb_dev,
@@ -250,16 +320,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_mode_pulsate_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_mode_pulsate>>(
-          'razer_attr_read_mode_pulsate');
-  late final _dart_razer_attr_read_mode_pulsate _razer_attr_read_mode_pulsate =
-      _razer_attr_read_mode_pulsate_ptr
-          .asFunction<_dart_razer_attr_read_mode_pulsate>();
+  late final _razer_attr_read_mode_pulsatePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_mode_pulsate');
+  late final _razer_attr_read_mode_pulsate =
+      _razer_attr_read_mode_pulsatePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_read_tartarus_profile_led_red(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_tartarus_profile_led_red(
       usb_dev,
@@ -267,17 +339,19 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_tartarus_profile_led_red_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_tartarus_profile_led_red>>(
-          'razer_attr_read_tartarus_profile_led_red');
-  late final _dart_razer_attr_read_tartarus_profile_led_red
-      _razer_attr_read_tartarus_profile_led_red =
-      _razer_attr_read_tartarus_profile_led_red_ptr
-          .asFunction<_dart_razer_attr_read_tartarus_profile_led_red>();
+  late final _razer_attr_read_tartarus_profile_led_redPtr = _lookup<
+          ffi.NativeFunction<
+              ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+                  ffi.Pointer<ffi.Char>)>>(
+      'razer_attr_read_tartarus_profile_led_red');
+  late final _razer_attr_read_tartarus_profile_led_red =
+      _razer_attr_read_tartarus_profile_led_redPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_read_tartarus_profile_led_green(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_tartarus_profile_led_green(
       usb_dev,
@@ -285,17 +359,19 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_tartarus_profile_led_green_ptr = _lookup<
-          ffi.NativeFunction<_c_razer_attr_read_tartarus_profile_led_green>>(
+  late final _razer_attr_read_tartarus_profile_led_greenPtr = _lookup<
+          ffi.NativeFunction<
+              ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+                  ffi.Pointer<ffi.Char>)>>(
       'razer_attr_read_tartarus_profile_led_green');
-  late final _dart_razer_attr_read_tartarus_profile_led_green
-      _razer_attr_read_tartarus_profile_led_green =
-      _razer_attr_read_tartarus_profile_led_green_ptr
-          .asFunction<_dart_razer_attr_read_tartarus_profile_led_green>();
+  late final _razer_attr_read_tartarus_profile_led_green =
+      _razer_attr_read_tartarus_profile_led_greenPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_read_tartarus_profile_led_blue(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_tartarus_profile_led_blue(
       usb_dev,
@@ -303,17 +379,19 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_tartarus_profile_led_blue_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_tartarus_profile_led_blue>>(
-          'razer_attr_read_tartarus_profile_led_blue');
-  late final _dart_razer_attr_read_tartarus_profile_led_blue
-      _razer_attr_read_tartarus_profile_led_blue =
-      _razer_attr_read_tartarus_profile_led_blue_ptr
-          .asFunction<_dart_razer_attr_read_tartarus_profile_led_blue>();
+  late final _razer_attr_read_tartarus_profile_led_bluePtr = _lookup<
+          ffi.NativeFunction<
+              ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+                  ffi.Pointer<ffi.Char>)>>(
+      'razer_attr_read_tartarus_profile_led_blue');
+  late final _razer_attr_read_tartarus_profile_led_blue =
+      _razer_attr_read_tartarus_profile_led_bluePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_read_get_firmware_version(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_get_firmware_version(
       usb_dev,
@@ -321,17 +399,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_get_firmware_version_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_get_firmware_version>>(
-          'razer_attr_read_get_firmware_version');
-  late final _dart_razer_attr_read_get_firmware_version
-      _razer_attr_read_get_firmware_version =
-      _razer_attr_read_get_firmware_version_ptr
-          .asFunction<_dart_razer_attr_read_get_firmware_version>();
+  late final _razer_attr_read_get_firmware_versionPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_get_firmware_version');
+  late final _razer_attr_read_get_firmware_version =
+      _razer_attr_read_get_firmware_versionPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_write_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_none(
@@ -341,16 +420,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_none>>(
-          'razer_attr_write_mode_none');
-  late final _dart_razer_attr_write_mode_none _razer_attr_write_mode_none =
-      _razer_attr_write_mode_none_ptr
-          .asFunction<_dart_razer_attr_write_mode_none>();
+  late final _razer_attr_write_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('razer_attr_write_mode_none');
+  late final _razer_attr_write_mode_none =
+      _razer_attr_write_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
     int speed,
   ) {
@@ -362,16 +443,21 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_wave>>(
-          'razer_attr_write_mode_wave');
-  late final _dart_razer_attr_write_mode_wave _razer_attr_write_mode_wave =
-      _razer_attr_write_mode_wave_ptr
-          .asFunction<_dart_razer_attr_write_mode_wave>();
+  late final _razer_attr_write_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int,
+              ffi.Int)>>('razer_attr_write_mode_wave');
+  late final _razer_attr_write_mode_wave =
+      _razer_attr_write_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int, int)>();
 
   int razer_attr_write_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_spectrum(
@@ -381,16 +467,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_spectrum>>(
-          'razer_attr_write_mode_spectrum');
-  late final _dart_razer_attr_write_mode_spectrum
-      _razer_attr_write_mode_spectrum = _razer_attr_write_mode_spectrum_ptr
-          .asFunction<_dart_razer_attr_write_mode_spectrum>();
+  late final _razer_attr_write_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_mode_spectrum');
+  late final _razer_attr_write_mode_spectrum =
+      _razer_attr_write_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_reactive(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_reactive(
@@ -400,16 +490,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_reactive_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_reactive>>(
-          'razer_attr_write_mode_reactive');
-  late final _dart_razer_attr_write_mode_reactive
-      _razer_attr_write_mode_reactive = _razer_attr_write_mode_reactive_ptr
-          .asFunction<_dart_razer_attr_write_mode_reactive>();
+  late final _razer_attr_write_mode_reactivePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_mode_reactive');
+  late final _razer_attr_write_mode_reactive =
+      _razer_attr_write_mode_reactivePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_static(
@@ -419,16 +513,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_static>>(
-          'razer_attr_write_mode_static');
-  late final _dart_razer_attr_write_mode_static _razer_attr_write_mode_static =
-      _razer_attr_write_mode_static_ptr
-          .asFunction<_dart_razer_attr_write_mode_static>();
+  late final _razer_attr_write_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('razer_attr_write_mode_static');
+  late final _razer_attr_write_mode_static =
+      _razer_attr_write_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_static_no_store(
@@ -438,17 +534,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_static_no_store_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_static_no_store>>(
-          'razer_attr_write_mode_static_no_store');
-  late final _dart_razer_attr_write_mode_static_no_store
-      _razer_attr_write_mode_static_no_store =
-      _razer_attr_write_mode_static_no_store_ptr
-          .asFunction<_dart_razer_attr_write_mode_static_no_store>();
+  late final _razer_attr_write_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_mode_static_no_store');
+  late final _razer_attr_write_mode_static_no_store =
+      _razer_attr_write_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_starlight(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_starlight(
@@ -458,16 +557,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_starlight_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_starlight>>(
-          'razer_attr_write_mode_starlight');
-  late final _dart_razer_attr_write_mode_starlight
-      _razer_attr_write_mode_starlight = _razer_attr_write_mode_starlight_ptr
-          .asFunction<_dart_razer_attr_write_mode_starlight>();
+  late final _razer_attr_write_mode_starlightPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_mode_starlight');
+  late final _razer_attr_write_mode_starlight =
+      _razer_attr_write_mode_starlightPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_breath(
@@ -477,16 +580,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_breath>>(
-          'razer_attr_write_mode_breath');
-  late final _dart_razer_attr_write_mode_breath _razer_attr_write_mode_breath =
-      _razer_attr_write_mode_breath_ptr
-          .asFunction<_dart_razer_attr_write_mode_breath>();
+  late final _razer_attr_write_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('razer_attr_write_mode_breath');
+  late final _razer_attr_write_mode_breath =
+      _razer_attr_write_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_read_set_logo(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_read_set_logo(
@@ -496,16 +601,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_set_logo_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_set_logo>>(
-          'razer_attr_read_set_logo');
-  late final _dart_razer_attr_read_set_logo _razer_attr_read_set_logo =
-      _razer_attr_read_set_logo_ptr
-          .asFunction<_dart_razer_attr_read_set_logo>();
+  late final _razer_attr_read_set_logoPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('razer_attr_read_set_logo');
+  late final _razer_attr_read_set_logo =
+      _razer_attr_read_set_logoPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_set_logo(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_set_logo(
@@ -515,16 +622,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_set_logo_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_set_logo>>(
-          'razer_attr_write_set_logo');
-  late final _dart_razer_attr_write_set_logo _razer_attr_write_set_logo =
-      _razer_attr_write_set_logo_ptr
-          .asFunction<_dart_razer_attr_write_set_logo>();
+  late final _razer_attr_write_set_logoPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('razer_attr_write_set_logo');
+  late final _razer_attr_write_set_logo =
+      _razer_attr_write_set_logoPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_mode_custom(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_mode_custom(
@@ -534,16 +643,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_mode_custom_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_mode_custom>>(
-          'razer_attr_write_mode_custom');
-  late final _dart_razer_attr_write_mode_custom _razer_attr_write_mode_custom =
-      _razer_attr_write_mode_custom_ptr
-          .asFunction<_dart_razer_attr_write_mode_custom>();
+  late final _razer_attr_write_mode_customPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('razer_attr_write_mode_custom');
+  late final _razer_attr_write_mode_custom =
+      _razer_attr_write_mode_customPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_set_fn_toggle(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_set_fn_toggle(
@@ -553,12 +664,16 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_set_fn_toggle_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_set_fn_toggle>>(
-          'razer_attr_write_set_fn_toggle');
-  late final _dart_razer_attr_write_set_fn_toggle
-      _razer_attr_write_set_fn_toggle = _razer_attr_write_set_fn_toggle_ptr
-          .asFunction<_dart_razer_attr_write_set_fn_toggle>();
+  late final _razer_attr_write_set_fn_togglePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_set_fn_toggle');
+  late final _razer_attr_write_set_fn_toggle =
+      _razer_attr_write_set_fn_togglePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_set_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -572,12 +687,14 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_set_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_set_brightness>>(
-          'razer_attr_write_set_brightness');
-  late final _dart_razer_attr_write_set_brightness
-      _razer_attr_write_set_brightness = _razer_attr_write_set_brightness_ptr
-          .asFunction<_dart_razer_attr_write_set_brightness>();
+  late final _razer_attr_write_set_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ushort, ffi.Int)>>('razer_attr_write_set_brightness');
+  late final _razer_attr_write_set_brightness =
+      _razer_attr_write_set_brightnessPtr.asFunction<
+          int Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int, int)>();
 
   int razer_attr_read_set_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -587,16 +704,17 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_set_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_set_brightness>>(
-          'razer_attr_read_set_brightness');
-  late final _dart_razer_attr_read_set_brightness
-      _razer_attr_read_set_brightness = _razer_attr_read_set_brightness_ptr
-          .asFunction<_dart_razer_attr_read_set_brightness>();
+  late final _razer_attr_read_set_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_set_brightness');
+  late final _razer_attr_read_set_brightness =
+      _razer_attr_read_set_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   int razer_attr_write_matrix_custom_frame(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_matrix_custom_frame(
@@ -606,17 +724,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_matrix_custom_frame_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_matrix_custom_frame>>(
-          'razer_attr_write_matrix_custom_frame');
-  late final _dart_razer_attr_write_matrix_custom_frame
-      _razer_attr_write_matrix_custom_frame =
-      _razer_attr_write_matrix_custom_frame_ptr
-          .asFunction<_dart_razer_attr_write_matrix_custom_frame>();
+  late final _razer_attr_write_matrix_custom_framePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('razer_attr_write_matrix_custom_frame');
+  late final _razer_attr_write_matrix_custom_frame =
+      _razer_attr_write_matrix_custom_framePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_mode_wave(
@@ -626,16 +747,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_mode_wave>>(
-          'razer_attr_write_logo_mode_wave');
-  late final _dart_razer_attr_write_logo_mode_wave
-      _razer_attr_write_logo_mode_wave = _razer_attr_write_logo_mode_wave_ptr
-          .asFunction<_dart_razer_attr_write_logo_mode_wave>();
+  late final _razer_attr_write_logo_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_mode_wave');
+  late final _razer_attr_write_logo_mode_wave =
+      _razer_attr_write_logo_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_mode_wave(
@@ -645,17 +770,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_mode_wave>>(
-          'razer_attr_write_scroll_mode_wave');
-  late final _dart_razer_attr_write_scroll_mode_wave
-      _razer_attr_write_scroll_mode_wave =
-      _razer_attr_write_scroll_mode_wave_ptr
-          .asFunction<_dart_razer_attr_write_scroll_mode_wave>();
+  late final _razer_attr_write_scroll_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_mode_wave');
+  late final _razer_attr_write_scroll_mode_wave =
+      _razer_attr_write_scroll_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_left_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_left_mode_wave(
@@ -665,16 +793,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_left_mode_wave>>(
-          'razer_attr_write_left_mode_wave');
-  late final _dart_razer_attr_write_left_mode_wave
-      _razer_attr_write_left_mode_wave = _razer_attr_write_left_mode_wave_ptr
-          .asFunction<_dart_razer_attr_write_left_mode_wave>();
+  late final _razer_attr_write_left_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_left_mode_wave');
+  late final _razer_attr_write_left_mode_wave =
+      _razer_attr_write_left_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_right_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_right_mode_wave(
@@ -684,16 +816,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_right_mode_wave>>(
-          'razer_attr_write_right_mode_wave');
-  late final _dart_razer_attr_write_right_mode_wave
-      _razer_attr_write_right_mode_wave = _razer_attr_write_right_mode_wave_ptr
-          .asFunction<_dart_razer_attr_write_right_mode_wave>();
+  late final _razer_attr_write_right_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_right_mode_wave');
+  late final _razer_attr_write_right_mode_wave =
+      _razer_attr_write_right_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_mode_static(
@@ -703,17 +839,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_mode_static>>(
-          'razer_attr_write_logo_mode_static');
-  late final _dart_razer_attr_write_logo_mode_static
-      _razer_attr_write_logo_mode_static =
-      _razer_attr_write_logo_mode_static_ptr
-          .asFunction<_dart_razer_attr_write_logo_mode_static>();
+  late final _razer_attr_write_logo_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_mode_static');
+  late final _razer_attr_write_logo_mode_static =
+      _razer_attr_write_logo_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_mode_static(
@@ -723,17 +862,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_mode_static>>(
-          'razer_attr_write_scroll_mode_static');
-  late final _dart_razer_attr_write_scroll_mode_static
-      _razer_attr_write_scroll_mode_static =
-      _razer_attr_write_scroll_mode_static_ptr
-          .asFunction<_dart_razer_attr_write_scroll_mode_static>();
+  late final _razer_attr_write_scroll_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_mode_static');
+  late final _razer_attr_write_scroll_mode_static =
+      _razer_attr_write_scroll_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_left_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_left_mode_static(
@@ -743,17 +885,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_left_mode_static>>(
-          'razer_attr_write_left_mode_static');
-  late final _dart_razer_attr_write_left_mode_static
-      _razer_attr_write_left_mode_static =
-      _razer_attr_write_left_mode_static_ptr
-          .asFunction<_dart_razer_attr_write_left_mode_static>();
+  late final _razer_attr_write_left_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_left_mode_static');
+  late final _razer_attr_write_left_mode_static =
+      _razer_attr_write_left_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_right_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_right_mode_static(
@@ -763,17 +908,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_right_mode_static>>(
-          'razer_attr_write_right_mode_static');
-  late final _dart_razer_attr_write_right_mode_static
-      _razer_attr_write_right_mode_static =
-      _razer_attr_write_right_mode_static_ptr
-          .asFunction<_dart_razer_attr_write_right_mode_static>();
+  late final _razer_attr_write_right_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_right_mode_static');
+  late final _razer_attr_write_right_mode_static =
+      _razer_attr_write_right_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_mode_static_no_store(
@@ -783,17 +931,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<_c_razer_attr_write_logo_mode_static_no_store>>(
-      'razer_attr_write_logo_mode_static_no_store');
-  late final _dart_razer_attr_write_logo_mode_static_no_store
-      _razer_attr_write_logo_mode_static_no_store =
-      _razer_attr_write_logo_mode_static_no_store_ptr
-          .asFunction<_dart_razer_attr_write_logo_mode_static_no_store>();
+  late final _razer_attr_write_logo_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_mode_static_no_store');
+  late final _razer_attr_write_logo_mode_static_no_store =
+      _razer_attr_write_logo_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_mode_static_no_store(
@@ -803,17 +954,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<_c_razer_attr_write_scroll_mode_static_no_store>>(
-      'razer_attr_write_scroll_mode_static_no_store');
-  late final _dart_razer_attr_write_scroll_mode_static_no_store
-      _razer_attr_write_scroll_mode_static_no_store =
-      _razer_attr_write_scroll_mode_static_no_store_ptr
-          .asFunction<_dart_razer_attr_write_scroll_mode_static_no_store>();
+  late final _razer_attr_write_scroll_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_mode_static_no_store');
+  late final _razer_attr_write_scroll_mode_static_no_store =
+      _razer_attr_write_scroll_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_left_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_left_mode_static_no_store(
@@ -823,17 +977,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<_c_razer_attr_write_left_mode_static_no_store>>(
-      'razer_attr_write_left_mode_static_no_store');
-  late final _dart_razer_attr_write_left_mode_static_no_store
-      _razer_attr_write_left_mode_static_no_store =
-      _razer_attr_write_left_mode_static_no_store_ptr
-          .asFunction<_dart_razer_attr_write_left_mode_static_no_store>();
+  late final _razer_attr_write_left_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_left_mode_static_no_store');
+  late final _razer_attr_write_left_mode_static_no_store =
+      _razer_attr_write_left_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_right_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_right_mode_static_no_store(
@@ -843,17 +1000,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<_c_razer_attr_write_right_mode_static_no_store>>(
-      'razer_attr_write_right_mode_static_no_store');
-  late final _dart_razer_attr_write_right_mode_static_no_store
-      _razer_attr_write_right_mode_static_no_store =
-      _razer_attr_write_right_mode_static_no_store_ptr
-          .asFunction<_dart_razer_attr_write_right_mode_static_no_store>();
+  late final _razer_attr_write_right_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_right_mode_static_no_store');
+  late final _razer_attr_write_right_mode_static_no_store =
+      _razer_attr_write_right_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_mode_spectrum(
@@ -863,17 +1023,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_mode_spectrum>>(
-          'razer_attr_write_logo_mode_spectrum');
-  late final _dart_razer_attr_write_logo_mode_spectrum
-      _razer_attr_write_logo_mode_spectrum =
-      _razer_attr_write_logo_mode_spectrum_ptr
-          .asFunction<_dart_razer_attr_write_logo_mode_spectrum>();
+  late final _razer_attr_write_logo_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_mode_spectrum');
+  late final _razer_attr_write_logo_mode_spectrum =
+      _razer_attr_write_logo_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_mode_spectrum(
@@ -883,17 +1046,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_mode_spectrum>>(
-          'razer_attr_write_scroll_mode_spectrum');
-  late final _dart_razer_attr_write_scroll_mode_spectrum
-      _razer_attr_write_scroll_mode_spectrum =
-      _razer_attr_write_scroll_mode_spectrum_ptr
-          .asFunction<_dart_razer_attr_write_scroll_mode_spectrum>();
+  late final _razer_attr_write_scroll_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_mode_spectrum');
+  late final _razer_attr_write_scroll_mode_spectrum =
+      _razer_attr_write_scroll_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_left_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_left_mode_spectrum(
@@ -903,17 +1069,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_left_mode_spectrum>>(
-          'razer_attr_write_left_mode_spectrum');
-  late final _dart_razer_attr_write_left_mode_spectrum
-      _razer_attr_write_left_mode_spectrum =
-      _razer_attr_write_left_mode_spectrum_ptr
-          .asFunction<_dart_razer_attr_write_left_mode_spectrum>();
+  late final _razer_attr_write_left_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_left_mode_spectrum');
+  late final _razer_attr_write_left_mode_spectrum =
+      _razer_attr_write_left_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_right_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_right_mode_spectrum(
@@ -923,17 +1092,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_right_mode_spectrum>>(
-          'razer_attr_write_right_mode_spectrum');
-  late final _dart_razer_attr_write_right_mode_spectrum
-      _razer_attr_write_right_mode_spectrum =
-      _razer_attr_write_right_mode_spectrum_ptr
-          .asFunction<_dart_razer_attr_write_right_mode_spectrum>();
+  late final _razer_attr_write_right_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_right_mode_spectrum');
+  late final _razer_attr_write_right_mode_spectrum =
+      _razer_attr_write_right_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_mode_breath(
@@ -943,17 +1115,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_mode_breath>>(
-          'razer_attr_write_logo_mode_breath');
-  late final _dart_razer_attr_write_logo_mode_breath
-      _razer_attr_write_logo_mode_breath =
-      _razer_attr_write_logo_mode_breath_ptr
-          .asFunction<_dart_razer_attr_write_logo_mode_breath>();
+  late final _razer_attr_write_logo_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_mode_breath');
+  late final _razer_attr_write_logo_mode_breath =
+      _razer_attr_write_logo_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_mode_breath(
@@ -963,17 +1138,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_mode_breath>>(
-          'razer_attr_write_scroll_mode_breath');
-  late final _dart_razer_attr_write_scroll_mode_breath
-      _razer_attr_write_scroll_mode_breath =
-      _razer_attr_write_scroll_mode_breath_ptr
-          .asFunction<_dart_razer_attr_write_scroll_mode_breath>();
+  late final _razer_attr_write_scroll_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_mode_breath');
+  late final _razer_attr_write_scroll_mode_breath =
+      _razer_attr_write_scroll_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_left_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_left_mode_breath(
@@ -983,17 +1161,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_left_mode_breath>>(
-          'razer_attr_write_left_mode_breath');
-  late final _dart_razer_attr_write_left_mode_breath
-      _razer_attr_write_left_mode_breath =
-      _razer_attr_write_left_mode_breath_ptr
-          .asFunction<_dart_razer_attr_write_left_mode_breath>();
+  late final _razer_attr_write_left_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_left_mode_breath');
+  late final _razer_attr_write_left_mode_breath =
+      _razer_attr_write_left_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_right_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_right_mode_breath(
@@ -1003,17 +1184,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_right_mode_breath>>(
-          'razer_attr_write_right_mode_breath');
-  late final _dart_razer_attr_write_right_mode_breath
-      _razer_attr_write_right_mode_breath =
-      _razer_attr_write_right_mode_breath_ptr
-          .asFunction<_dart_razer_attr_write_right_mode_breath>();
+  late final _razer_attr_write_right_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_right_mode_breath');
+  late final _razer_attr_write_right_mode_breath =
+      _razer_attr_write_right_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_mode_none(
@@ -1023,16 +1207,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_mode_none>>(
-          'razer_attr_write_logo_mode_none');
-  late final _dart_razer_attr_write_logo_mode_none
-      _razer_attr_write_logo_mode_none = _razer_attr_write_logo_mode_none_ptr
-          .asFunction<_dart_razer_attr_write_logo_mode_none>();
+  late final _razer_attr_write_logo_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_mode_none');
+  late final _razer_attr_write_logo_mode_none =
+      _razer_attr_write_logo_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_mode_none(
@@ -1042,17 +1230,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_mode_none>>(
-          'razer_attr_write_scroll_mode_none');
-  late final _dart_razer_attr_write_scroll_mode_none
-      _razer_attr_write_scroll_mode_none =
-      _razer_attr_write_scroll_mode_none_ptr
-          .asFunction<_dart_razer_attr_write_scroll_mode_none>();
+  late final _razer_attr_write_scroll_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_mode_none');
+  late final _razer_attr_write_scroll_mode_none =
+      _razer_attr_write_scroll_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_left_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_left_mode_none(
@@ -1062,16 +1253,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_left_mode_none>>(
-          'razer_attr_write_left_mode_none');
-  late final _dart_razer_attr_write_left_mode_none
-      _razer_attr_write_left_mode_none = _razer_attr_write_left_mode_none_ptr
-          .asFunction<_dart_razer_attr_write_left_mode_none>();
+  late final _razer_attr_write_left_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_left_mode_none');
+  late final _razer_attr_write_left_mode_none =
+      _razer_attr_write_left_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_right_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_right_mode_none(
@@ -1081,16 +1276,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_right_mode_none>>(
-          'razer_attr_write_right_mode_none');
-  late final _dart_razer_attr_write_right_mode_none
-      _razer_attr_write_right_mode_none = _razer_attr_write_right_mode_none_ptr
-          .asFunction<_dart_razer_attr_write_right_mode_none>();
+  late final _razer_attr_write_right_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_right_mode_none');
+  late final _razer_attr_write_right_mode_none =
+      _razer_attr_write_right_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_mode_reactive(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_mode_reactive(
@@ -1100,17 +1299,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_mode_reactive_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_mode_reactive>>(
-          'razer_attr_write_logo_mode_reactive');
-  late final _dart_razer_attr_write_logo_mode_reactive
-      _razer_attr_write_logo_mode_reactive =
-      _razer_attr_write_logo_mode_reactive_ptr
-          .asFunction<_dart_razer_attr_write_logo_mode_reactive>();
+  late final _razer_attr_write_logo_mode_reactivePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_mode_reactive');
+  late final _razer_attr_write_logo_mode_reactive =
+      _razer_attr_write_logo_mode_reactivePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_mode_reactive(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_mode_reactive(
@@ -1120,17 +1322,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_mode_reactive_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_mode_reactive>>(
-          'razer_attr_write_scroll_mode_reactive');
-  late final _dart_razer_attr_write_scroll_mode_reactive
-      _razer_attr_write_scroll_mode_reactive =
-      _razer_attr_write_scroll_mode_reactive_ptr
-          .asFunction<_dart_razer_attr_write_scroll_mode_reactive>();
+  late final _razer_attr_write_scroll_mode_reactivePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_mode_reactive');
+  late final _razer_attr_write_scroll_mode_reactive =
+      _razer_attr_write_scroll_mode_reactivePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_side_mode_reactive(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
     int side,
   ) {
@@ -1142,17 +1347,21 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_side_mode_reactive_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_side_mode_reactive>>(
-          'razer_attr_write_side_mode_reactive');
-  late final _dart_razer_attr_write_side_mode_reactive
-      _razer_attr_write_side_mode_reactive =
-      _razer_attr_write_side_mode_reactive_ptr
-          .asFunction<_dart_razer_attr_write_side_mode_reactive>();
+  late final _razer_attr_write_side_mode_reactivePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size,
+              ffi.Int)>>('razer_attr_write_side_mode_reactive');
+  late final _razer_attr_write_side_mode_reactive =
+      _razer_attr_write_side_mode_reactivePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int, int)>();
 
   int razer_attr_write_left_mode_reactive(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_left_mode_reactive(
@@ -1162,17 +1371,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_mode_reactive_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_left_mode_reactive>>(
-          'razer_attr_write_left_mode_reactive');
-  late final _dart_razer_attr_write_left_mode_reactive
-      _razer_attr_write_left_mode_reactive =
-      _razer_attr_write_left_mode_reactive_ptr
-          .asFunction<_dart_razer_attr_write_left_mode_reactive>();
+  late final _razer_attr_write_left_mode_reactivePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_left_mode_reactive');
+  late final _razer_attr_write_left_mode_reactive =
+      _razer_attr_write_left_mode_reactivePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_right_mode_reactive(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_right_mode_reactive(
@@ -1182,13 +1394,16 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_mode_reactive_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_right_mode_reactive>>(
-          'razer_attr_write_right_mode_reactive');
-  late final _dart_razer_attr_write_right_mode_reactive
-      _razer_attr_write_right_mode_reactive =
-      _razer_attr_write_right_mode_reactive_ptr
-          .asFunction<_dart_razer_attr_write_right_mode_reactive>();
+  late final _razer_attr_write_right_mode_reactivePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_right_mode_reactive');
+  late final _razer_attr_write_right_mode_reactive =
+      _razer_attr_write_right_mode_reactivePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_read_dpi(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1198,11 +1413,12 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_dpi_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_dpi>>(
-          'razer_attr_read_dpi');
-  late final _dart_razer_attr_read_dpi _razer_attr_read_dpi =
-      _razer_attr_read_dpi_ptr.asFunction<_dart_razer_attr_read_dpi>();
+  late final _razer_attr_read_dpiPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_dpi');
+  late final _razer_attr_read_dpi = _razer_attr_read_dpiPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   void razer_attr_write_dpi(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1216,11 +1432,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_dpi_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_dpi>>(
-          'razer_attr_write_dpi');
-  late final _dart_razer_attr_write_dpi _razer_attr_write_dpi =
-      _razer_attr_write_dpi_ptr.asFunction<_dart_razer_attr_write_dpi>();
+  late final _razer_attr_write_dpiPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ushort, ushort)>>('razer_attr_write_dpi');
+  late final _razer_attr_write_dpi = _razer_attr_write_dpiPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int, int)>();
 
   int razer_attr_read_poll_rate(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1230,12 +1448,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_poll_rate_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_poll_rate>>(
-          'razer_attr_read_poll_rate');
-  late final _dart_razer_attr_read_poll_rate _razer_attr_read_poll_rate =
-      _razer_attr_read_poll_rate_ptr
-          .asFunction<_dart_razer_attr_read_poll_rate>();
+  late final _razer_attr_read_poll_ratePtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_poll_rate');
+  late final _razer_attr_read_poll_rate =
+      _razer_attr_read_poll_ratePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   void razer_attr_write_poll_rate(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1247,12 +1466,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_poll_rate_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_poll_rate>>(
-          'razer_attr_write_poll_rate');
-  late final _dart_razer_attr_write_poll_rate _razer_attr_write_poll_rate =
-      _razer_attr_write_poll_rate_ptr
-          .asFunction<_dart_razer_attr_write_poll_rate>();
+  late final _razer_attr_write_poll_ratePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ushort)>>('razer_attr_write_poll_rate');
+  late final _razer_attr_write_poll_rate =
+      _razer_attr_write_poll_ratePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int)>();
 
   int razer_attr_read_matrix_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1262,13 +1482,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_matrix_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_matrix_brightness>>(
-          'razer_attr_read_matrix_brightness');
-  late final _dart_razer_attr_read_matrix_brightness
-      _razer_attr_read_matrix_brightness =
-      _razer_attr_read_matrix_brightness_ptr
-          .asFunction<_dart_razer_attr_read_matrix_brightness>();
+  late final _razer_attr_read_matrix_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_matrix_brightness');
+  late final _razer_attr_read_matrix_brightness =
+      _razer_attr_read_matrix_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   void razer_attr_write_matrix_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1280,13 +1500,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_matrix_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_matrix_brightness>>(
-          'razer_attr_write_matrix_brightness');
-  late final _dart_razer_attr_write_matrix_brightness
-      _razer_attr_write_matrix_brightness =
-      _razer_attr_write_matrix_brightness_ptr
-          .asFunction<_dart_razer_attr_write_matrix_brightness>();
+  late final _razer_attr_write_matrix_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.UnsignedChar)>>('razer_attr_write_matrix_brightness');
+  late final _razer_attr_write_matrix_brightness =
+      _razer_attr_write_matrix_brightnessPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int)>();
 
   int razer_attr_read_scroll_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1296,13 +1516,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_scroll_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_scroll_led_brightness>>(
-          'razer_attr_read_scroll_led_brightness');
-  late final _dart_razer_attr_read_scroll_led_brightness
-      _razer_attr_read_scroll_led_brightness =
-      _razer_attr_read_scroll_led_brightness_ptr
-          .asFunction<_dart_razer_attr_read_scroll_led_brightness>();
+  late final _razer_attr_read_scroll_led_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_scroll_led_brightness');
+  late final _razer_attr_read_scroll_led_brightness =
+      _razer_attr_read_scroll_led_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   void razer_attr_write_scroll_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1314,13 +1534,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_led_brightness>>(
-          'razer_attr_write_scroll_led_brightness');
-  late final _dart_razer_attr_write_scroll_led_brightness
-      _razer_attr_write_scroll_led_brightness =
-      _razer_attr_write_scroll_led_brightness_ptr
-          .asFunction<_dart_razer_attr_write_scroll_led_brightness>();
+  late final _razer_attr_write_scroll_led_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.UnsignedChar)>>('razer_attr_write_scroll_led_brightness');
+  late final _razer_attr_write_scroll_led_brightness =
+      _razer_attr_write_scroll_led_brightnessPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int)>();
 
   int razer_attr_read_logo_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1330,13 +1550,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_logo_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_logo_led_brightness>>(
-          'razer_attr_read_logo_led_brightness');
-  late final _dart_razer_attr_read_logo_led_brightness
-      _razer_attr_read_logo_led_brightness =
-      _razer_attr_read_logo_led_brightness_ptr
-          .asFunction<_dart_razer_attr_read_logo_led_brightness>();
+  late final _razer_attr_read_logo_led_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_logo_led_brightness');
+  late final _razer_attr_read_logo_led_brightness =
+      _razer_attr_read_logo_led_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   void razer_attr_write_logo_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1348,13 +1568,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_led_brightness>>(
-          'razer_attr_write_logo_led_brightness');
-  late final _dart_razer_attr_write_logo_led_brightness
-      _razer_attr_write_logo_led_brightness =
-      _razer_attr_write_logo_led_brightness_ptr
-          .asFunction<_dart_razer_attr_write_logo_led_brightness>();
+  late final _razer_attr_write_logo_led_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.UnsignedChar)>>('razer_attr_write_logo_led_brightness');
+  late final _razer_attr_write_logo_led_brightness =
+      _razer_attr_write_logo_led_brightnessPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int)>();
 
   int razer_attr_read_left_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1364,13 +1584,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_left_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_left_led_brightness>>(
-          'razer_attr_read_left_led_brightness');
-  late final _dart_razer_attr_read_left_led_brightness
-      _razer_attr_read_left_led_brightness =
-      _razer_attr_read_left_led_brightness_ptr
-          .asFunction<_dart_razer_attr_read_left_led_brightness>();
+  late final _razer_attr_read_left_led_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_left_led_brightness');
+  late final _razer_attr_read_left_led_brightness =
+      _razer_attr_read_left_led_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   void razer_attr_write_left_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1382,13 +1602,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_left_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_left_led_brightness>>(
-          'razer_attr_write_left_led_brightness');
-  late final _dart_razer_attr_write_left_led_brightness
-      _razer_attr_write_left_led_brightness =
-      _razer_attr_write_left_led_brightness_ptr
-          .asFunction<_dart_razer_attr_write_left_led_brightness>();
+  late final _razer_attr_write_left_led_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.UnsignedChar)>>('razer_attr_write_left_led_brightness');
+  late final _razer_attr_write_left_led_brightness =
+      _razer_attr_write_left_led_brightnessPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int)>();
 
   int razer_attr_read_right_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1398,13 +1618,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_right_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_right_led_brightness>>(
-          'razer_attr_read_right_led_brightness');
-  late final _dart_razer_attr_read_right_led_brightness
-      _razer_attr_read_right_led_brightness =
-      _razer_attr_read_right_led_brightness_ptr
-          .asFunction<_dart_razer_attr_read_right_led_brightness>();
+  late final _razer_attr_read_right_led_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_attr_read_right_led_brightness');
+  late final _razer_attr_read_right_led_brightness =
+      _razer_attr_read_right_led_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   void razer_attr_write_right_led_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1416,17 +1636,17 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_right_led_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_right_led_brightness>>(
-          'razer_attr_write_right_led_brightness');
-  late final _dart_razer_attr_write_right_led_brightness
-      _razer_attr_write_right_led_brightness =
-      _razer_attr_write_right_led_brightness_ptr
-          .asFunction<_dart_razer_attr_write_right_led_brightness>();
+  late final _razer_attr_write_right_led_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.UnsignedChar)>>('razer_attr_write_right_led_brightness');
+  late final _razer_attr_write_right_led_brightness =
+      _razer_attr_write_right_led_brightnessPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int)>();
 
   int razer_attr_write_logo_led_effect(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_led_effect(
@@ -1436,16 +1656,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_led_effect_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_led_effect>>(
-          'razer_attr_write_logo_led_effect');
-  late final _dart_razer_attr_write_logo_led_effect
-      _razer_attr_write_logo_led_effect = _razer_attr_write_logo_led_effect_ptr
-          .asFunction<_dart_razer_attr_write_logo_led_effect>();
+  late final _razer_attr_write_logo_led_effectPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_led_effect');
+  late final _razer_attr_write_logo_led_effect =
+      _razer_attr_write_logo_led_effectPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_scroll_led_effect(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_scroll_led_effect(
@@ -1455,17 +1679,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_scroll_led_effect_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_scroll_led_effect>>(
-          'razer_attr_write_scroll_led_effect');
-  late final _dart_razer_attr_write_scroll_led_effect
-      _razer_attr_write_scroll_led_effect =
-      _razer_attr_write_scroll_led_effect_ptr
-          .asFunction<_dart_razer_attr_write_scroll_led_effect>();
+  late final _razer_attr_write_scroll_led_effectPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_scroll_led_effect');
+  late final _razer_attr_write_scroll_led_effect =
+      _razer_attr_write_scroll_led_effectPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_write_logo_led_rgb(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_attr_write_logo_led_rgb(
@@ -1475,16 +1702,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_write_logo_led_rgb_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_write_logo_led_rgb>>(
-          'razer_attr_write_logo_led_rgb');
-  late final _dart_razer_attr_write_logo_led_rgb
-      _razer_attr_write_logo_led_rgb = _razer_attr_write_logo_led_rgb_ptr
-          .asFunction<_dart_razer_attr_write_logo_led_rgb>();
+  late final _razer_attr_write_logo_led_rgbPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_attr_write_logo_led_rgb');
+  late final _razer_attr_write_logo_led_rgb =
+      _razer_attr_write_logo_led_rgbPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_attr_read_get_battery(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_get_battery(
       usb_dev,
@@ -1492,16 +1723,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_get_battery_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_get_battery>>(
-          'razer_attr_read_get_battery');
-  late final _dart_razer_attr_read_get_battery _razer_attr_read_get_battery =
-      _razer_attr_read_get_battery_ptr
-          .asFunction<_dart_razer_attr_read_get_battery>();
+  late final _razer_attr_read_get_batteryPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_get_battery');
+  late final _razer_attr_read_get_battery =
+      _razer_attr_read_get_batteryPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_attr_read_is_charging(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
   ) {
     return _razer_attr_read_is_charging(
       usb_dev,
@@ -1509,16 +1742,18 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_attr_read_is_charging_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_attr_read_is_charging>>(
-          'razer_attr_read_is_charging');
-  late final _dart_razer_attr_read_is_charging _razer_attr_read_is_charging =
-      _razer_attr_read_is_charging_ptr
-          .asFunction<_dart_razer_attr_read_is_charging>();
+  late final _razer_attr_read_is_chargingPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>>('razer_attr_read_is_charging');
+  late final _razer_attr_read_is_charging =
+      _razer_attr_read_is_chargingPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>)>();
 
   int razer_mouse_dock_attr_write_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_dock_attr_write_mode_static(
@@ -1528,17 +1763,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_dock_attr_write_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_dock_attr_write_mode_static>>(
-          'razer_mouse_dock_attr_write_mode_static');
-  late final _dart_razer_mouse_dock_attr_write_mode_static
-      _razer_mouse_dock_attr_write_mode_static =
-      _razer_mouse_dock_attr_write_mode_static_ptr
-          .asFunction<_dart_razer_mouse_dock_attr_write_mode_static>();
+  late final _razer_mouse_dock_attr_write_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_dock_attr_write_mode_static');
+  late final _razer_mouse_dock_attr_write_mode_static =
+      _razer_mouse_dock_attr_write_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_dock_attr_write_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_dock_attr_write_mode_static_no_store(
@@ -1548,18 +1786,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_dock_attr_write_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<
-              _c_razer_mouse_dock_attr_write_mode_static_no_store>>(
-      'razer_mouse_dock_attr_write_mode_static_no_store');
-  late final _dart_razer_mouse_dock_attr_write_mode_static_no_store
-      _razer_mouse_dock_attr_write_mode_static_no_store =
-      _razer_mouse_dock_attr_write_mode_static_no_store_ptr
-          .asFunction<_dart_razer_mouse_dock_attr_write_mode_static_no_store>();
+  late final _razer_mouse_dock_attr_write_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_dock_attr_write_mode_static_no_store');
+  late final _razer_mouse_dock_attr_write_mode_static_no_store =
+      _razer_mouse_dock_attr_write_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_dock_attr_write_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_dock_attr_write_mode_spectrum(
@@ -1569,17 +1809,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_dock_attr_write_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_dock_attr_write_mode_spectrum>>(
-          'razer_mouse_dock_attr_write_mode_spectrum');
-  late final _dart_razer_mouse_dock_attr_write_mode_spectrum
-      _razer_mouse_dock_attr_write_mode_spectrum =
-      _razer_mouse_dock_attr_write_mode_spectrum_ptr
-          .asFunction<_dart_razer_mouse_dock_attr_write_mode_spectrum>();
+  late final _razer_mouse_dock_attr_write_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_dock_attr_write_mode_spectrum');
+  late final _razer_mouse_dock_attr_write_mode_spectrum =
+      _razer_mouse_dock_attr_write_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_dock_attr_write_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_dock_attr_write_mode_breath(
@@ -1589,17 +1832,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_dock_attr_write_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_dock_attr_write_mode_breath>>(
-          'razer_mouse_dock_attr_write_mode_breath');
-  late final _dart_razer_mouse_dock_attr_write_mode_breath
-      _razer_mouse_dock_attr_write_mode_breath =
-      _razer_mouse_dock_attr_write_mode_breath_ptr
-          .asFunction<_dart_razer_mouse_dock_attr_write_mode_breath>();
+  late final _razer_mouse_dock_attr_write_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_dock_attr_write_mode_breath');
+  late final _razer_mouse_dock_attr_write_mode_breath =
+      _razer_mouse_dock_attr_write_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_dock_attr_write_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_dock_attr_write_mode_none(
@@ -1609,17 +1855,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_dock_attr_write_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_dock_attr_write_mode_none>>(
-          'razer_mouse_dock_attr_write_mode_none');
-  late final _dart_razer_mouse_dock_attr_write_mode_none
-      _razer_mouse_dock_attr_write_mode_none =
-      _razer_mouse_dock_attr_write_mode_none_ptr
-          .asFunction<_dart_razer_mouse_dock_attr_write_mode_none>();
+  late final _razer_mouse_dock_attr_write_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_dock_attr_write_mode_none');
+  late final _razer_mouse_dock_attr_write_mode_none =
+      _razer_mouse_dock_attr_write_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_mat_attr_write_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_mat_attr_write_mode_none(
@@ -1629,17 +1878,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_write_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_mat_attr_write_mode_none>>(
-          'razer_mouse_mat_attr_write_mode_none');
-  late final _dart_razer_mouse_mat_attr_write_mode_none
-      _razer_mouse_mat_attr_write_mode_none =
-      _razer_mouse_mat_attr_write_mode_none_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_write_mode_none>();
+  late final _razer_mouse_mat_attr_write_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_mat_attr_write_mode_none');
+  late final _razer_mouse_mat_attr_write_mode_none =
+      _razer_mouse_mat_attr_write_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_mat_attr_write_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_mat_attr_write_mode_wave(
@@ -1649,17 +1901,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_write_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_mat_attr_write_mode_wave>>(
-          'razer_mouse_mat_attr_write_mode_wave');
-  late final _dart_razer_mouse_mat_attr_write_mode_wave
-      _razer_mouse_mat_attr_write_mode_wave =
-      _razer_mouse_mat_attr_write_mode_wave_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_write_mode_wave>();
+  late final _razer_mouse_mat_attr_write_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_mat_attr_write_mode_wave');
+  late final _razer_mouse_mat_attr_write_mode_wave =
+      _razer_mouse_mat_attr_write_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_mat_attr_write_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_mat_attr_write_mode_breath(
@@ -1669,17 +1924,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_write_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_mat_attr_write_mode_breath>>(
-          'razer_mouse_mat_attr_write_mode_breath');
-  late final _dart_razer_mouse_mat_attr_write_mode_breath
-      _razer_mouse_mat_attr_write_mode_breath =
-      _razer_mouse_mat_attr_write_mode_breath_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_write_mode_breath>();
+  late final _razer_mouse_mat_attr_write_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_mat_attr_write_mode_breath');
+  late final _razer_mouse_mat_attr_write_mode_breath =
+      _razer_mouse_mat_attr_write_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_mat_attr_write_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_mat_attr_write_mode_static(
@@ -1689,17 +1947,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_write_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_mat_attr_write_mode_static>>(
-          'razer_mouse_mat_attr_write_mode_static');
-  late final _dart_razer_mouse_mat_attr_write_mode_static
-      _razer_mouse_mat_attr_write_mode_static =
-      _razer_mouse_mat_attr_write_mode_static_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_write_mode_static>();
+  late final _razer_mouse_mat_attr_write_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_mat_attr_write_mode_static');
+  late final _razer_mouse_mat_attr_write_mode_static =
+      _razer_mouse_mat_attr_write_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_mat_attr_write_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_mat_attr_write_mode_static_no_store(
@@ -1709,18 +1970,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_write_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<
-              _c_razer_mouse_mat_attr_write_mode_static_no_store>>(
-      'razer_mouse_mat_attr_write_mode_static_no_store');
-  late final _dart_razer_mouse_mat_attr_write_mode_static_no_store
-      _razer_mouse_mat_attr_write_mode_static_no_store =
-      _razer_mouse_mat_attr_write_mode_static_no_store_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_write_mode_static_no_store>();
+  late final _razer_mouse_mat_attr_write_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_mat_attr_write_mode_static_no_store');
+  late final _razer_mouse_mat_attr_write_mode_static_no_store =
+      _razer_mouse_mat_attr_write_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_mat_attr_write_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_mouse_mat_attr_write_mode_spectrum(
@@ -1730,13 +1993,16 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_write_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_mat_attr_write_mode_spectrum>>(
-          'razer_mouse_mat_attr_write_mode_spectrum');
-  late final _dart_razer_mouse_mat_attr_write_mode_spectrum
-      _razer_mouse_mat_attr_write_mode_spectrum =
-      _razer_mouse_mat_attr_write_mode_spectrum_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_write_mode_spectrum>();
+  late final _razer_mouse_mat_attr_write_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_mouse_mat_attr_write_mode_spectrum');
+  late final _razer_mouse_mat_attr_write_mode_spectrum =
+      _razer_mouse_mat_attr_write_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_mouse_mat_attr_write_set_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1750,13 +2016,14 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_write_set_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_mat_attr_write_set_brightness>>(
-          'razer_mouse_mat_attr_write_set_brightness');
-  late final _dart_razer_mouse_mat_attr_write_set_brightness
-      _razer_mouse_mat_attr_write_set_brightness =
-      _razer_mouse_mat_attr_write_set_brightness_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_write_set_brightness>();
+  late final _razer_mouse_mat_attr_write_set_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ushort, ffi.Size)>>('razer_mouse_mat_attr_write_set_brightness');
+  late final _razer_mouse_mat_attr_write_set_brightness =
+      _razer_mouse_mat_attr_write_set_brightnessPtr.asFunction<
+          int Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int, int)>();
 
   int razer_mouse_mat_attr_read_set_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -1766,17 +2033,17 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_mouse_mat_attr_read_set_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_mouse_mat_attr_read_set_brightness>>(
-          'razer_mouse_mat_attr_read_set_brightness');
-  late final _dart_razer_mouse_mat_attr_read_set_brightness
-      _razer_mouse_mat_attr_read_set_brightness =
-      _razer_mouse_mat_attr_read_set_brightness_ptr
-          .asFunction<_dart_razer_mouse_mat_attr_read_set_brightness>();
+  late final _razer_mouse_mat_attr_read_set_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_mouse_mat_attr_read_set_brightness');
+  late final _razer_mouse_mat_attr_read_set_brightness =
+      _razer_mouse_mat_attr_read_set_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   int razer_headphone_attr_write_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_headphone_attr_write_mode_none(
@@ -1786,17 +2053,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_headphone_attr_write_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_headphone_attr_write_mode_none>>(
-          'razer_headphone_attr_write_mode_none');
-  late final _dart_razer_headphone_attr_write_mode_none
-      _razer_headphone_attr_write_mode_none =
-      _razer_headphone_attr_write_mode_none_ptr
-          .asFunction<_dart_razer_headphone_attr_write_mode_none>();
+  late final _razer_headphone_attr_write_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_headphone_attr_write_mode_none');
+  late final _razer_headphone_attr_write_mode_none =
+      _razer_headphone_attr_write_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_headphone_attr_write_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_headphone_attr_write_mode_breath(
@@ -1806,17 +2076,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_headphone_attr_write_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_headphone_attr_write_mode_breath>>(
-          'razer_headphone_attr_write_mode_breath');
-  late final _dart_razer_headphone_attr_write_mode_breath
-      _razer_headphone_attr_write_mode_breath =
-      _razer_headphone_attr_write_mode_breath_ptr
-          .asFunction<_dart_razer_headphone_attr_write_mode_breath>();
+  late final _razer_headphone_attr_write_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_headphone_attr_write_mode_breath');
+  late final _razer_headphone_attr_write_mode_breath =
+      _razer_headphone_attr_write_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_headphone_attr_write_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_headphone_attr_write_mode_static(
@@ -1826,17 +2099,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_headphone_attr_write_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_headphone_attr_write_mode_static>>(
-          'razer_headphone_attr_write_mode_static');
-  late final _dart_razer_headphone_attr_write_mode_static
-      _razer_headphone_attr_write_mode_static =
-      _razer_headphone_attr_write_mode_static_ptr
-          .asFunction<_dart_razer_headphone_attr_write_mode_static>();
+  late final _razer_headphone_attr_write_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_headphone_attr_write_mode_static');
+  late final _razer_headphone_attr_write_mode_static =
+      _razer_headphone_attr_write_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_headphone_attr_write_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_headphone_attr_write_mode_static_no_store(
@@ -1846,18 +2122,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_headphone_attr_write_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<
-              _c_razer_headphone_attr_write_mode_static_no_store>>(
-      'razer_headphone_attr_write_mode_static_no_store');
-  late final _dart_razer_headphone_attr_write_mode_static_no_store
-      _razer_headphone_attr_write_mode_static_no_store =
-      _razer_headphone_attr_write_mode_static_no_store_ptr
-          .asFunction<_dart_razer_headphone_attr_write_mode_static_no_store>();
+  late final _razer_headphone_attr_write_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_headphone_attr_write_mode_static_no_store');
+  late final _razer_headphone_attr_write_mode_static_no_store =
+      _razer_headphone_attr_write_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_headphone_attr_write_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_headphone_attr_write_mode_spectrum(
@@ -1867,17 +2145,69 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_headphone_attr_write_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_headphone_attr_write_mode_spectrum>>(
-          'razer_headphone_attr_write_mode_spectrum');
-  late final _dart_razer_headphone_attr_write_mode_spectrum
-      _razer_headphone_attr_write_mode_spectrum =
-      _razer_headphone_attr_write_mode_spectrum_ptr
-          .asFunction<_dart_razer_headphone_attr_write_mode_spectrum>();
+  late final _razer_headphone_attr_write_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_headphone_attr_write_mode_spectrum');
+  late final _razer_headphone_attr_write_mode_spectrum =
+      _razer_headphone_attr_write_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
+
+  int razer_headphone_attr_write_mode_wave(
+    ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
+    ffi.Pointer<ffi.Char> buf,
+    int count,
+    int speed,
+  ) {
+    return _razer_headphone_attr_write_mode_wave(
+      usb_dev,
+      buf,
+      count,
+      speed,
+    );
+  }
+
+  late final _razer_headphone_attr_write_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size,
+              ffi.Int)>>('razer_headphone_attr_write_mode_wave');
+  late final _razer_headphone_attr_write_mode_wave =
+      _razer_headphone_attr_write_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int, int)>();
+
+  int razer_headphone_attr_write_mode_starlight(
+    ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
+    ffi.Pointer<ffi.Char> buf,
+    int count,
+  ) {
+    return _razer_headphone_attr_write_mode_starlight(
+      usb_dev,
+      buf,
+      count,
+    );
+  }
+
+  late final _razer_headphone_attr_write_mode_starlightPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_headphone_attr_write_mode_starlight');
+  late final _razer_headphone_attr_write_mode_starlight =
+      _razer_headphone_attr_write_mode_starlightPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_egpu_attr_write_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_egpu_attr_write_mode_none(
@@ -1887,16 +2217,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_egpu_attr_write_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_egpu_attr_write_mode_none>>(
-          'razer_egpu_attr_write_mode_none');
-  late final _dart_razer_egpu_attr_write_mode_none
-      _razer_egpu_attr_write_mode_none = _razer_egpu_attr_write_mode_none_ptr
-          .asFunction<_dart_razer_egpu_attr_write_mode_none>();
+  late final _razer_egpu_attr_write_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_egpu_attr_write_mode_none');
+  late final _razer_egpu_attr_write_mode_none =
+      _razer_egpu_attr_write_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_egpu_attr_write_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_egpu_attr_write_mode_wave(
@@ -1906,16 +2240,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_egpu_attr_write_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_egpu_attr_write_mode_wave>>(
-          'razer_egpu_attr_write_mode_wave');
-  late final _dart_razer_egpu_attr_write_mode_wave
-      _razer_egpu_attr_write_mode_wave = _razer_egpu_attr_write_mode_wave_ptr
-          .asFunction<_dart_razer_egpu_attr_write_mode_wave>();
+  late final _razer_egpu_attr_write_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_egpu_attr_write_mode_wave');
+  late final _razer_egpu_attr_write_mode_wave =
+      _razer_egpu_attr_write_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_egpu_attr_write_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_egpu_attr_write_mode_breath(
@@ -1925,17 +2263,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_egpu_attr_write_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_egpu_attr_write_mode_breath>>(
-          'razer_egpu_attr_write_mode_breath');
-  late final _dart_razer_egpu_attr_write_mode_breath
-      _razer_egpu_attr_write_mode_breath =
-      _razer_egpu_attr_write_mode_breath_ptr
-          .asFunction<_dart_razer_egpu_attr_write_mode_breath>();
+  late final _razer_egpu_attr_write_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_egpu_attr_write_mode_breath');
+  late final _razer_egpu_attr_write_mode_breath =
+      _razer_egpu_attr_write_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_egpu_attr_write_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_egpu_attr_write_mode_static(
@@ -1945,17 +2286,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_egpu_attr_write_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_egpu_attr_write_mode_static>>(
-          'razer_egpu_attr_write_mode_static');
-  late final _dart_razer_egpu_attr_write_mode_static
-      _razer_egpu_attr_write_mode_static =
-      _razer_egpu_attr_write_mode_static_ptr
-          .asFunction<_dart_razer_egpu_attr_write_mode_static>();
+  late final _razer_egpu_attr_write_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_egpu_attr_write_mode_static');
+  late final _razer_egpu_attr_write_mode_static =
+      _razer_egpu_attr_write_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_egpu_attr_write_mode_static_no_store(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_egpu_attr_write_mode_static_no_store(
@@ -1965,17 +2309,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_egpu_attr_write_mode_static_no_store_ptr = _lookup<
-          ffi.NativeFunction<_c_razer_egpu_attr_write_mode_static_no_store>>(
-      'razer_egpu_attr_write_mode_static_no_store');
-  late final _dart_razer_egpu_attr_write_mode_static_no_store
-      _razer_egpu_attr_write_mode_static_no_store =
-      _razer_egpu_attr_write_mode_static_no_store_ptr
-          .asFunction<_dart_razer_egpu_attr_write_mode_static_no_store>();
+  late final _razer_egpu_attr_write_mode_static_no_storePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_egpu_attr_write_mode_static_no_store');
+  late final _razer_egpu_attr_write_mode_static_no_store =
+      _razer_egpu_attr_write_mode_static_no_storePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_egpu_attr_write_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_egpu_attr_write_mode_spectrum(
@@ -1985,17 +2332,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_egpu_attr_write_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_egpu_attr_write_mode_spectrum>>(
-          'razer_egpu_attr_write_mode_spectrum');
-  late final _dart_razer_egpu_attr_write_mode_spectrum
-      _razer_egpu_attr_write_mode_spectrum =
-      _razer_egpu_attr_write_mode_spectrum_ptr
-          .asFunction<_dart_razer_egpu_attr_write_mode_spectrum>();
+  late final _razer_egpu_attr_write_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_egpu_attr_write_mode_spectrum');
+  late final _razer_egpu_attr_write_mode_spectrum =
+      _razer_egpu_attr_write_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_kraken_attr_write_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_kraken_attr_write_mode_none(
@@ -2005,17 +2355,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_kraken_attr_write_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_kraken_attr_write_mode_none>>(
-          'razer_kraken_attr_write_mode_none');
-  late final _dart_razer_kraken_attr_write_mode_none
-      _razer_kraken_attr_write_mode_none =
-      _razer_kraken_attr_write_mode_none_ptr
-          .asFunction<_dart_razer_kraken_attr_write_mode_none>();
+  late final _razer_kraken_attr_write_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_kraken_attr_write_mode_none');
+  late final _razer_kraken_attr_write_mode_none =
+      _razer_kraken_attr_write_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_kraken_attr_write_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_kraken_attr_write_mode_static(
@@ -2025,17 +2378,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_kraken_attr_write_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_kraken_attr_write_mode_static>>(
-          'razer_kraken_attr_write_mode_static');
-  late final _dart_razer_kraken_attr_write_mode_static
-      _razer_kraken_attr_write_mode_static =
-      _razer_kraken_attr_write_mode_static_ptr
-          .asFunction<_dart_razer_kraken_attr_write_mode_static>();
+  late final _razer_kraken_attr_write_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_kraken_attr_write_mode_static');
+  late final _razer_kraken_attr_write_mode_static =
+      _razer_kraken_attr_write_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_kraken_attr_write_mode_custom(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_kraken_attr_write_mode_custom(
@@ -2045,17 +2401,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_kraken_attr_write_mode_custom_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_kraken_attr_write_mode_custom>>(
-          'razer_kraken_attr_write_mode_custom');
-  late final _dart_razer_kraken_attr_write_mode_custom
-      _razer_kraken_attr_write_mode_custom =
-      _razer_kraken_attr_write_mode_custom_ptr
-          .asFunction<_dart_razer_kraken_attr_write_mode_custom>();
+  late final _razer_kraken_attr_write_mode_customPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_kraken_attr_write_mode_custom');
+  late final _razer_kraken_attr_write_mode_custom =
+      _razer_kraken_attr_write_mode_customPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_kraken_attr_write_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_kraken_attr_write_mode_breath(
@@ -2065,17 +2424,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_kraken_attr_write_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_kraken_attr_write_mode_breath>>(
-          'razer_kraken_attr_write_mode_breath');
-  late final _dart_razer_kraken_attr_write_mode_breath
-      _razer_kraken_attr_write_mode_breath =
-      _razer_kraken_attr_write_mode_breath_ptr
-          .asFunction<_dart_razer_kraken_attr_write_mode_breath>();
+  late final _razer_kraken_attr_write_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_kraken_attr_write_mode_breath');
+  late final _razer_kraken_attr_write_mode_breath =
+      _razer_kraken_attr_write_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_kraken_attr_write_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_kraken_attr_write_mode_spectrum(
@@ -2085,17 +2447,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_kraken_attr_write_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_kraken_attr_write_mode_spectrum>>(
-          'razer_kraken_attr_write_mode_spectrum');
-  late final _dart_razer_kraken_attr_write_mode_spectrum
-      _razer_kraken_attr_write_mode_spectrum =
-      _razer_kraken_attr_write_mode_spectrum_ptr
-          .asFunction<_dart_razer_kraken_attr_write_mode_spectrum>();
+  late final _razer_kraken_attr_write_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_kraken_attr_write_mode_spectrum');
+  late final _razer_kraken_attr_write_mode_spectrum =
+      _razer_kraken_attr_write_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_accessory_attr_write_mode_none(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_accessory_attr_write_mode_none(
@@ -2105,17 +2470,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_accessory_attr_write_mode_none_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_accessory_attr_write_mode_none>>(
-          'razer_accessory_attr_write_mode_none');
-  late final _dart_razer_accessory_attr_write_mode_none
-      _razer_accessory_attr_write_mode_none =
-      _razer_accessory_attr_write_mode_none_ptr
-          .asFunction<_dart_razer_accessory_attr_write_mode_none>();
+  late final _razer_accessory_attr_write_mode_nonePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_accessory_attr_write_mode_none');
+  late final _razer_accessory_attr_write_mode_none =
+      _razer_accessory_attr_write_mode_nonePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_accessory_attr_write_mode_spectrum(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_accessory_attr_write_mode_spectrum(
@@ -2125,17 +2493,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_accessory_attr_write_mode_spectrum_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_accessory_attr_write_mode_spectrum>>(
-          'razer_accessory_attr_write_mode_spectrum');
-  late final _dart_razer_accessory_attr_write_mode_spectrum
-      _razer_accessory_attr_write_mode_spectrum =
-      _razer_accessory_attr_write_mode_spectrum_ptr
-          .asFunction<_dart_razer_accessory_attr_write_mode_spectrum>();
+  late final _razer_accessory_attr_write_mode_spectrumPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_accessory_attr_write_mode_spectrum');
+  late final _razer_accessory_attr_write_mode_spectrum =
+      _razer_accessory_attr_write_mode_spectrumPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_accessory_attr_write_mode_wave(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
     int speed,
   ) {
@@ -2147,17 +2518,21 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_accessory_attr_write_mode_wave_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_accessory_attr_write_mode_wave>>(
-          'razer_accessory_attr_write_mode_wave');
-  late final _dart_razer_accessory_attr_write_mode_wave
-      _razer_accessory_attr_write_mode_wave =
-      _razer_accessory_attr_write_mode_wave_ptr
-          .asFunction<_dart_razer_accessory_attr_write_mode_wave>();
+  late final _razer_accessory_attr_write_mode_wavePtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size,
+              ffi.Int)>>('razer_accessory_attr_write_mode_wave');
+  late final _razer_accessory_attr_write_mode_wave =
+      _razer_accessory_attr_write_mode_wavePtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int, int)>();
 
   int razer_accessory_attr_write_mode_static(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_accessory_attr_write_mode_static(
@@ -2167,17 +2542,20 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_accessory_attr_write_mode_static_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_accessory_attr_write_mode_static>>(
-          'razer_accessory_attr_write_mode_static');
-  late final _dart_razer_accessory_attr_write_mode_static
-      _razer_accessory_attr_write_mode_static =
-      _razer_accessory_attr_write_mode_static_ptr
-          .asFunction<_dart_razer_accessory_attr_write_mode_static>();
+  late final _razer_accessory_attr_write_mode_staticPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_accessory_attr_write_mode_static');
+  late final _razer_accessory_attr_write_mode_static =
+      _razer_accessory_attr_write_mode_staticPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_accessory_attr_write_mode_breath(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-    ffi.Pointer<ffi.Int8> buf,
+    ffi.Pointer<ffi.Char> buf,
     int count,
   ) {
     return _razer_accessory_attr_write_mode_breath(
@@ -2187,13 +2565,16 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_accessory_attr_write_mode_breath_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_accessory_attr_write_mode_breath>>(
-          'razer_accessory_attr_write_mode_breath');
-  late final _dart_razer_accessory_attr_write_mode_breath
-      _razer_accessory_attr_write_mode_breath =
-      _razer_accessory_attr_write_mode_breath_ptr
-          .asFunction<_dart_razer_accessory_attr_write_mode_breath>();
+  late final _razer_accessory_attr_write_mode_breathPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('razer_accessory_attr_write_mode_breath');
+  late final _razer_accessory_attr_write_mode_breath =
+      _razer_accessory_attr_write_mode_breathPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ffi.Pointer<ffi.Char>, int)>();
 
   int razer_accessory_attr_read_set_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -2203,13 +2584,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_accessory_attr_read_set_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_accessory_attr_read_set_brightness>>(
-          'razer_accessory_attr_read_set_brightness');
-  late final _dart_razer_accessory_attr_read_set_brightness
-      _razer_accessory_attr_read_set_brightness =
-      _razer_accessory_attr_read_set_brightness_ptr
-          .asFunction<_dart_razer_accessory_attr_read_set_brightness>();
+  late final _razer_accessory_attr_read_set_brightnessPtr = _lookup<
+          ffi.NativeFunction<
+              ushort Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'razer_accessory_attr_read_set_brightness');
+  late final _razer_accessory_attr_read_set_brightness =
+      _razer_accessory_attr_read_set_brightnessPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   int razer_accessory_attr_write_set_brightness(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
@@ -2223,13 +2604,14 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _razer_accessory_attr_write_set_brightness_ptr =
-      _lookup<ffi.NativeFunction<_c_razer_accessory_attr_write_set_brightness>>(
-          'razer_accessory_attr_write_set_brightness');
-  late final _dart_razer_accessory_attr_write_set_brightness
-      _razer_accessory_attr_write_set_brightness =
-      _razer_accessory_attr_write_set_brightness_ptr
-          .asFunction<_dart_razer_accessory_attr_write_set_brightness>();
+  late final _razer_accessory_attr_write_set_brightnessPtr = _lookup<
+      ffi.NativeFunction<
+          ssize_t Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>,
+              ushort, ffi.Size)>>('razer_accessory_attr_write_set_brightness');
+  late final _razer_accessory_attr_write_set_brightness =
+      _razer_accessory_attr_write_set_brightnessPtr.asFunction<
+          int Function(
+              ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>, int, int)>();
 
   ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> getRazerUSBDeviceInterface(
     int type,
@@ -2239,12 +2621,13 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _getRazerUSBDeviceInterface_ptr =
-      _lookup<ffi.NativeFunction<_c_getRazerUSBDeviceInterface>>(
-          'getRazerUSBDeviceInterface');
-  late final _dart_getRazerUSBDeviceInterface _getRazerUSBDeviceInterface =
-      _getRazerUSBDeviceInterface_ptr
-          .asFunction<_dart_getRazerUSBDeviceInterface>();
+  late final _getRazerUSBDeviceInterfacePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> Function(
+              ffi.Int)>>('getRazerUSBDeviceInterface');
+  late final _getRazerUSBDeviceInterface =
+      _getRazerUSBDeviceInterfacePtr.asFunction<
+          ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> Function(int)>();
 
   void closeRazerUSBDeviceInterface(
     ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
@@ -2254,21 +2637,24 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _closeRazerUSBDeviceInterface_ptr =
-      _lookup<ffi.NativeFunction<_c_closeRazerUSBDeviceInterface>>(
-          'closeRazerUSBDeviceInterface');
-  late final _dart_closeRazerUSBDeviceInterface _closeRazerUSBDeviceInterface =
-      _closeRazerUSBDeviceInterface_ptr
-          .asFunction<_dart_closeRazerUSBDeviceInterface>();
+  late final _closeRazerUSBDeviceInterfacePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>>(
+      'closeRazerUSBDeviceInterface');
+  late final _closeRazerUSBDeviceInterface =
+      _closeRazerUSBDeviceInterfacePtr.asFunction<
+          void Function(ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>>)>();
 
   RazerDevices getAllRazerDevices() {
     return _getAllRazerDevices();
   }
 
-  late final _getAllRazerDevices_ptr =
-      _lookup<ffi.NativeFunction<_c_getAllRazerDevices>>('getAllRazerDevices');
-  late final _dart_getAllRazerDevices _getAllRazerDevices =
-      _getAllRazerDevices_ptr.asFunction<_dart_getAllRazerDevices>();
+  late final _getAllRazerDevicesPtr =
+      _lookup<ffi.NativeFunction<RazerDevices Function()>>(
+          'getAllRazerDevices');
+  late final _getAllRazerDevices =
+      _getAllRazerDevicesPtr.asFunction<RazerDevices Function()>();
 
   void closeAllRazerDevices(
     RazerDevices devices,
@@ -2278,80 +2664,401 @@ class RazerMacOSDriver {
     );
   }
 
-  late final _closeAllRazerDevices_ptr =
-      _lookup<ffi.NativeFunction<_c_closeAllRazerDevices>>(
+  late final _closeAllRazerDevicesPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(RazerDevices)>>(
           'closeAllRazerDevices');
-  late final _dart_closeAllRazerDevices _closeAllRazerDevices =
-      _closeAllRazerDevices_ptr.asFunction<_dart_closeAllRazerDevices>();
+  late final _closeAllRazerDevices =
+      _closeAllRazerDevicesPtr.asFunction<void Function(RazerDevices)>();
 }
 
 class razer_rgb extends ffi.Struct {
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int r;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int g;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int b;
 }
 
+class transaction_id_union extends ffi.Opaque {}
+
+class command_id_union extends ffi.Opaque {}
+
 class razer_report extends ffi.Opaque {}
 
-class REFIID extends ffi.Struct {
-  @ffi.Uint8()
+typedef IOReturn = kern_return_t;
+typedef kern_return_t = ffi.Int;
+typedef IOUSBDeviceInterface = IOUSBDeviceInterface942;
+
+/// !
+/// @interface IOUSBDeviceInterface942
+/// @abstract   The object you use to access USB devices from user space, returned by the IOUSBFamily version 900.4.2 and above.
+/// @discussion The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
+/// @super IOUSBDeviceInterface650
+typedef IOUSBDeviceInterface942 = IOUSBDeviceStruct942;
+
+/// !
+/// @interface IOUSBDeviceInterface942
+/// @abstract   The object you use to access USB devices from user space, returned by the IOUSBFamily version 900.4.2 and above.
+/// @discussion The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
+/// @super IOUSBDeviceInterface650
+class IOUSBDeviceStruct942 extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> _reserved;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              HRESULT Function(
+                  ffi.Pointer<ffi.Void>, REFIID, ffi.Pointer<LPVOID>)>>
+      QueryInterface;
+
+  external ffi
+          .Pointer<ffi.NativeFunction<ULONG Function(ffi.Pointer<ffi.Void>)>>
+      AddRef;
+
+  external ffi
+          .Pointer<ffi.NativeFunction<ULONG Function(ffi.Pointer<ffi.Void>)>>
+      Release;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, ffi.Pointer<CFRunLoopSourceRef>)>>
+      CreateDeviceAsyncEventSource;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              CFRunLoopSourceRef Function(ffi.Pointer<ffi.Void>)>>
+      GetDeviceAsyncEventSource;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, ffi.Pointer<mach_port_t>)>>
+      CreateDeviceAsyncPort;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<mach_port_t Function(ffi.Pointer<ffi.Void>)>>
+      GetDeviceAsyncPort;
+
+  external ffi
+          .Pointer<ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>)>>
+      USBDeviceOpen;
+
+  external ffi
+          .Pointer<ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>)>>
+      USBDeviceClose;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      GetDeviceClass;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      GetDeviceSubClass;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      GetDeviceProtocol;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt16>)>>
+      GetDeviceVendor;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt16>)>>
+      GetDeviceProduct;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt16>)>>
+      GetDeviceReleaseNumber;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, ffi.Pointer<USBDeviceAddress>)>>
+      GetDeviceAddress;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt32>)>>
+      GetDeviceBusPowerAvailable;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      GetDeviceSpeed;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      GetNumberOfConfigurations;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt32>)>>
+      GetLocationID;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, UInt8,
+                  ffi.Pointer<IOUSBConfigurationDescriptorPtr>)>>
+      GetConfigurationDescriptorPtr;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      GetConfiguration;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>, UInt8)>>
+      SetConfiguration;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt64>,
+              ffi.Pointer<AbsoluteTime>)>> GetBusFrameNumber;
+
+  external ffi
+          .Pointer<ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>)>>
+      ResetDevice;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, ffi.Pointer<IOUSBDevRequest>)>>
+      DeviceRequest;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<IOUSBDevRequest>,
+              IOAsyncCallback1, ffi.Pointer<ffi.Void>)>> DeviceRequestAsync;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<IOUSBFindInterfaceRequest>,
+              ffi.Pointer<io_iterator_t>)>> CreateInterfaceIterator;
+
+  external ffi
+          .Pointer<ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>)>>
+      USBDeviceOpenSeize;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, ffi.Pointer<IOUSBDevRequestTO>)>>
+      DeviceRequestTO;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<IOUSBDevRequestTO>,
+              IOAsyncCallback1,
+              ffi.Pointer<ffi.Void>)>> DeviceRequestAsyncTO;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>, Boolean)>>
+      USBDeviceSuspend;
+
+  external ffi
+          .Pointer<ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>)>>
+      USBDeviceAbortPipeZero;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      USBGetManufacturerStringIndex;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      USBGetProductStringIndex;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt8>)>>
+      USBGetSerialNumberStringIndex;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>, UInt32)>>
+      USBDeviceReEnumerate;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt64>,
+              ffi.Pointer<AbsoluteTime>)>> GetBusMicroFrameNumber;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<NumVersion>,
+              ffi.Pointer<NumVersion>)>> GetIOUSBLibVersion;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt64>,
+              ffi.Pointer<AbsoluteTime>)>> GetBusFrameNumberWithTime;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt32>)>>
+      GetUSBDeviceInformation;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, UInt32, UInt32, ffi.Pointer<UInt32>)>>
+      RequestExtraPower;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, UInt32, UInt32)>>
+      ReturnExtraPower;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, UInt32, ffi.Pointer<UInt32>)>>
+      GetExtraPowerAllocated;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(ffi.Pointer<ffi.Void>, ffi.Pointer<UInt32>)>>
+      GetBandwidthAvailableForDevice;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IOReturn Function(
+                  ffi.Pointer<ffi.Void>, UInt8, ffi.Bool, ffi.Bool)>>
+      SetConfigurationV2;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          IOReturn Function(
+              ffi.Pointer<ffi.Void>,
+              UInt64,
+              IOAsyncCallback2,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<UInt64>)>> RegisterForNotification;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>, UInt64)>>
+      UnregisterNotification;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<IOReturn Function(ffi.Pointer<ffi.Void>, UInt64)>>
+      AcknowledgeNotification;
+
+  /// !
+  /// @function   GetDeviceAsyncNotificationPort
+  /// @abstract   Returns the IONotificationPort for this IOService instance.
+  /// @availability This function is only available with IOUSBDeviceInterface942 and above.
+  /// @param      self Pointer to the IOUSBDeviceInterface.
+  /// @result     Returns the IONotificationPortRef if one exists, MACH_PORT_NULL otherwise.
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              IONotificationPortRef Function(ffi.Pointer<ffi.Void>)>>
+      GetDeviceAsyncNotificationPort;
+}
+
+typedef HRESULT = SInt32;
+typedef SInt32 = ffi.Int;
+typedef REFIID = CFUUIDBytes;
+
+class CFUUIDBytes extends ffi.Struct {
+  @UInt8()
   external int byte0;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte1;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte2;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte3;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte4;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte5;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte6;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte7;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte8;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte9;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte10;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte11;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte12;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte13;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte14;
 
-  @ffi.Uint8()
+  @UInt8()
   external int byte15;
 }
 
-class CFRunLoopSourceRef extends ffi.Opaque {}
+/// Base integer types for all target OS's and CPU's
+///
+/// UInt8            8-bit unsigned integer
+/// SInt8            8-bit signed integer
+/// UInt16          16-bit unsigned integer
+/// SInt16          16-bit signed integer
+/// UInt32          32-bit unsigned integer
+/// SInt32          32-bit signed integer
+/// UInt64          64-bit unsigned integer
+/// SInt64          64-bit signed integer
+typedef UInt8 = ffi.UnsignedChar;
+typedef LPVOID = ffi.Pointer<ffi.Void>;
+typedef ULONG = UInt32;
+typedef UInt32 = ffi.UnsignedInt;
+typedef CFRunLoopSourceRef = ffi.Pointer<__CFRunLoopSource>;
 
+class __CFRunLoopSource extends ffi.Opaque {}
+
+typedef mach_port_t = __darwin_mach_port_t;
+typedef __darwin_mach_port_t = __darwin_mach_port_name_t;
+typedef __darwin_mach_port_name_t = __darwin_natural_t;
+typedef __darwin_natural_t = ffi.UnsignedInt;
+typedef UInt16 = ffi.UnsignedShort;
+typedef USBDeviceAddress = UInt16;
+typedef IOUSBConfigurationDescriptorPtr
+    = ffi.Pointer<IOUSBConfigurationDescriptor>;
+
+/// !
+/// @typedef    IOUSBConfigurationDescriptor
+/// @discussion Standard USB Configuration Descriptor.  It is variable length, so this only specifies
+/// the known fields.  We use the wTotalLength field to read the whole descriptor.
+/// See the USB Specification at <a href="http://www.usb.org" target="_blank">http://www.usb.org</a>.
+/// USB 2.0 9.6.3: Configuration
 @ffi.Packed(1)
-class IOUSBConfigurationDescriptorPtr extends ffi.Struct {
+class IOUSBConfigurationDescriptor extends ffi.Struct {
   @ffi.Uint8()
   external int bLength;
 
@@ -2377,333 +3084,294 @@ class IOUSBConfigurationDescriptorPtr extends ffi.Struct {
   external int MaxPower;
 }
 
+typedef UInt64 = ffi.UnsignedLongLong;
+typedef AbsoluteTime = UnsignedWide;
+
 @ffi.Packed(2)
-class AbsoluteTime extends ffi.Struct {
-  @ffi.Uint32()
+class UnsignedWide extends ffi.Struct {
+  @UInt32()
   external int lo;
 
-  @ffi.Uint32()
+  @UInt32()
   external int hi;
 }
 
+/// !
+/// @struct IOUSBDevRequest
+/// @discussion Parameter block for control requests, using a simple pointer
+/// for the data to be transferred.
+/// @field bmRequestType Request type: kUSBStandard, kUSBClass or kUSBVendor
+/// @field bRequest Request code
+/// @field wValue 16 bit parameter for request, host endianess
+/// @field wIndex 16 bit parameter for request, host endianess
+/// @field wLength Length of data part of request, 16 bits, host endianess
+/// @field pData Pointer to data for request - data returned in bus endianess
+/// @field wLenDone Set by standard completion routine to number of data bytes
+/// actually transferred
 class IOUSBDevRequest extends ffi.Struct {
-  @ffi.Uint8()
+  @UInt8()
   external int bmRequestType;
 
-  @ffi.Uint8()
+  @UInt8()
   external int bRequest;
 
-  @ffi.Uint16()
+  @UInt16()
   external int wValue;
 
-  @ffi.Uint16()
+  @UInt16()
   external int wIndex;
 
-  @ffi.Uint16()
+  @UInt16()
   external int wLength;
 
   external ffi.Pointer<ffi.Void> pData;
 
-  @ffi.Uint32()
+  @UInt32()
   external int wLenDone;
 }
 
+/// ! @typedef IOAsyncCallback1
+/// @abstract standard callback function for asynchronous I/O requests with
+/// one extra argument beyond a refcon and result code.
+/// This is often a count of the number of bytes transferred
+/// @param refcon The refcon passed into the original I/O request
+/// @param result The result of the I/O operation
+/// @param arg0	Extra argument
+typedef IOAsyncCallback1 = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Void Function(
+            ffi.Pointer<ffi.Void>, IOReturn, ffi.Pointer<ffi.Void>)>>;
+
+/// !
+/// @struct IOUSBFindInterfaceRequest
+/// @discussion Structure used with FindNextInterface.
 class IOUSBFindInterfaceRequest extends ffi.Struct {
-  @ffi.Uint16()
+  @UInt16()
   external int bInterfaceClass;
 
-  @ffi.Uint16()
+  @UInt16()
   external int bInterfaceSubClass;
 
-  @ffi.Uint16()
+  @UInt16()
   external int bInterfaceProtocol;
 
-  @ffi.Uint16()
+  @UInt16()
   external int bAlternateSetting;
 }
 
+typedef io_iterator_t = io_object_t;
+typedef io_object_t = mach_port_t;
+
+/// !
+/// @struct IOUSBDevRequestTO
+/// @discussion Parameter block for control requests with timeouts, using a simple pointer
+/// for the data to be transferred.  Same as a IOUSBDevRequest except for the two extra timeout fields.
+/// @field bmRequestType Request type: kUSBStandard, kUSBClass or kUSBVendor
+/// @field bRequest Request code
+/// @field wValue 16 bit parameter for request, host endianess
+/// @field wIndex 16 bit parameter for request, host endianess
+/// @field wLength Length of data part of request, 16 bits, host endianess
+/// @field pData Pointer to data for request - data returned in bus endianess
+/// @field wLenDone Set by standard completion routine to number of data bytes
+/// actually transferred
+/// @field noDataTimeout Specifies a time value in milliseconds. Once the request is queued on the bus, if no data is transferred in this amount of time, the request will be aborted and returned.
+/// @field completionTimeout Specifies a time value in milliseconds. Once the request is queued on the bus, if the entire request is not completed in this amount of time, the request will be aborted and returned
 class IOUSBDevRequestTO extends ffi.Struct {
-  @ffi.Uint8()
+  @UInt8()
   external int bmRequestType;
 
-  @ffi.Uint8()
+  @UInt8()
   external int bRequest;
 
-  @ffi.Uint16()
+  @UInt16()
   external int wValue;
 
-  @ffi.Uint16()
+  @UInt16()
   external int wIndex;
 
-  @ffi.Uint16()
+  @UInt16()
   external int wLength;
 
   external ffi.Pointer<ffi.Void> pData;
 
-  @ffi.Uint32()
+  @UInt32()
   external int wLenDone;
 
-  @ffi.Uint32()
+  @UInt32()
   external int noDataTimeout;
 
-  @ffi.Uint32()
+  @UInt32()
   external int completionTimeout;
 }
 
+/// Boolean types and values
+///
+/// Boolean         Mac OS historic type, sizeof(Boolean)==1
+/// bool            Defined in stdbool.h, ISO C/C++ standard type
+/// false           Now defined in stdbool.h
+/// true            Now defined in stdbool.h
+typedef Boolean = ffi.UnsignedChar;
+
 class NumVersion extends ffi.Struct {
-  @ffi.Uint8()
+  @UInt8()
   external int nonRelRev;
 
-  @ffi.Uint8()
+  @UInt8()
   external int stage;
 
-  @ffi.Uint8()
+  @UInt8()
   external int minorAndBugRev;
 
-  @ffi.Uint8()
+  @UInt8()
   external int majorRev;
 }
 
-class IONotificationPortRef extends ffi.Opaque {}
+/// ! @typedef IOAsyncCallback2
+/// @abstract standard callback function for asynchronous I/O requests with
+/// two extra arguments beyond a refcon and result code.
+/// @param refcon The refcon passed into the original I/O request
+/// @param result The result of the I/O operation
+/// @param arg0	Extra argument
+/// @param arg1	Extra argument
+typedef IOAsyncCallback2 = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Void Function(ffi.Pointer<ffi.Void>, IOReturn,
+            ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>;
 
-class IOUSBDeviceInterface extends ffi.Struct {
-  external ffi.Pointer<ffi.Void> _reserved;
+/// ! @header IOKitLib
+/// IOKitLib implements non-kernel task access to common IOKit object types - IORegistryEntry, IOService, IOIterator etc. These functions are generic - families may provide API that is more specific.<br>
+/// IOKitLib represents IOKit objects outside the kernel with the types io_object_t, io_registry_entry_t, io_service_t, & io_connect_t. Function names usually begin with the type of object they are compatible with - eg. IOObjectRelease can be used with any io_object_t. Inside the kernel, the c++ class hierarchy allows the subclasses of each object type to receive the same requests from user level clients, for example in the kernel, IOService is a subclass of IORegistryEntry, which means any of the IORegistryEntryXXX functions in IOKitLib may be used with io_service_t's as well as io_registry_t's. There are functions available to introspect the class of the kernel object which any io_object_t et al. represents.
+/// IOKit objects returned by all functions should be released with IOObjectRelease.
+typedef IONotificationPortRef = ffi.Pointer<IONotificationPort>;
 
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_1>> QueryInterface;
+class IONotificationPort extends ffi.Opaque {}
 
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_2>> AddRef;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_3>> Release;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_4>>
-      CreateDeviceAsyncEventSource;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_5>>
-      GetDeviceAsyncEventSource;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_6>> CreateDeviceAsyncPort;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_7>> GetDeviceAsyncPort;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_8>> USBDeviceOpen;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_9>> USBDeviceClose;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_10>> GetDeviceClass;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_11>> GetDeviceSubClass;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_12>> GetDeviceProtocol;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_13>> GetDeviceVendor;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_14>> GetDeviceProduct;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_15>> GetDeviceReleaseNumber;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_16>> GetDeviceAddress;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_17>>
-      GetDeviceBusPowerAvailable;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_18>> GetDeviceSpeed;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_19>>
-      GetNumberOfConfigurations;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_20>> GetLocationID;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_21>>
-      GetConfigurationDescriptorPtr;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_22>> GetConfiguration;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_23>> SetConfiguration;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_24>> GetBusFrameNumber;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_25>> ResetDevice;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_26>> DeviceRequest;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_27>> DeviceRequestAsync;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_28>>
-      CreateInterfaceIterator;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_29>> USBDeviceOpenSeize;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_30>> DeviceRequestTO;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_31>> DeviceRequestAsyncTO;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_32>> USBDeviceSuspend;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_33>> USBDeviceAbortPipeZero;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_34>>
-      USBGetManufacturerStringIndex;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_35>>
-      USBGetProductStringIndex;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_36>>
-      USBGetSerialNumberStringIndex;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_37>> USBDeviceReEnumerate;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_38>> GetBusMicroFrameNumber;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_39>> GetIOUSBLibVersion;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_40>>
-      GetBusFrameNumberWithTime;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_41>>
-      GetUSBDeviceInformation;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_42>> RequestExtraPower;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_43>> ReturnExtraPower;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_44>> GetExtraPowerAllocated;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_45>>
-      GetBandwidthAvailableForDevice;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_46>> SetConfigurationV2;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_47>>
-      RegisterForNotification;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_48>> UnregisterNotification;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_49>>
-      AcknowledgeNotification;
-
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_50>>
-      GetDeviceAsyncNotificationPort;
-}
+typedef uint = ffi.UnsignedInt;
+typedef ssize_t = __darwin_ssize_t;
+typedef __darwin_ssize_t = ffi.Long;
+typedef ushort = ffi.UnsignedShort;
 
 class DeathAdder3_5g extends ffi.Struct {
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int poll;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int dpi;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int profile;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int leds;
 }
-
-class usb_device extends ffi.Opaque {}
-
-class hid_device extends ffi.Opaque {}
 
 class razer_mousemat_device extends ffi.Struct {
   external ffi.Pointer<usb_device> usbdev;
 
   external ffi.Pointer<hid_device> hiddev;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int effect;
 
   @ffi.Array.multi([128])
-  external ffi.Array<ffi.Int8> name;
+  external ffi.Array<ffi.Char> name;
 
   @ffi.Array.multi([64])
-  external ffi.Array<ffi.Int8> phys;
+  external ffi.Array<ffi.Char> phys;
 }
+
+class usb_device extends ffi.Opaque {}
+
+class hid_device extends ffi.Opaque {}
 
 class razer_headphone_device extends ffi.Struct {
   external ffi.Pointer<usb_device> usbdev;
 
   external ffi.Pointer<hid_device> hiddev;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int effect;
 
   @ffi.Array.multi([128])
-  external ffi.Array<ffi.Int8> name;
+  external ffi.Array<ffi.Char> name;
 
   @ffi.Array.multi([64])
-  external ffi.Array<ffi.Int8> phys;
+  external ffi.Array<ffi.Char> phys;
 }
 
 class razer_kraken_device extends ffi.Struct {
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int usb_interface_protocol;
 
-  @ffi.Uint16()
+  @ffi.UnsignedShort()
   external int usb_pid;
 
-  @ffi.Uint16()
+  @ffi.UnsignedShort()
   external int usb_vid;
 
-  @ffi.Uint16()
+  @ffi.UnsignedShort()
   external int led_mode_address;
 
-  @ffi.Uint16()
+  @ffi.UnsignedShort()
   external int custom_address;
 
   @ffi.Array.multi([3])
-  external ffi.Array<ffi.Uint16> breathing_address;
+  external ffi.Array<ffi.UnsignedShort> breathing_address;
 
   @ffi.Array.multi([23])
-  external ffi.Array<ffi.Int8> serial;
+  external ffi.Array<ffi.Char> serial;
 
   @ffi.Array.multi([3])
-  external ffi.Array<ffi.Uint8> firmware_version;
+  external ffi.Array<ffi.UnsignedChar> firmware_version;
 
   @ffi.Array.multi([33])
-  external ffi.Array<ffi.Int8> data;
+  external ffi.Array<ffi.Char> data;
 }
 
+class razer_kraken_effect_byte extends ffi.Opaque {}
+
 class razer_kraken_request_report extends ffi.Struct {
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int report_id;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int destination;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int length;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int addr_h;
 
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int addr_l;
 
   @ffi.Array.multi([32])
-  external ffi.Array<ffi.Uint8> arguments;
+  external ffi.Array<ffi.UnsignedChar> arguments;
 }
 
 class razer_kraken_response_report extends ffi.Struct {
-  @ffi.Uint8()
+  @ffi.UnsignedChar()
   external int report_id;
 
   @ffi.Array.multi([36])
-  external ffi.Array<ffi.Uint8> arguments;
+  external ffi.Array<ffi.UnsignedChar> arguments;
 }
 
 class RazerDevice extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usbDevice;
 
-  @ffi.Uint16()
+  @UInt16()
   external int productId;
 
-  @ffi.Int32()
+  @ffi.Int()
   external int internalDeviceId;
 }
 
 class RazerDevices extends ffi.Struct {
   external ffi.Pointer<RazerDevice> devices;
 
-  @ffi.Int32()
+  @ffi.Int()
   external int size;
 }
 
@@ -2725,6 +3393,10 @@ const int OFF = 0;
 
 const int ON = 1;
 
+const int NOSTORE = 0;
+
+const int VARSTORE = 1;
+
 const int ZERO_LED = 0;
 
 const int SCROLL_WHEEL_LED = 1;
@@ -2739,6 +3411,8 @@ const int MACRO_LED = 7;
 
 const int GAME_LED = 8;
 
+const int BASILISK_V3_BASE_LED = 10;
+
 const int RED_PROFILE_LED = 12;
 
 const int GREEN_PROFILE_LED = 13;
@@ -2748,10 +3422,6 @@ const int BLUE_PROFILE_LED = 14;
 const int RIGHT_SIDE_LED = 16;
 
 const int LEFT_SIDE_LED = 17;
-
-const int NOSTORE = 0;
-
-const int VARSTORE = 1;
 
 const int LED_STATIC = 0;
 
@@ -2839,6 +3509,8 @@ const int USB_DEVICE_ID_RAZER_BLACKWIDOW_ELITE = 552;
 
 const int USB_DEVICE_ID_RAZER_CYNOSA_CHROMA = 554;
 
+const int USB_DEVICE_ID_RAZER_CYNOSA_CHROMA_PRO = 556;
+
 const int USB_DEVICE_ID_RAZER_TARTARUS_V2 = 555;
 
 const int USB_DEVICE_ID_RAZER_BLADE_STEALTH_MID_2017 = 557;
@@ -2848,6 +3520,8 @@ const int USB_DEVICE_ID_RAZER_BLADE_PRO_2017_FULLHD = 559;
 const int USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2017 = 562;
 
 const int USB_DEVICE_ID_RAZER_BLADE_2018 = 563;
+
+const int USB_DEVICE_ID_RAZER_BLADE_PRO_2019 = 564;
 
 const int USB_DEVICE_ID_RAZER_BLACKWIDOW_LITE = 565;
 
@@ -2880,6 +3554,18 @@ const int USB_DEVICE_ID_RAZER_CYNOSA_LITE = 575;
 const int USB_DEVICE_ID_RAZER_BLACKWIDOW_V3_TK = 2596;
 
 const int USB_DEVICE_ID_RAZER_HUNTSMAN_MINI = 599;
+
+const int USB_DEVICE_ID_RAZER_BLACKWIDOW_V3_MINI_WIRED = 600;
+
+const int USB_DEVICE_ID_RAZER_BLACKWIDOW_V3_PRO_WIRED = 602;
+
+const int USB_DEVICE_ID_RAZER_HUNTSMAN_V2_ANALOG = 614;
+
+const int USB_DEVICE_ID_RAZER_HUNTSMAN_V2 = 620;
+
+const int USB_DEVICE_ID_RAZER_HUNTSMAN_V2_TKL = 619;
+
+const int USB_DEVICE_ID_RAZER_BLACKWIDOW_V3_MINI_WIRELESS = 625;
 
 const int RAZER_BLACKWIDOW_REPORT_LEN = 90;
 
@@ -2932,6 +3618,10 @@ const int RAZER_BLACKWIDOW_CHROMA_WAIT_MS = 1;
 const int RAZER_BLACKWIDOW_CHROMA_WAIT_MIN_US = 600;
 
 const int RAZER_BLACKWIDOW_CHROMA_WAIT_MAX_US = 800;
+
+const int RAZER_BLACKWIDOW_V3_WIRELESS_WAIT_MIN_US = 4900;
+
+const int RAZER_BLACKWIDOW_V3_WIRELESS_WAIT_MAX_US = 5000;
 
 const int RAZER_FIREFLY_WAIT_MIN_US = 900;
 
@@ -3003,11 +3693,17 @@ const int USB_DEVICE_ID_RAZER_ATHERIS_RECEIVER = 98;
 
 const int USB_DEVICE_ID_RAZER_BASILISK = 100;
 
+const int USB_DEVICE_ID_RAZER_BASILISK_ESSENTIAL = 101;
+
 const int USB_DEVICE_ID_RAZER_BASILISK_ULTIMATE = 134;
 
 const int USB_DEVICE_ID_RAZER_BASILISK_ULTIMATE_RECEIVER = 136;
 
 const int USB_DEVICE_ID_RAZER_NAGA_TRINITY = 103;
+
+const int USB_DEVICE_ID_RAZER_NAGA_PRO_WIRELESS = 144;
+
+const int USB_DEVICE_ID_RAZER_NAGA_PRO_WIRED = 143;
 
 const int USB_DEVICE_ID_RAZER_ABYSSUS_ELITE_DVA_EDITION = 106;
 
@@ -3049,6 +3745,16 @@ const int USB_DEVICE_ID_RAZER_BASILISK_V2 = 133;
 
 const int USB_DEVICE_ID_RAZER_NAGA_LEFT_HANDED_2020 = 141;
 
+const int USB_DEVICE_ID_RAZER_DEATHADDER_ESSENTIAL_2021 = 152;
+
+const int USB_DEVICE_ID_RAZER_BASILISK_V3 = 153;
+
+const int USB_DEVICE_ID_RAZER_OROCHI_V2_RECEIVER = 148;
+
+const int USB_DEVICE_ID_RAZER_OROCHI_V2 = 149;
+
+const int USB_DEVICE_ID_RAZER_OROCHI_V2_BLUETOOTH = 149;
+
 const int RAZER_REPORT_LEN = 90;
 
 const int RAZER_MAMBA_ROW_LEN = 15;
@@ -3064,6 +3770,10 @@ const int RAZER_MOUSE_WAIT_MAX_US = 800;
 const int RAZER_NEW_MOUSE_RECEIVER_WAIT_MIN_US = 31000;
 
 const int RAZER_NEW_MOUSE_RECEIVER_WAIT_MAX_US = 31100;
+
+const int RAZER_ATHERIS_RECEIVER_WAIT_MIN_US = 400000;
+
+const int RAZER_ATHERIS_RECEIVER_WAIT_MAX_US = 400100;
 
 const int RAZER_VIPER_MOUSE_RECEIVER_WAIT_MIN_US = 59900;
 
@@ -3129,6 +3839,8 @@ const int KYLIE_BREATHING2_ADDRESS_START = 5957;
 
 const int KYLIE_BREATHING3_ADDRESS_START = 5965;
 
+const int USB_DEVICE_ID_RAZER_MOUSE_DOCK = 126;
+
 const int USB_DEVICE_ID_RAZER_NOMMO_CHROMA = 1303;
 
 const int USB_DEVICE_ID_RAZER_NOMMO_PRO = 1304;
@@ -3143,9 +3855,15 @@ const int USB_DEVICE_ID_RAZER_MOUSE_BUNGEE_V3_CHROMA = 3869;
 
 const int USB_DEVICE_ID_RAZER_BASE_STATION_V2_CHROMA = 3872;
 
+const int USB_DEVICE_ID_RAZER_THUNDERBOLT_4_DOCK_CHROMA = 3873;
+
 const int RAZER_ACCESSORY_WAIT_MIN_US = 600;
 
 const int RAZER_ACCESSORY_WAIT_MAX_US = 1000;
+
+const int RAZER_NEW_DEVICE_WAIT_MIN_US = 31000;
+
+const int RAZER_NEW_DEVICE_WAIT_MAX_US = 31100;
 
 const int TYPE_KEYBOARD = 0;
 
@@ -3164,1637 +3882,3 @@ const int TYPE_HEADPHONE = 6;
 const int TYPE_ACCESSORY = 7;
 
 const int USB_VENDOR_ID_RAZER = 5426;
-
-typedef _c_razer_send_control_msg = ffi.Int32 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Void> data,
-  ffi.Uint32 report_index,
-);
-
-typedef _dart_razer_send_control_msg = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Void> data,
-  int report_index,
-);
-
-typedef _c_razer_send_control_msg_old_device = ffi.Int32 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Void> data,
-  ffi.Uint32 report_value,
-  ffi.Uint32 report_index,
-  ffi.Uint32 report_size,
-);
-
-typedef _dart_razer_send_control_msg_old_device = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Void> data,
-  int report_value,
-  int report_index,
-  int report_size,
-);
-
-typedef _c_razer_get_usb_response = ffi.Int32 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Uint32 report_index,
-  ffi.Pointer<razer_report> request_report,
-  ffi.Uint32 response_index,
-  ffi.Pointer<razer_report> response_report,
-  ffi.Int32 wait_us,
-);
-
-typedef _dart_razer_get_usb_response = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  int report_index,
-  ffi.Pointer<razer_report> request_report,
-  int response_index,
-  ffi.Pointer<razer_report> response_report,
-  int wait_us,
-);
-
-typedef _c_razer_calculate_crc = ffi.Uint8 Function(
-  ffi.Pointer<razer_report> report,
-);
-
-typedef _dart_razer_calculate_crc = int Function(
-  ffi.Pointer<razer_report> report,
-);
-
-typedef _c_clamp_u8 = ffi.Uint8 Function(
-  ffi.Uint8 value,
-  ffi.Uint8 min,
-  ffi.Uint8 max,
-);
-
-typedef _dart_clamp_u8 = int Function(
-  int value,
-  int min,
-  int max,
-);
-
-typedef _c_clamp_u16 = ffi.Uint16 Function(
-  ffi.Uint16 value,
-  ffi.Uint16 min,
-  ffi.Uint16 max,
-);
-
-typedef _dart_clamp_u16 = int Function(
-  int value,
-  int min,
-  int max,
-);
-
-typedef _c_is_blade_laptop = ffi.Uint8 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_is_blade_laptop = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_read_mode_game = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_mode_game = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_write_mode_macro = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_macro = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_macro_effect = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_macro_effect = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_read_mode_macro_effect = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_mode_macro_effect = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_write_mode_pulsate = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_pulsate = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_read_mode_pulsate = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_mode_pulsate = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_read_tartarus_profile_led_red = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_tartarus_profile_led_red = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_read_tartarus_profile_led_green = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_tartarus_profile_led_green = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_read_tartarus_profile_led_blue = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_tartarus_profile_led_blue = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_read_get_firmware_version = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_get_firmware_version = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_write_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-  ffi.Int32 speed,
-);
-
-typedef _dart_razer_attr_write_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-  int speed,
-);
-
-typedef _c_razer_attr_write_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_reactive = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_reactive = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_starlight = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_starlight = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_read_set_logo = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_read_set_logo = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_set_logo = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_set_logo = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_mode_custom = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_mode_custom = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_set_fn_toggle = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_set_fn_toggle = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_set_brightness = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint16 brightness,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_set_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-  int count,
-);
-
-typedef _c_razer_attr_read_set_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_set_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_matrix_custom_frame = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Int32 count,
-);
-
-typedef _dart_razer_attr_write_matrix_custom_frame = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_left_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_left_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_right_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_right_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_left_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_left_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_right_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_right_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_left_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_left_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_right_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_right_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_left_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_left_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_right_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_right_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_left_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_left_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_right_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_right_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_left_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_left_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_right_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_right_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_mode_reactive = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_mode_reactive = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_mode_reactive = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_mode_reactive = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_side_mode_reactive = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-  ffi.Int32 side,
-);
-
-typedef _dart_razer_attr_write_side_mode_reactive = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-  int side,
-);
-
-typedef _c_razer_attr_write_left_mode_reactive = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_left_mode_reactive = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_right_mode_reactive = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_right_mode_reactive = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_read_dpi = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_dpi = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_dpi = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint16 dpi_x,
-  ffi.Uint16 dpi_y,
-);
-
-typedef _dart_razer_attr_write_dpi = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int dpi_x,
-  int dpi_y,
-);
-
-typedef _c_razer_attr_read_poll_rate = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_poll_rate = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_poll_rate = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint16 polling_rate,
-);
-
-typedef _dart_razer_attr_write_poll_rate = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int polling_rate,
-);
-
-typedef _c_razer_attr_read_matrix_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_matrix_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_matrix_brightness = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint8 brightness,
-);
-
-typedef _dart_razer_attr_write_matrix_brightness = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-);
-
-typedef _c_razer_attr_read_scroll_led_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_scroll_led_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_scroll_led_brightness = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint8 brightness,
-);
-
-typedef _dart_razer_attr_write_scroll_led_brightness = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-);
-
-typedef _c_razer_attr_read_logo_led_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_logo_led_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_logo_led_brightness = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint8 brightness,
-);
-
-typedef _dart_razer_attr_write_logo_led_brightness = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-);
-
-typedef _c_razer_attr_read_left_led_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_left_led_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_left_led_brightness = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint8 brightness,
-);
-
-typedef _dart_razer_attr_write_left_led_brightness = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-);
-
-typedef _c_razer_attr_read_right_led_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_attr_read_right_led_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_attr_write_right_led_brightness = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint8 brightness,
-);
-
-typedef _dart_razer_attr_write_right_led_brightness = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-);
-
-typedef _c_razer_attr_write_logo_led_effect = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_led_effect = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_scroll_led_effect = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_scroll_led_effect = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_write_logo_led_rgb = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_attr_write_logo_led_rgb = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_attr_read_get_battery = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_get_battery = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_attr_read_is_charging = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _dart_razer_attr_read_is_charging = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-);
-
-typedef _c_razer_mouse_dock_attr_write_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_dock_attr_write_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_dock_attr_write_mode_static_no_store = ffi.Int64
-    Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_dock_attr_write_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_dock_attr_write_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_dock_attr_write_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_dock_attr_write_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_dock_attr_write_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_dock_attr_write_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_dock_attr_write_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_write_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_mat_attr_write_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_write_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_mat_attr_write_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_write_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_mat_attr_write_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_write_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_mat_attr_write_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_write_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_mat_attr_write_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_write_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_mat_attr_write_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_write_set_brightness = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint16 brightness,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_mouse_mat_attr_write_set_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-  int count,
-);
-
-typedef _c_razer_mouse_mat_attr_read_set_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_mouse_mat_attr_read_set_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_headphone_attr_write_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_headphone_attr_write_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_headphone_attr_write_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_headphone_attr_write_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_headphone_attr_write_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_headphone_attr_write_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_headphone_attr_write_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_headphone_attr_write_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_headphone_attr_write_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_headphone_attr_write_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_egpu_attr_write_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_egpu_attr_write_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_egpu_attr_write_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_egpu_attr_write_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_egpu_attr_write_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_egpu_attr_write_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_egpu_attr_write_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_egpu_attr_write_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_egpu_attr_write_mode_static_no_store = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_egpu_attr_write_mode_static_no_store = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_egpu_attr_write_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_egpu_attr_write_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_kraken_attr_write_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_kraken_attr_write_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_kraken_attr_write_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_kraken_attr_write_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_kraken_attr_write_mode_custom = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_kraken_attr_write_mode_custom = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_kraken_attr_write_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_kraken_attr_write_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_kraken_attr_write_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_kraken_attr_write_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_accessory_attr_write_mode_none = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_accessory_attr_write_mode_none = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_accessory_attr_write_mode_spectrum = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_accessory_attr_write_mode_spectrum = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_accessory_attr_write_mode_wave = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-  ffi.Int32 speed,
-);
-
-typedef _dart_razer_accessory_attr_write_mode_wave = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-  int speed,
-);
-
-typedef _c_razer_accessory_attr_write_mode_static = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_accessory_attr_write_mode_static = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_accessory_attr_write_mode_breath = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_accessory_attr_write_mode_breath = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Pointer<ffi.Int8> buf,
-  int count,
-);
-
-typedef _c_razer_accessory_attr_read_set_brightness = ffi.Uint16 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _dart_razer_accessory_attr_read_set_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-);
-
-typedef _c_razer_accessory_attr_write_set_brightness = ffi.Int64 Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  ffi.Uint16 brightness,
-  ffi.Uint64 count,
-);
-
-typedef _dart_razer_accessory_attr_write_set_brightness = int Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> usb_dev,
-  int brightness,
-  int count,
-);
-
-typedef _c_getRazerUSBDeviceInterface
-    = ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> Function(
-  ffi.Int32 type,
-);
-
-typedef _dart_getRazerUSBDeviceInterface
-    = ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> Function(
-  int type,
-);
-
-typedef _c_closeRazerUSBDeviceInterface = ffi.Void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-);
-
-typedef _dart_closeRazerUSBDeviceInterface = void Function(
-  ffi.Pointer<ffi.Pointer<IOUSBDeviceInterface>> dev,
-);
-
-typedef _c_getAllRazerDevices = RazerDevices Function();
-
-typedef _dart_getAllRazerDevices = RazerDevices Function();
-
-typedef _c_closeAllRazerDevices = ffi.Void Function(
-  RazerDevices devices,
-);
-
-typedef _dart_closeAllRazerDevices = void Function(
-  RazerDevices devices,
-);
-
-typedef _typedefC_1 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  REFIID,
-  ffi.Pointer<ffi.Pointer<ffi.Void>>,
-);
-
-typedef _typedefC_2 = ffi.Uint32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_3 = ffi.Uint32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_4 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Pointer<CFRunLoopSourceRef>>,
-);
-
-typedef _typedefC_5 = ffi.Pointer<CFRunLoopSourceRef> Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_6 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_7 = ffi.Uint32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_8 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_9 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_10 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_11 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_12 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_13 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint16>,
-);
-
-typedef _typedefC_14 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint16>,
-);
-
-typedef _typedefC_15 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint16>,
-);
-
-typedef _typedefC_16 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint16>,
-);
-
-typedef _typedefC_17 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_18 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_19 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_20 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_21 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint8,
-  ffi.Pointer<ffi.Pointer<IOUSBConfigurationDescriptorPtr>>,
-);
-
-typedef _typedefC_22 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_23 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint8,
-);
-
-typedef _typedefC_24 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint64>,
-  ffi.Pointer<AbsoluteTime>,
-);
-
-typedef _typedefC_25 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_26 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<IOUSBDevRequest>,
-);
-
-typedef IOAsyncCallback1 = ffi.Void Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Int32,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_27 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<IOUSBDevRequest>,
-  ffi.Pointer<ffi.NativeFunction<IOAsyncCallback1>>,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_28 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<IOUSBFindInterfaceRequest>,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_29 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_30 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<IOUSBDevRequestTO>,
-);
-
-typedef _typedefC_31 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<IOUSBDevRequestTO>,
-  ffi.Pointer<ffi.NativeFunction<IOAsyncCallback1>>,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_32 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint8,
-);
-
-typedef _typedefC_33 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_34 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_35 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_36 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint8>,
-);
-
-typedef _typedefC_37 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint32,
-);
-
-typedef _typedefC_38 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint64>,
-  ffi.Pointer<AbsoluteTime>,
-);
-
-typedef _typedefC_39 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<NumVersion>,
-  ffi.Pointer<NumVersion>,
-);
-
-typedef _typedefC_40 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint64>,
-  ffi.Pointer<AbsoluteTime>,
-);
-
-typedef _typedefC_41 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_42 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint32,
-  ffi.Uint32,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_43 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint32,
-  ffi.Uint32,
-);
-
-typedef _typedefC_44 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint32,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_45 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint32>,
-);
-
-typedef _typedefC_46 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint8,
-  ffi.Uint8,
-  ffi.Uint8,
-);
-
-typedef IOAsyncCallback2 = ffi.Void Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Int32,
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_47 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint64,
-  ffi.Pointer<ffi.NativeFunction<IOAsyncCallback2>>,
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Uint64>,
-);
-
-typedef _typedefC_48 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint64,
-);
-
-typedef _typedefC_49 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint64,
-);
-
-typedef _typedefC_50 = ffi.Pointer<IONotificationPortRef> Function(
-  ffi.Pointer<ffi.Void>,
-);

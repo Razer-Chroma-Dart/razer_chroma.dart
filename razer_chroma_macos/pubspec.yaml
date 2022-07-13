@@ -34,16 +34,9 @@ ffigen:
   output: lib/src/driver.dart
   headers:
     entry-points:
-      - 'driver/src/include/razeraccessory_driver.h'
       - 'driver/src/include/razerchromacommon.h'
-      - 'driver/src/include/razercommon.h'
       - 'driver/src/include/razerdevice.h'
-      - 'driver/src/include/razeregpu_driver.h'
-      - 'driver/src/include/razerheadphone_driver.h'
-      - 'driver/src/include/razerkbd_driver.h'
-      - 'driver/src/include/razerkraken_driver.h'
-      - 'driver/src/include/razermouse_driver.h'
-      - 'driver/src/include/razermousedock_driver.h'
-      - 'driver/src/include/razermousemat_driver.h'
     include-directives:
       - 'driver/src/include/**.h'
+  compiler-opts: -Iinclude
+

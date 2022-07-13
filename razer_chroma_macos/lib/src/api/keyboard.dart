@@ -28,12 +28,12 @@ mixin KeyboardApi on BaseClient {
     bool rightToLeft = false,
     int speed = 0x28,
   }) {
-    final directionPointer = malloc<Int8>();
+    final directionPointer = malloc<Char>();
     directionPointer.value = rightToLeft ? 0x32 : 0x31;
     binding.razer_attr_write_mode_wave(
       device.nativeRazerDevice.usbDevice,
       directionPointer,
-      sizeOf<Int8>(),
+      sizeOf<Char>(),
       speed,
     );
     malloc.free(directionPointer);
