@@ -4,22 +4,22 @@ version: 0.1.0
 homepage: https://github.com/Razer-Chroma-Dart/razer_chroma.dart/tree/master/razer_chroma_rest_client
 
 environment:
-  sdk: '>=2.13.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
   ## Language
-  meta: ^1.4.0
+  meta: ^1.8.0
 
   ## Razer Chroma
   razer_chroma_rest_core:
     path: '../razer_chroma_rest_core'
 
   ## Communication
-  http: ^0.13.3
+  http: ^0.13.4
 
 dev_dependencies:
   ## Language
-  lint: ^1.5.3
+  lint: ^1.8.2
 
   ## Example
   circular_buffer: ^0.9.1

@@ -4,13 +4,13 @@ version: 0.1.0
 homepage: https://github.com/Razer-Chroma-Dart/razer_chroma_macos
 
 environment:
-  sdk: '>=2.13.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
   ## Language
-  meta: ^1.4.0
-  collection: ^1.15.0
-  ffi: ^1.1.2
+  meta: ^1.8.0
+  collection: ^1.16.0
+  ffi: ^2.0.1
 
   ## Razer Chroma
   razer_chroma:
@@ -18,13 +18,13 @@ dependencies:
 
 dev_dependencies:
   ## Linting
-  lint: ^1.5.3
+  lint: ^1.8.2
 
   ## Code generation
-  ffigen: ^3.0.0
+  ffigen: ^6.0.1
 
   ## Example
-  path: ^1.8.0
+  path: ^1.8.2
 
 ffigen:
   name: RazerMacOSDriver
@@ -32,11 +32,11 @@ ffigen:
   output: lib/src/driver.dart
   headers:
     entry-points:
+      - 'driver/src/include/razeraccessory_driver.h'
+      - 'driver/src/include/razerchromacommon.h'
       - 'driver/src/include/razercommon.h'
       - 'driver/src/include/razerdevice.h'
-      - 'driver/src/include/razerchromacommon.h'
-      - 'driver/src/include/razeraccessory_driver.h'
-      - 'driver/src/include/razergpu_driver.h'
+      - 'driver/src/include/razeregpu_driver.h'
       - 'driver/src/include/razerheadphone_driver.h'
       - 'driver/src/include/razerkbd_driver.h'
       - 'driver/src/include/razerkraken_driver.h'
