@@ -163,55 +163,19 @@ mixin KeyboardApi on BaseClient {
   ///
   /// Format: `ROW_ID START_COL STOP_COL RGB...`
   ///
-  /// Note: This is a very low-level API, for fine-grained, optimized control.
-  /// See [kbdSetCustomMatrix] for an higher-level API that does the same thing.
-  void kbdSetCustomFrame(RazerMacOSDevice device, Uint8List data) {
-    final dataSize = data.length * sizeOf<Uint8>();
+  /// See also:
+  ///
+  /// * [KeyboardFrameSegmentGenerator], which has useful methods for generating
+  ///   [frameData].
+  void kbdSetCustomFrame(RazerMacOSDevice device, Uint8List frameData) {
+    final dataSize = frameData.length * sizeOf<Uint8>();
     final dataPointer = malloc.allocate<Uint8>(dataSize);
-    dataPointer.asTypedList(data.length).setAll(0, data);
+    dataPointer.asTypedList(frameData.length).setAll(0, frameData);
     binding.razer_attr_write_matrix_custom_frame(
       device.nativeRazerDevice.usbDevice,
       dataPointer.cast(),
       dataSize,
     );
     malloc.free(dataPointer);
-  }
-
-  /// Display a custom 6x22 color matrix on the keyboard.
-  ///
-  /// Note: This function sends the entire 6x22 frame in every invocation.
-  /// For finer control, to write to specific areas, use [kbdSetCustomFrame].
-  void kbdSetCustomMatrix(RazerMacOSDevice device, List<List<Color>> colors) {
-    assert(colors.length == 6, 'There must be 6 rows in the matrix.');
-    assert(
-      colors.every((row) => row.length == 22),
-      'There must be 22 columns in each row.',
-    );
-    const rowCount = 6;
-    const columnCount = 22;
-
-    var offset = 0;
-    final frame = Uint8List(
-      // (ROW_ID + START_COL + STOP_COL + (R + G + B) * columnCount) * rowCount
-      (3 + 3 * columnCount) * rowCount,
-    );
-    for (var rowId = 0; rowId < rowCount; ++rowId) {
-      final row = colors[rowId];
-      // Write the ROW_ID value.
-      frame[offset++] = rowId;
-      // Write the START_COL value.
-      frame[offset++] = 0;
-      // Write the STOP_COL value.
-      frame[offset++] = columnCount - 1;
-      // Write the RGB values.
-      for (var columnIndex = 0; columnIndex < columnCount; ++columnIndex) {
-        final rgbColor = row[columnIndex].toRgbColor();
-        frame[offset++] = rgbColor.r.round();
-        frame[offset++] = rgbColor.g.round();
-        frame[offset++] = rgbColor.b.round();
-      }
-    }
-
-    kbdSetCustomFrame(device, frame);
   }
 }
