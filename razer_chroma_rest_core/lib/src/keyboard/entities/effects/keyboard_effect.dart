@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:razer_chroma_rest_core/src/effects/entities/device_effect.dart';
+import 'package:razer_chroma_rest_core/src/keyboard/entities/effects/custom_key_keyboard_effect_parameters.dart';
 import 'package:razer_chroma_rest_core/src/keyboard/entities/effects/static_keyboard_effect_parameters.dart';
 import 'package:razer_chroma_rest_core/src/keyboard/entities/effects/wave_keyboard_effect_parameters.dart';
 
@@ -24,11 +25,6 @@ class KeyboardEffect with _$KeyboardEffect implements DeviceEffect {
 
   /// An effect that shows a custom set of colors.
   @FreezedUnionValue('CHROMA_CUSTOM')
-  @Assert('colors.length == 6')
-  @Assert('colors.every((row) => row.length == 22)')
-  @Assert(
-    'colors.every((row) => row.every((color) => color >= 0 && color <= 0xFFFFFF))',
-  )
   factory KeyboardEffect.custom(
     /// A list of 6 rows of 22 key colors to display on the keyboard.
     /// Colors are in the 0xBBGGRR format.
@@ -36,13 +32,10 @@ class KeyboardEffect with _$KeyboardEffect implements DeviceEffect {
   ) = CustomKeyboardEffect;
 
   /// An more modern alternative to [KeyboardEffect.custom].
-  ///
-  /// This is a stub.
-  // TODO: Implement CHROMA_CUSTOM_KEY keyboard effect.
   @FreezedUnionValue('CHROMA_CUSTOM_KEY')
   const factory KeyboardEffect.customKey(
     @JsonKey(name: DeviceEffect.parametersKey)
-        Map<String, List<List<int>>> param,
+        CustomKeyKeyboardEffectParameters parameters,
   ) = CustomKeyKeyboardEffect;
 
   /// A wave effect.

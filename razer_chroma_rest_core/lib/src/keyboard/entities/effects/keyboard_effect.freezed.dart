@@ -47,7 +47,7 @@ mixin _$KeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)
+                CustomKeyKeyboardEffectParameters parameters)
         customKey,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -67,7 +67,7 @@ mixin _$KeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -87,7 +87,7 @@ mixin _$KeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -203,7 +203,7 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)
+                CustomKeyKeyboardEffectParameters parameters)
         customKey,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -226,7 +226,7 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -249,7 +249,7 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -416,7 +416,7 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)
+                CustomKeyKeyboardEffectParameters parameters)
         customKey,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -439,7 +439,7 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -462,7 +462,7 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -577,11 +577,7 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
   _$CustomKeyboardEffect(
       @JsonKey(name: DeviceEffect.parametersKey) final List<List<int>> colors,
       {final String? $type})
-      : assert(colors.length == 6),
-        assert(colors.every((row) => row.length == 22)),
-        assert(colors.every(
-            (row) => row.every((color) => color >= 0 && color <= 0xFFFFFF))),
-        _colors = colors,
+      : _colors = colors,
         $type = $type ?? 'CHROMA_CUSTOM';
 
   factory _$CustomKeyboardEffect.fromJson(Map<String, dynamic> json) =>
@@ -640,7 +636,7 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)
+                CustomKeyKeyboardEffectParameters parameters)
         customKey,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -663,7 +659,7 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -686,7 +682,7 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -770,7 +766,9 @@ abstract class _$$CustomKeyKeyboardEffectCopyWith<$Res> {
       __$$CustomKeyKeyboardEffectCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: DeviceEffect.parametersKey)
-          Map<String, List<List<int>>> param});
+          CustomKeyKeyboardEffectParameters parameters});
+
+  $CustomKeyKeyboardEffectParametersCopyWith<$Res> get parameters;
 }
 
 /// @nodoc
@@ -787,14 +785,22 @@ class __$$CustomKeyKeyboardEffectCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? param = freezed,
+    Object? parameters = freezed,
   }) {
     return _then(_$CustomKeyKeyboardEffect(
-      param == freezed
-          ? _value._param
-          : param // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<List<int>>>,
+      parameters == freezed
+          ? _value.parameters
+          : parameters // ignore: cast_nullable_to_non_nullable
+              as CustomKeyKeyboardEffectParameters,
     ));
+  }
+
+  @override
+  $CustomKeyKeyboardEffectParametersCopyWith<$Res> get parameters {
+    return $CustomKeyKeyboardEffectParametersCopyWith<$Res>(_value.parameters,
+        (value) {
+      return _then(_value.copyWith(parameters: value));
+    });
   }
 }
 
@@ -802,29 +808,23 @@ class __$$CustomKeyKeyboardEffectCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
   const _$CustomKeyKeyboardEffect(
-      @JsonKey(name: DeviceEffect.parametersKey)
-          final Map<String, List<List<int>>> param,
+      @JsonKey(name: DeviceEffect.parametersKey) this.parameters,
       {final String? $type})
-      : _param = param,
-        $type = $type ?? 'CHROMA_CUSTOM_KEY';
+      : $type = $type ?? 'CHROMA_CUSTOM_KEY';
 
   factory _$CustomKeyKeyboardEffect.fromJson(Map<String, dynamic> json) =>
       _$$CustomKeyKeyboardEffectFromJson(json);
 
-  final Map<String, List<List<int>>> _param;
   @override
   @JsonKey(name: DeviceEffect.parametersKey)
-  Map<String, List<List<int>>> get param {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_param);
-  }
+  final CustomKeyKeyboardEffectParameters parameters;
 
   @JsonKey(name: 'effect')
   final String $type;
 
   @override
   String toString() {
-    return 'KeyboardEffect.customKey(param: $param)';
+    return 'KeyboardEffect.customKey(parameters: $parameters)';
   }
 
   @override
@@ -832,13 +832,14 @@ class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CustomKeyKeyboardEffect &&
-            const DeepCollectionEquality().equals(other._param, _param));
+            const DeepCollectionEquality()
+                .equals(other.parameters, parameters));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_param));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(parameters));
 
   @JsonKey(ignore: true)
   @override
@@ -859,14 +860,14 @@ class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)
+                CustomKeyKeyboardEffectParameters parameters)
         customKey,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)
         wave,
   }) {
-    return customKey(param);
+    return customKey(parameters);
   }
 
   @override
@@ -882,14 +883,14 @@ class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
         wave,
   }) {
-    return customKey?.call(param);
+    return customKey?.call(parameters);
   }
 
   @override
@@ -905,7 +906,7 @@ class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -914,7 +915,7 @@ class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
     required TResult orElse(),
   }) {
     if (customKey != null) {
-      return customKey(param);
+      return customKey(parameters);
     }
     return orElse();
   }
@@ -967,14 +968,15 @@ class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
 
 abstract class CustomKeyKeyboardEffect implements KeyboardEffect {
   const factory CustomKeyKeyboardEffect(
-      @JsonKey(name: DeviceEffect.parametersKey)
-          final Map<String, List<List<int>>> param) = _$CustomKeyKeyboardEffect;
+          @JsonKey(name: DeviceEffect.parametersKey)
+              final CustomKeyKeyboardEffectParameters parameters) =
+      _$CustomKeyKeyboardEffect;
 
   factory CustomKeyKeyboardEffect.fromJson(Map<String, dynamic> json) =
       _$CustomKeyKeyboardEffect.fromJson;
 
   @JsonKey(name: DeviceEffect.parametersKey)
-  Map<String, List<List<int>>> get param;
+  CustomKeyKeyboardEffectParameters get parameters;
   @JsonKey(ignore: true)
   _$$CustomKeyKeyboardEffectCopyWith<_$CustomKeyKeyboardEffect> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1083,7 +1085,7 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)
+                CustomKeyKeyboardEffectParameters parameters)
         customKey,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -1106,7 +1108,7 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
@@ -1129,7 +1131,7 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
-                Map<String, List<List<int>>> param)?
+                CustomKeyKeyboardEffectParameters parameters)?
         customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)

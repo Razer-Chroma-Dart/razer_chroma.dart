@@ -89,26 +89,19 @@ _$CustomKeyKeyboardEffect _$$CustomKeyKeyboardEffectFromJson(
         final val = _$CustomKeyKeyboardEffect(
           $checkedConvert(
               'param',
-              (v) => (v as Map<String, dynamic>).map(
-                    (k, e) => MapEntry(
-                        k,
-                        (e as List<dynamic>)
-                            .map((e) => (e as List<dynamic>)
-                                .map((e) => e as int)
-                                .toList())
-                            .toList()),
-                  )),
+              (v) => CustomKeyKeyboardEffectParameters.fromJson(
+                  v as Map<String, dynamic>)),
           $type: $checkedConvert('effect', (v) => v as String?),
         );
         return val;
       },
-      fieldKeyMap: const {r'$type': 'effect'},
+      fieldKeyMap: const {'parameters': 'param', r'$type': 'effect'},
     );
 
 Map<String, dynamic> _$$CustomKeyKeyboardEffectToJson(
         _$CustomKeyKeyboardEffect instance) =>
     <String, dynamic>{
-      'param': instance.param,
+      'param': instance.parameters,
       'effect': instance.$type,
     };
 

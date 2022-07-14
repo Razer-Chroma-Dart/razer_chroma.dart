@@ -1,5 +1,4 @@
 import 'package:meta/meta.dart';
-import 'package:razer_chroma/razer_chroma.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 import 'package:razer_chroma_rest_server/src/errors/utils/checked_json_accessor.dart';
 import 'package:razer_chroma_rest_server/src/initialization/api/session.dart';
@@ -52,7 +51,12 @@ mixin EffectsApi on SessionApi {
             .toList(growable: false),
       );
     } else if (effect is CustomKeyKeyboardEffect) {
-      // TODO: Implement CHROMA_CUSTOM_KEY keyboard effect.
+      backend.keyboardCustomKeyEffect(
+        effect.parameters.colors
+            .map((row) => row.map(bgrToColor).toList(growable: false))
+            .toList(growable: false),
+        effect.parameters.keys,
+      );
       return false;
     } else if (effect is WaveKeyboardEffect) {
       applicationSuccessful =

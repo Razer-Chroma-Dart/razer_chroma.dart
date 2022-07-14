@@ -1,5 +1,7 @@
 library razer_chroma_rest.core;
 
+export 'package:razer_chroma/razer_chroma.dart';
+
 export 'src/api/index.dart';
 export 'src/effects/index.dart';
 export 'src/errors/index.dart';

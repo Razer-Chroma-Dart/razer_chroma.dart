@@ -11,6 +11,11 @@ environment:
 dependencies:
   ## Language
   meta: ^1.8.0
+  collection: ^1.16.0
+
+  # Razer Chroma
+  razer_chroma:
+    path: ../razer_chroma
 
   ## Code generation
   freezed_annotation: ^2.0.3

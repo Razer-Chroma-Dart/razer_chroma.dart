@@ -1,4 +1,3 @@
-import 'package:razer_chroma/razer_chroma.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
 /// A backend interface to provide functionality to the [RazerChromaRestServer].
@@ -41,6 +40,38 @@ abstract class RazerChromaRestServerBackend {
   ///
   /// Returns `true` if the application is successful.
   bool keyboardCustomEffect(List<List<Color>> colors) => false;
+
+  /// Applies a custom keyboard key effect.
+  ///
+  /// [colors] is an ordinary list of 6 rows of 22 key colors to display on the
+  /// keyboard.
+  ///
+  /// [keys] is a list of 6 rows of 22 translatable key colors to display on the
+  /// appropriate keys of newer keyboards.
+  ///
+  /// Returns `true` if the application is successful.
+  ///
+  /// The default implementation of this method does not map the translatable
+  /// keys, instead using their typical locations and calling
+  /// [keyboardCustomEffect].
+  // TODO implement key translations in Dart
+  bool keyboardCustomKeyEffect(
+    List<List<Color>> colors,
+    List<List<TranslatableKeyColor?>> keys,
+  ) {
+    final flattenedColors = List.generate(
+      colors.length,
+      (index) => List.of(colors[index], growable: false),
+      growable: false,
+    );
+    for (final row in keys) {
+      for (final key in row) {
+        if (key == null) continue;
+        flattenedColors[key.standardRow][key.standardColumn] = key.color;
+      }
+    }
+    return keyboardCustomEffect(flattenedColors);
+  }
 
   /// Applies a wave keyboard effect.
   ///
