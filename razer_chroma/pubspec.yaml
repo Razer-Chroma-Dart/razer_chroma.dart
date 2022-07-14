@@ -21,7 +21,12 @@ dev_dependencies:
 
   ## Tools
   built_collection: ^5.1.1
-  code_builder: ^4.1.0
+  code_builder:
+    git:
+      url: https://github.com/dnys1/code_builder.git
+      ref: 82733dbd157cc139582420ee41108c1e5e65a658
   dart_style: ^2.2.3
   recase: ^4.0.0
   path: ^1.8.2
+  universal_html: ^2.0.8
+  http: ^0.13.4
