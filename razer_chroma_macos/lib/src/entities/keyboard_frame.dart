@@ -31,6 +31,31 @@ class KeyboardFrameSegmentGenerator {
         colorIterable.toList(growable: false),
       );
 
+  /// Represents the [KeyboardFrameSegmentGenerator] output as binary frame
+  /// data.
+  ///
+  /// This only applies to the row specified by [rowId].
+  /// To generate frame data for multiple segments, see
+  /// [KeyboardFrameSerialization.toFrameData].
+  Uint8List toFrameData() {
+    final colorCount = colorIterable.length;
+    final rowData = Uint8List(3 + colorCount * 3);
+    var offset = 0;
+    // Write the ROW_ID value.
+    rowData[offset++] = rowId;
+    // Write the START_COL value.
+    rowData[offset++] = startColumn;
+    // Write the STOP_COL value (inclusive).
+    rowData[offset++] = startColumn + colorCount - 1;
+    // Write the RGB values.
+    for (final color in colorIterable) {
+      rowData[offset++] = color.r.round();
+      rowData[offset++] = color.g.round();
+      rowData[offset++] = color.b.round();
+    }
+    return rowData;
+  }
+
   /// Creates a [KeyboardFrameGenerator] using a 6x22 color matrix.
   ///
   /// [colors] is a list of rows of colors.
@@ -89,22 +114,7 @@ extension KeyboardFrameSerialization on KeyboardFrameGenerator {
   Uint8List toFrameData() {
     final frameBuilder = BytesBuilder(copy: false);
     for (final segment in this) {
-      final colorCount = segment.colorIterable.length;
-      final rowBuffer = Uint8List(3 + colorCount * 3);
-      var offset = 0;
-      // Write the ROW_ID value.
-      rowBuffer[offset++] = segment.rowId;
-      // Write the START_COL value.
-      rowBuffer[offset++] = segment.startColumn;
-      // Write the STOP_COL value (inclusive).
-      rowBuffer[offset++] = segment.startColumn + colorCount - 1;
-      // Write the RGB values.
-      for (final color in segment.colorIterable) {
-        rowBuffer[offset++] = color.r.round();
-        rowBuffer[offset++] = color.g.round();
-        rowBuffer[offset++] = color.b.round();
-      }
-      frameBuilder.add(rowBuffer);
+      frameBuilder.add(segment.toFrameData());
     }
     return frameBuilder.toBytes();
   }
