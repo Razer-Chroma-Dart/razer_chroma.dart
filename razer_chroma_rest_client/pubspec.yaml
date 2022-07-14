@@ -14,7 +14,7 @@ dependencies:
 
   ## Razer Chroma
   razer_chroma_rest_core:
-    path: '../razer_chroma_rest_core'
+    path: ../razer_chroma_rest_core
 
   ## Communication
   http: ^0.13.4
@@ -24,4 +24,4 @@ dev_dependencies:
   lint: ^1.8.2
 
   ## Example
-  circular_buffer: ^0.9.1
+  circular_buffer: ^0.11.0

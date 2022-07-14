@@ -127,7 +127,9 @@ class SoftwareWave {
     this.frameInterval =
         const Duration(microseconds: Duration.microsecondsPerSecond ~/ 60),
     this.width = 22,
-  }) : wave = CircularBuffer(width)..addAll(_generateInitialWave(width));
+  }) : wave = CircularBuffer.of(
+          _generateInitialWave(width).toList(growable: false),
+        );
 
   SoftwareWave.fps({
     void Function(List<int> wave)? onNewFrame,
