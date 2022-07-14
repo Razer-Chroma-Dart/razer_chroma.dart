@@ -22,6 +22,8 @@ KeyboardEffect _$KeyboardEffectFromJson(Map<String, dynamic> json) {
       return StaticKeyboardEffect.fromJson(json);
     case 'CHROMA_CUSTOM':
       return CustomKeyboardEffect.fromJson(json);
+    case 'CHROMA_CUSTOM_KEY':
+      return CustomKeyKeyboardEffect.fromJson(json);
     case 'CHROMA_WAVE':
       return WaveKeyboardEffect.fromJson(json);
 
@@ -45,6 +47,10 @@ mixin _$KeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)
+        customKey,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)
         wave,
   }) =>
@@ -59,6 +65,10 @@ mixin _$KeyboardEffect {
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
         custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
@@ -77,6 +87,10 @@ mixin _$KeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
         wave,
     required TResult orElse(),
@@ -87,6 +101,7 @@ mixin _$KeyboardEffect {
     required TResult Function(EmptyKeyboardEffect value) empty,
     required TResult Function(StaticKeyboardEffect value) static,
     required TResult Function(CustomKeyboardEffect value) custom,
+    required TResult Function(CustomKeyKeyboardEffect value) customKey,
     required TResult Function(WaveKeyboardEffect value) wave,
   }) =>
       throw _privateConstructorUsedError;
@@ -95,6 +110,7 @@ mixin _$KeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
   }) =>
       throw _privateConstructorUsedError;
@@ -103,6 +119,7 @@ mixin _$KeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
     required TResult orElse(),
   }) =>
@@ -186,6 +203,10 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)
+        customKey,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)
         wave,
   }) {
@@ -203,6 +224,10 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
         custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
@@ -224,6 +249,10 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
         wave,
     required TResult orElse(),
@@ -240,6 +269,7 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
     required TResult Function(EmptyKeyboardEffect value) empty,
     required TResult Function(StaticKeyboardEffect value) static,
     required TResult Function(CustomKeyboardEffect value) custom,
+    required TResult Function(CustomKeyKeyboardEffect value) customKey,
     required TResult Function(WaveKeyboardEffect value) wave,
   }) {
     return empty(this);
@@ -251,6 +281,7 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
   }) {
     return empty?.call(this);
@@ -262,6 +293,7 @@ class _$EmptyKeyboardEffect implements EmptyKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
     required TResult orElse(),
   }) {
@@ -384,6 +416,10 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)
+        customKey,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)
         wave,
   }) {
@@ -401,6 +437,10 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
         custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
@@ -422,6 +462,10 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
         wave,
     required TResult orElse(),
@@ -438,6 +482,7 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
     required TResult Function(EmptyKeyboardEffect value) empty,
     required TResult Function(StaticKeyboardEffect value) static,
     required TResult Function(CustomKeyboardEffect value) custom,
+    required TResult Function(CustomKeyKeyboardEffect value) customKey,
     required TResult Function(WaveKeyboardEffect value) wave,
   }) {
     return static(this);
@@ -449,6 +494,7 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
   }) {
     return static?.call(this);
@@ -460,6 +506,7 @@ class _$StaticKeyboardEffect implements StaticKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
     required TResult orElse(),
   }) {
@@ -593,6 +640,10 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)
+        customKey,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)
         wave,
   }) {
@@ -610,6 +661,10 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
         custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
@@ -631,6 +686,10 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
         wave,
     required TResult orElse(),
@@ -647,6 +706,7 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
     required TResult Function(EmptyKeyboardEffect value) empty,
     required TResult Function(StaticKeyboardEffect value) static,
     required TResult Function(CustomKeyboardEffect value) custom,
+    required TResult Function(CustomKeyKeyboardEffect value) customKey,
     required TResult Function(WaveKeyboardEffect value) wave,
   }) {
     return custom(this);
@@ -658,6 +718,7 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
   }) {
     return custom?.call(this);
@@ -669,6 +730,7 @@ class _$CustomKeyboardEffect implements CustomKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
     required TResult orElse(),
   }) {
@@ -698,6 +760,223 @@ abstract class CustomKeyboardEffect implements KeyboardEffect {
   List<List<int>> get colors;
   @JsonKey(ignore: true)
   _$$CustomKeyboardEffectCopyWith<_$CustomKeyboardEffect> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CustomKeyKeyboardEffectCopyWith<$Res> {
+  factory _$$CustomKeyKeyboardEffectCopyWith(_$CustomKeyKeyboardEffect value,
+          $Res Function(_$CustomKeyKeyboardEffect) then) =
+      __$$CustomKeyKeyboardEffectCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: DeviceEffect.parametersKey)
+          Map<String, List<List<int>>> param});
+}
+
+/// @nodoc
+class __$$CustomKeyKeyboardEffectCopyWithImpl<$Res>
+    extends _$KeyboardEffectCopyWithImpl<$Res>
+    implements _$$CustomKeyKeyboardEffectCopyWith<$Res> {
+  __$$CustomKeyKeyboardEffectCopyWithImpl(_$CustomKeyKeyboardEffect _value,
+      $Res Function(_$CustomKeyKeyboardEffect) _then)
+      : super(_value, (v) => _then(v as _$CustomKeyKeyboardEffect));
+
+  @override
+  _$CustomKeyKeyboardEffect get _value =>
+      super._value as _$CustomKeyKeyboardEffect;
+
+  @override
+  $Res call({
+    Object? param = freezed,
+  }) {
+    return _then(_$CustomKeyKeyboardEffect(
+      param == freezed
+          ? _value._param
+          : param // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<List<int>>>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CustomKeyKeyboardEffect implements CustomKeyKeyboardEffect {
+  const _$CustomKeyKeyboardEffect(
+      @JsonKey(name: DeviceEffect.parametersKey)
+          final Map<String, List<List<int>>> param,
+      {final String? $type})
+      : _param = param,
+        $type = $type ?? 'CHROMA_CUSTOM_KEY';
+
+  factory _$CustomKeyKeyboardEffect.fromJson(Map<String, dynamic> json) =>
+      _$$CustomKeyKeyboardEffectFromJson(json);
+
+  final Map<String, List<List<int>>> _param;
+  @override
+  @JsonKey(name: DeviceEffect.parametersKey)
+  Map<String, List<List<int>>> get param {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_param);
+  }
+
+  @JsonKey(name: 'effect')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'KeyboardEffect.customKey(param: $param)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CustomKeyKeyboardEffect &&
+            const DeepCollectionEquality().equals(other._param, _param));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_param));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$CustomKeyKeyboardEffectCopyWith<_$CustomKeyKeyboardEffect> get copyWith =>
+      __$$CustomKeyKeyboardEffectCopyWithImpl<_$CustomKeyKeyboardEffect>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)
+        static,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)
+        custom,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)
+        customKey,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)
+        wave,
+  }) {
+    return customKey(param);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)?
+        static,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
+        custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)?
+        wave,
+  }) {
+    return customKey?.call(param);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                StaticKeyboardEffectParameters parameters)?
+        static,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
+        custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                WaveKeyboardEffectParameters parameters)?
+        wave,
+    required TResult orElse(),
+  }) {
+    if (customKey != null) {
+      return customKey(param);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyKeyboardEffect value) empty,
+    required TResult Function(StaticKeyboardEffect value) static,
+    required TResult Function(CustomKeyboardEffect value) custom,
+    required TResult Function(CustomKeyKeyboardEffect value) customKey,
+    required TResult Function(WaveKeyboardEffect value) wave,
+  }) {
+    return customKey(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyKeyboardEffect value)? empty,
+    TResult Function(StaticKeyboardEffect value)? static,
+    TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
+    TResult Function(WaveKeyboardEffect value)? wave,
+  }) {
+    return customKey?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyKeyboardEffect value)? empty,
+    TResult Function(StaticKeyboardEffect value)? static,
+    TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
+    TResult Function(WaveKeyboardEffect value)? wave,
+    required TResult orElse(),
+  }) {
+    if (customKey != null) {
+      return customKey(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CustomKeyKeyboardEffectToJson(this);
+  }
+}
+
+abstract class CustomKeyKeyboardEffect implements KeyboardEffect {
+  const factory CustomKeyKeyboardEffect(
+      @JsonKey(name: DeviceEffect.parametersKey)
+          final Map<String, List<List<int>>> param) = _$CustomKeyKeyboardEffect;
+
+  factory CustomKeyKeyboardEffect.fromJson(Map<String, dynamic> json) =
+      _$CustomKeyKeyboardEffect.fromJson;
+
+  @JsonKey(name: DeviceEffect.parametersKey)
+  Map<String, List<List<int>>> get param;
+  @JsonKey(ignore: true)
+  _$$CustomKeyKeyboardEffectCopyWith<_$CustomKeyKeyboardEffect> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -804,6 +1083,10 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
         custom,
     required TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)
+        customKey,
+    required TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)
         wave,
   }) {
@@ -821,6 +1104,10 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors)?
         custom,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
@@ -842,6 +1129,10 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
         custom,
     TResult Function(
             @JsonKey(name: DeviceEffect.parametersKey)
+                Map<String, List<List<int>>> param)?
+        customKey,
+    TResult Function(
+            @JsonKey(name: DeviceEffect.parametersKey)
                 WaveKeyboardEffectParameters parameters)?
         wave,
     required TResult orElse(),
@@ -858,6 +1149,7 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
     required TResult Function(EmptyKeyboardEffect value) empty,
     required TResult Function(StaticKeyboardEffect value) static,
     required TResult Function(CustomKeyboardEffect value) custom,
+    required TResult Function(CustomKeyKeyboardEffect value) customKey,
     required TResult Function(WaveKeyboardEffect value) wave,
   }) {
     return wave(this);
@@ -869,6 +1161,7 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
   }) {
     return wave?.call(this);
@@ -880,6 +1173,7 @@ class _$WaveKeyboardEffect implements WaveKeyboardEffect {
     TResult Function(EmptyKeyboardEffect value)? empty,
     TResult Function(StaticKeyboardEffect value)? static,
     TResult Function(CustomKeyboardEffect value)? custom,
+    TResult Function(CustomKeyKeyboardEffect value)? customKey,
     TResult Function(WaveKeyboardEffect value)? wave,
     required TResult orElse(),
   }) {

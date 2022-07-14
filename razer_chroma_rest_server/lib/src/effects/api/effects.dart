@@ -51,6 +51,9 @@ mixin EffectsApi on SessionApi {
             .map((row) => row.map(bgrToColor).toList(growable: false))
             .toList(growable: false),
       );
+    } else if (effect is CustomKeyKeyboardEffect) {
+      // TODO: Implement CHROMA_CUSTOM_KEY keyboard effect.
+      return false;
     } else if (effect is WaveKeyboardEffect) {
       applicationSuccessful =
           // ignore: deprecated_member_use_from_same_package

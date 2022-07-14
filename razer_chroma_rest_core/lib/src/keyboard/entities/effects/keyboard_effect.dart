@@ -35,6 +35,16 @@ class KeyboardEffect with _$KeyboardEffect implements DeviceEffect {
     @JsonKey(name: DeviceEffect.parametersKey) List<List<int>> colors,
   ) = CustomKeyboardEffect;
 
+  /// An more modern alternative to [KeyboardEffect.custom].
+  ///
+  /// This is a stub.
+  // TODO: Implement CHROMA_CUSTOM_KEY keyboard effect.
+  @FreezedUnionValue('CHROMA_CUSTOM_KEY')
+  const factory KeyboardEffect.customKey(
+    @JsonKey(name: DeviceEffect.parametersKey)
+        Map<String, List<List<int>>> param,
+  ) = CustomKeyKeyboardEffect;
+
   /// A wave effect.
   @Deprecated(
     'Removed from the API documentation (deprecated and should not be used)',
