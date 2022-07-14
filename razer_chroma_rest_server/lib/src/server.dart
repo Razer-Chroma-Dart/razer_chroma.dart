@@ -14,6 +14,7 @@ import 'package:razer_chroma_rest_server/src/keyboard/api/keyboard.dart';
 import 'package:razer_chroma_rest_server/src/security/middleware/host_filter.dart';
 import 'package:razer_chroma_rest_server/src/session.dart';
 import 'package:shelf/shelf_io.dart';
+import 'package:shelf_cors_headers/shelf_cors_headers.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 /// An instance of a Razer Chroma REST server.
@@ -156,6 +157,8 @@ class BaseRazerChromaRestServer {
       )
         // Filter out requests from invalid hosts.
         ..use(hostFilterMiddleware)
+        // Enable CORS.
+        ..use(corsHeaders())
         // Handle API errors.
         ..use(apiErrorMiddleware)
         // Handle invalid data in requests.
