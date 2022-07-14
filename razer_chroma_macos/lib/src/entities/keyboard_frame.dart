@@ -34,6 +34,9 @@ class KeyboardFrameSegmentGenerator {
   /// Creates a [KeyboardFrameGenerator] using a 6x22 color matrix.
   ///
   /// [colors] is a list of rows of colors.
+  ///
+  /// The resultant [Iterable] and the [KeyboardFrameSegmentGenerator]s emitted
+  /// from it have efficient [Iterable.length] implementations.
   static KeyboardFrameGenerator matrixFrame(List<List<Color>> colors) {
     assert(
       colors.length == _rowCount,
@@ -58,6 +61,9 @@ class KeyboardFrameSegmentGenerator {
   }
 
   /// Creates a [KeyboardFrameGenerator] using a single [color].
+  ///
+  /// The resultant [Iterable] and the [KeyboardFrameSegmentGenerator]s emitted
+  /// from it have efficient [Iterable.length] implementations.
   static KeyboardFrameGenerator staticFrame(Color color) {
     final rgbColor = color.toRgbColor();
     RgbColor getRgbColor(int columnIndex) => rgbColor;
@@ -73,18 +79,25 @@ class KeyboardFrameSegmentGenerator {
 }
 
 extension KeyboardFrameSerialization on KeyboardFrameGenerator {
+  /// Represents the [KeyboardFrameGenerator] output as binary frame data.
+  ///
+  /// This function is fastest when this and each segment's color iterable has
+  /// an efficient [Iterable.length] implementation, which can be obtained
+  /// through the use of something like a [List] or [Iterable.generate] result.
+  /// If this is not the case, consider using the [precompute] method
+  /// beforehand.
   Uint8List toFrameData() {
     final frameBuilder = BytesBuilder(copy: false);
     for (final segment in this) {
-      final rowBuffer = Uint8List(3 + segment.colorIterable.length * 3);
+      final colorCount = segment.colorIterable.length;
+      final rowBuffer = Uint8List(3 + colorCount * 3);
       var offset = 0;
       // Write the ROW_ID value.
       rowBuffer[offset++] = segment.rowId;
       // Write the START_COL value.
       rowBuffer[offset++] = segment.startColumn;
       // Write the STOP_COL value (inclusive).
-      rowBuffer[offset++] =
-          segment.startColumn + segment.colorIterable.length - 1;
+      rowBuffer[offset++] = segment.startColumn + colorCount - 1;
       // Write the RGB values.
       for (final color in segment.colorIterable) {
         rowBuffer[offset++] = color.r.round();
