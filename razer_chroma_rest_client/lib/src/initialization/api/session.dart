@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_client/src/razer_chroma_client.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
@@ -52,7 +53,8 @@ mixin SessionApi on BaseRazerChromaClient {
       (url) async {
         try {
           await put<Map<String, dynamic>>(url);
-        } on SocketException catch (e) {
+        } catch (e) {
+          if (!(e is SocketException || e is http.ClientException)) rethrow;
           if (onHeartbeatError?.call(e) != true) rethrow;
         }
       },
@@ -64,9 +66,9 @@ mixin SessionApi on BaseRazerChromaClient {
 
   /// Ends a session.
   ///
-  /// Throws a [SocketException] when network connections occur, which is common
-  /// when using the official backend as it often closes the session server
-  /// before the disconnection response has completed.
+  /// Throws a [SocketException] or [ClientException] when network connections
+  /// occur, which is common when using the official backend as it often closes
+  /// the session server before the disconnection response has completed.
   Future<void> disconnect() async {
     assert(connected, 'Cannot disconnect - not connected!');
     _session!.stopHeartbeat();
@@ -105,7 +107,8 @@ class RazerChromaClientSession {
     if (_active) {
       try {
         await _put(urlWithPath('heartbeat'));
-      } on SocketException {
+      } catch (e) {
+        if (!(e is SocketException || e is http.ClientException)) rethrow;
         _active = false;
       }
     } else {

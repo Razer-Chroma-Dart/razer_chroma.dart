@@ -6,7 +6,8 @@ import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 mixin VersionApi on BaseRazerChromaClient {
   /// Retrieves the SDK version.
   ///
-  /// Throws a [SocketException] if no connection can be made.
+  /// Throws a [SocketException] or [ClientException] if no connection can be
+  /// made.
   /// Throws a [FormatException] if an invalid response is received.
   Future<SdkVersion> getVersion() =>
       get<Map<String, dynamic>>(SessionApi.initializationUri)
