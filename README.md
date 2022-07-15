@@ -7,4 +7,5 @@ A list of packages is available in the
 ## Features
 - Razer Chroma device control
 - Platform-agnostic Razer Chroma SDK REST API client and server implementations
+  - macOS server backend implementation
 - Razer Chroma device information data

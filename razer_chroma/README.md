@@ -8,8 +8,9 @@ Common components used in several Razer Chroma packages.
 _Platform-agnostic, client and server require `dart:io`_.
 - [Client](../razer_chroma_rest_client)
 - [Server](../razer_chroma_rest_server)
+  - [macOS backend](../razer_chroma_rest_server_macos)
 - [Common](../razer_chroma_rest_core)
 ### Miscellaneous
-- [package:razer_chroma](razer_chroma)
+- [package:razer_chroma](.)
 
 _Links not working? View this README on GitHub._

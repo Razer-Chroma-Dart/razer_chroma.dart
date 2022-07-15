@@ -7,6 +7,7 @@ packages:
   - razer_chroma_rest_client
   - razer_chroma_rest_core
   - razer_chroma_rest_server
+  - razer_chroma_rest_server_macos
 
 command:
   bootstrap:
