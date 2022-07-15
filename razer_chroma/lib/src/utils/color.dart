@@ -5,8 +5,8 @@ extension BgrUtils on Color {
   /// with Razer devices.
   int toBgr() {
     final rgb = toRgbColor();
-    return rgb.b.round() << 8 * 2 &
-        rgb.g.round() << 8 * 1 &
+    return rgb.b.round() << 8 * 2 |
+        rgb.g.round() << 8 * 1 |
         rgb.r.round() << 8 * 0;
   }
 }
