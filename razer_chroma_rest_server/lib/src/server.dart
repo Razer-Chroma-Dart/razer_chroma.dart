@@ -77,7 +77,7 @@ class BaseRazerChromaRestServer {
   Future<void> stop() async {
     assert(running, 'Not started!');
     await _initializationServer!.close();
-    await _session?.server.close();
+    await closeExistingSession();
     _initializationServer = null;
   }
 
