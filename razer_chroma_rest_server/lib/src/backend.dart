@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'package:razer_chroma_rest_core/razer_chroma_rest_core.dart';
 
 /// A backend interface to provide functionality to the [RazerChromaRestServer].
@@ -78,4 +79,20 @@ abstract class RazerChromaRestServerBackend {
   /// Returns `true` if the application is successful.
   @Deprecated('The wave effect API is deprecated.')
   bool keyboardWaveEffect(WaveKeyboardEffectDirection direction) => false;
+}
+
+mixin LoggingRazerChromaRestServerBackendMixin on RazerChromaRestServerBackend {
+  void log(String message);
+
+  @override
+  @mustCallSuper
+  void sessionStarted(ClientDetails details) {
+    log('Session started: $details');
+  }
+
+  @override
+  @mustCallSuper
+  void sessionStopped(ClientDetails details) {
+    log('Session stopped: $details');
+  }
 }
